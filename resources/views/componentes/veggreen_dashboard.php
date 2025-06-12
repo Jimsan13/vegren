@@ -1,3 +1,16 @@
+<?php
+// Este es el archivo PHP principal que renderiza el dashboard completo.
+
+// Asegúrate de que la ruta a tu carpeta 'components' sea correcta
+// Si 'components' está en el mismo directorio que veggreen_dashboard.php
+$sidebar_path = 'components/sidebar.php';
+// Si 'components' estuviera en un directorio diferente, por ejemplo, en la raíz de htdocs
+// $sidebar_path = 'tu_carpeta_del_proyecto/components/sidebar.php';
+
+// Puedes definir variables PHP aquí para usar en el dashboard
+$admin_name = "Ful Administrador";
+$current_date = date('d/m/Y');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,14 +24,11 @@
     <!-- Bootstrap Icons CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Font Awesome CSS CDN (opcional, solo si usas iconos fas fa-...) -->
+    <!-- Font Awesome CSS CDN (para iconos como fas fa-...) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Estilos personalizados -->
     <style>
-        /* Aquí irían todos los estilos CSS que tenías en el archivo PHP principal. */
-        /* Los he omitido por brevedad para no duplicar un código que no funcionará como esperas */
-        /* Debes copiar y pegar el <style> completo del index.php anterior aquí si quieres los estilos. */
         :root {
             --primary-green: #4CAF50;
             --dark-green: #388E3C;
@@ -30,123 +40,247 @@
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Nunito', sans-serif; /* Puedes usar cualquier fuente, Nunito es común */
             display: flex;
             min-height: 100vh;
-            background-color: #f8f9fa;
-            overflow-x: hidden;
+            background-color: #f8f9fa; /* Fondo general del contenido principal */
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
 
-        #wrapper { display: flex; width: 100%; }
+        #wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Estilos del Sidebar */
         #sidebar-wrapper {
-            width: 250px; transition: all 0.3s ease-in-out; background-color: var(--light-green);
-            color: var(--text-dark); border-right: 1px solid rgba(0, 0, 0, 0.1); flex-shrink: 0;
-            padding: 20px; box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
+            width: 250px;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--light-green);
+            color: var(--text-dark);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            padding: 20px;
+            box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
         }
-        /* .sidebar-heading {
-            background-color: var(--dark-green); color: white; padding: 1.5rem 1rem;
-            text-align: center; font-weight: 700; font-size: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 1rem; border-radius: 0.5rem;
-        } */
-        .sidebar-heading img { height: 50px; margin-bottom: 0.5rem; }
-        #sidebar-wrapper .list-group-item {
-            color: var(--text-dark); background-color: transparent; border: none; font-weight: 500;
-            padding: 0.75rem 1.5rem; display: flex; align-items: center; border-radius: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-        #sidebar-wrapper .list-group-item i { margin-right: 0.75rem; font-size: 1.2rem; color: var(--primary-green); }
-        #sidebar-wrapper .list-group-item.active { background-color: var(--primary-green); color: white; }
-        #sidebar-wrapper .list-group-item.active i { color: white; }
-        #sidebar-wrapper .list-group-item:hover:not(.active) { background-color: var(--lighter-green); }
 
-        #page-content-wrapper {
-            flex-grow: 1; display: flex; flex-direction: column; min-width: 0; padding: 20px;
-        }
-        .navbar-custom {
-            padding: 0.75rem 1.5rem; background-color: white !important; border-bottom: 1px solid #dee2e6;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); z-index: 1000; margin-bottom: 1.5rem;
+        .sidebar-heading {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
             border-radius: 0.5rem;
         }
-        .navbar-custom .nav-link { color: var(--text-dark); font-weight: 500; }
-        .navbar-custom .nav-link i { margin-right: 0.5rem; }
 
-        #wrapper.toggled #sidebar-wrapper { margin-left: -250px; }
+        .sidebar-heading img {
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
 
+        #sidebar-wrapper .list-group-item {
+            color: var(--text-dark);
+            background-color: transparent;
+            border: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            border-radius: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        #sidebar-wrapper .list-group-item i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+        }
+
+        #sidebar-wrapper .list-group-item.active {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        #sidebar-wrapper .list-group-item.active i {
+            color: white;
+        }
+
+        #sidebar-wrapper .list-group-item:hover:not(.active) {
+            background-color: var(--lighter-green);
+        }
+
+        /* Estilos para el contenido principal */
+        #page-content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 20px;
+        }
+
+        /* Navbar personalizado */
+        .navbar-custom {
+            padding: 0.75rem 1.5rem;
+            background-color: white !important;
+            border-bottom: 1px solid #dee2e6;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            z-index: 1000;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .navbar-custom .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .navbar-custom .nav-link i {
+            margin-right: 0.5rem;
+        }
+
+        /* Estilos para el toggle del sidebar */
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -250px;
+        }
+
+        /* Tarjetas Personalizadas */
         .card-custom {
-            border-radius: 1rem; box-shadow: var(--card-shadow); transition: transform 0.2s ease-in-out;
-            border: none; padding: 1.5rem; background-color: #e0ffe0; height: 100%; display: flex;
-            flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease-in-out;
+            border: none;
+            padding: 1.5rem;
+            background-color: #e0ffe0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        .card-custom:hover { transform: translateY(-5px); }
-        .card-custom i { font-size: 3em; margin-bottom: 1rem; color: #28a745; }
-        .card-custom .card-title { font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
-        .card-custom .card-text { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; }
-        .btn-custom {
-            background-color: #28a745; border-color: #28a745; color: white; border-radius: 0.5rem;
-            padding: 0.5rem 1.5rem; font-weight: 500; transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-        .btn-custom:hover { background-color: #218838; border-color: #1e7e34; color: white; }
-        .content-header h3 { color: var(--text-dark); font-weight: 700; margin-bottom: 1.5rem; }
-        .header-top-right { text-align: right; font-size: 0.9em; color: #555; }
-        .header-top-right .bi { margin-right: 5px; }
 
-        @media (min-width: 768px) {
-            #sidebar-wrapper { margin-left: 0; position: relative; }
-            #page-content-wrapper { width: auto; margin-left: 0; }
+        .card-custom:hover {
+            transform: translateY(-5px);
         }
+
+        .card-custom i {
+            font-size: 3em;
+            margin-bottom: 1rem;
+            color: #28a745;
+        }
+
+        .card-custom .card-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-custom .card-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* Botones personalizados */
+        .btn-custom {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: white;
+        }
+
+        /* Estilos para el título "Resumen General" */
+        .content-header h3 {
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-top-right {
+            text-align: right;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .header-top-right .bi {
+            margin-right: 5px;
+        }
+
+        /* Responsividad */
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+                position: relative;
+            }
+            #page-content-wrapper {
+                width: auto;
+                margin-left: 0;
+            }
+        }
+
         @media (max-width: 767.98px) {
-            #sidebar-wrapper { margin-left: -250px; position: fixed; height: 100vh; z-index: 1001; box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.1); }
-            #page-content-wrapper { width: 100vw; margin-left: 0; }
-            #wrapper.toggled #sidebar-wrapper { margin-left: 0; }
-            #wrapper.toggled #page-content-wrapper { margin-left: 250px; }
-            .navbar .container-fluid { padding-right: 0 !important; padding-left: 0 !important; }
-            .content-header h3 { padding-left: 0.5rem; }
+            #sidebar-wrapper {
+                margin-left: -250px;
+                position: fixed;
+                height: 100vh;
+                z-index: 1001;
+                box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.1);
+            }
+            #page-content-wrapper {
+                width: 100vw;
+                margin-left: 0;
+            }
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: 0;
+            }
+            #wrapper.toggled #page-content-wrapper {
+                margin-left: 250px;
+            }
+            .navbar .container-fluid {
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+            }
+            .content-header h3 {
+                padding-left: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="d-flex" id="wrapper">
-        <!-- ADVERTENCIA: Esta sección intenta incluir un archivo PHP, PERO ESTE ARCHIVO ES HTML y NO PROCESARÁ PHP. -->
-        <!-- Verás el código PHP sin ejecutar en tu navegador. -->
-        <!-- Para que esto funcione, este archivo DEBE ser .php -->
-        <!-- Copia y pega el contenido del sidebar.php directamente aquí si quieres que se vea SIN PHP. -->
-        <!-- Si quieres que PHP funcione, renombra este archivo a index.php -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-color-bg text-white">
-                <img src="{{ asset('images/logo.png') }}" alt=""  width="100">
-            </div>
-            <nav class="nav flex-column list-group list-group-flush">
-                <a class="list-group-item list-group-item-action active" href="#"> <i class="bi bi-speedometer"></i> Dashboard </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-truck"></i> Cargas </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-box-seam"></i> Gastos </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-graph-up"></i> Ventas </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-shop"></i> Almacén </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-people"></i> Nómina </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-cash-stack"></i> Utilidades </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-currency-dollar"></i> Efectivo </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-box"></i> Productos </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-truck-flatbed"></i> Proveedores </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-bar-chart"></i> Resultado </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-cash"></i> Finanzas </a>
-                <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-geo-alt"></i> Campo </a>
-            </nav>
-        </div>
+        <!-- Incluir la barra lateral (sidebar) -->
+        <?php
+        // Asegúrate de que la ruta a 'components/sidebar.php' sea correcta desde este archivo.
+        if (file_exists($sidebar_path)) {
+            include $sidebar_path;
+        } else {
+            echo '<div class="alert alert-danger m-3" role="alert">Error: No se encontró el archivo del sidebar en ' . $sidebar_path . '</div>';
+        }
+        ?>
 
+        <!-- Contenedor del contenido de la página -->
         <div id="page-content-wrapper">
-            <!-- ADVERTENCIA: Esta sección intenta incluir un archivo PHP, PERO ESTE ARCHIVO ES HTML y NO PROCESARÁ PHP. -->
-            <!-- Verás el código PHP sin ejecutar en tu navegador. -->
-            <!-- Si quieres que PHP funcione, renombra este archivo a index.php -->
-            <!-- Copia y pega el contenido del navbar.php directamente aquí si quieres que se vea SIN PHP. -->
+            <!-- Barra de navegación superior -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
                 <div class="container-fluid">
                     <button class="btn btn-success" id="sidebarToggle">Toggle Menu</button>
                     <div class="ms-auto d-flex align-items-center">
                         <div class="header-top-right me-3">
                             <p class="mb-0">
-                                <i class="bi bi-person-fill"></i> Ful Administrador <!-- Este PHP no se ejecutará -->
+                                <i class="bi bi-person-fill"></i> <?php echo $admin_name; ?>
                                 <br>
-                                <i class="bi bi-calendar-check"></i> 06/06/2025 <!-- Este PHP no se ejecutará -->
+                                <i class="bi bi-calendar-check"></i> <?php echo $current_date; ?>
                             </p>
                         </div>
                     </div>
@@ -154,14 +288,12 @@
             </nav>
 
             <!-- Contenido del Dashboard (las tarjetas) -->
-            <!-- Si este contenido viene de un archivo PHP (dashboard.php), TAMPOCO SE INCLUIRÁ AQUÍ. -->
-            <!-- Debes copiar y pegar el contenido de las tarjetas directamente aquí si quieres que se vea SIN PHP. -->
-            <!-- Si quieres que PHP funcione, renombra este archivo a index.php -->
             <div class="container-fluid py-4">
                 <div class="d-flex justify-content-between align-items-center mb-4 content-header">
                     <h3>Resumen General</h3>
                 </div>
                 <div class="row g-4">
+                    {{-- Tarjeta de Carga --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-truck"></i>
@@ -170,6 +302,8 @@
                             <a href="#" class="btn btn-custom">Nueva Carga</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Gastos --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-currency-dollar"></i>
@@ -178,6 +312,8 @@
                             <a href="#" class="btn btn-custom">Registrar</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Utilidades --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-piggy-bank"></i>
@@ -186,6 +322,8 @@
                             <a href="#" class="btn btn-custom">Ver Utilidades</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Ventas --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-graph-up"></i>
@@ -194,6 +332,8 @@
                             <a href="#" class="btn btn-custom">Ver ventas</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Efectivo --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-cash-coin"></i>
@@ -202,6 +342,8 @@
                             <a href="#" class="btn btn-custom">Ver efectivo</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Campo --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-geo-alt"></i>
@@ -210,6 +352,8 @@
                             <a href="#" class="btn btn-custom">Ver campo</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Productos --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-box-seam"></i>
@@ -218,6 +362,8 @@
                             <a href="#" class="btn btn-custom">Ver productos</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Proveedores --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-people"></i>
@@ -226,6 +372,8 @@
                             <a href="#" class="btn btn-custom">Ver proveedores</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Almacén --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-building"></i>
@@ -234,6 +382,8 @@
                             <a href="#" class="btn btn-custom">Inspeccionar almacén</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Finanzas --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-cash"></i>
@@ -242,6 +392,8 @@
                             <a href="#" class="btn btn-custom">Ver finanzas</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Resultado --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-bar-chart"></i>
@@ -250,6 +402,8 @@
                             <a href="#" class="btn btn-custom">Ver resultado</a>
                         </div>
                     </div>
+
+                    {{-- Tarjeta de Nómina --}}
                     <div class="col-md-4">
                         <div class="card card-custom">
                             <i class="bi bi-person-badge"></i>
