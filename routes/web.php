@@ -22,15 +22,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -38,6 +32,5 @@ Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminControl
 Route::middleware(['auth', 'role:contador'])->get('/finanzas', [ContadorController::class, 'index']);
 Route::middleware(['auth', 'role:campo'])->get('/campo', [CampoController::class, 'index']);
 Route::middleware(['auth', 'role:almacen'])->get('/almacen', [AlmacenController::class, 'index']);
-Route::middleware(['auth', 'role:nomina'])->get('/nomina', [NominaController::class, 'index']);
-
+Route::middleware(['auth', 'role:nomina'])->get('/nomina', [NominaController::class, 'index']); 
 
