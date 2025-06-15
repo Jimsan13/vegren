@@ -43,11 +43,11 @@
             color: var(--text-dark); border-right: 1px solid rgba(0, 0, 0, 0.1); flex-shrink: 0;
             padding: 20px; box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
         }
-        /* .sidebar-heading {
+        .sidebar-heading {
             background-color: var(--dark-green); color: white; padding: 1.5rem 1rem;
             text-align: center; font-weight: 700; font-size: 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 1rem; border-radius: 0.5rem;
-        } */
+        }
         .sidebar-heading img { height: 50px; margin-bottom: 0.5rem; }
         #sidebar-wrapper .list-group-item {
             color: var(--text-dark); background-color: transparent; border: none; font-weight: 500;
@@ -114,7 +114,9 @@
         <!-- Si quieres que PHP funcione, renombra este archivo a index.php -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-color-bg text-white">
-                <img src="{{ asset('images/logo.png') }}" alt=""  width="100">
+            <img src="{{ asset('images/logo.png') }}" alt="" class="mb-3" style="max-width: 200px;">
+              
+           
             </div>
             <nav class="nav flex-column list-group list-group-flush">
                 <a class="list-group-item list-group-item-action active" href="#"> <i class="bi bi-speedometer"></i> Dashboard </a>
@@ -280,4 +282,3 @@
         });
     </script>
 </body>
-</html>
