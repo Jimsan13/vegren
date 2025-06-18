@@ -45,6 +45,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Si no está autenticado, el middleware 'auth' lo redirigirá automáticamente a /login.
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/cargas', [AdminController::class, 'cargas'])->name('admin.cargas');
 });
 
 // Las rutas para otros roles (Contador, Campo, Almacen, Nomina)

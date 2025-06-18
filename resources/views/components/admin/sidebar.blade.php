@@ -4,7 +4,7 @@
     </div>
     <nav class="nav flex-column list-group list-group-flush">
         <a class="list-group-item list-group-item-action active" href="{{ route('admin.dashboard') }}"> <i class="bi bi-speedometer"></i> Dashboard </a>
-        <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-truck"></i> Cargas </a>
+        <a class="list-group-item list-group-item-action" href="{{route('admin.cargas') }}"> <i class="bi bi-truck"></i> Cargas </a>
         <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-box-seam"></i> Gastos </a>
         <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-graph-up"></i> Ventas </a>
         <a class="list-group-item list-group-item-action" href="#"> <i class="bi bi-shop"></i> Almacén </a>
