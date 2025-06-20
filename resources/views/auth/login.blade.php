@@ -1,47 +1,8 @@
 @extends('layouts.app')
 
+@section('body-class', 'login-page')
+
 @section('content')
-<style>
-   body {
-    background-image: url('../images/login.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-    .login-card {
-        background-color: white;
-        border-radius: 1.5rem;
-        padding: 2.5rem;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        width: 100%;
-        max-width: 450px;
-    }
-
-    .form-icon {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #6c757d;
-    }
-
-    .form-group {
-        position: relative;
-    }
-
-    .btn-green {
-        background-color: #00994c;
-        color: white;
-        border-radius: 1.5rem;
-        padding: 0.5rem 1.5rem;
-        font-weight: bold;
-    }
-
-    .btn-green:hover {
-        background-color: #007a3a;
-    }
-</style>
 
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="login-card text-center">

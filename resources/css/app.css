@@ -16,7 +16,12 @@ body {
     background-color: #f8f9fa; /* Fondo general de la página */
     overflow-x: hidden;
 }
-
+body.login-page {
+    background-image: url('../images/login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 #wrapper { display: flex; width: 100%; }
 #sidebar-wrapper {
     width: 250px; transition: all 0.3s ease-in-out;

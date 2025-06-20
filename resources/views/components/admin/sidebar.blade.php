@@ -1,6 +1,6 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center py-4 primary-color-bg text-white">
-        <img src="{{ asset('images/logo.png') }}" alt="VEGGREEN Logo" class="mb-3" style="max-width: 200px;">
+        <img src="{{ asset('images/logo.png') }}" alt="" class="mb-3" style="max-width: 100px;">
     </div>
     <nav class="nav flex-column list-group list-group-flush">
         <a class="list-group-item list-group-item-action active" href="{{ route('admin.dashboard') }}"> <i class="bi bi-speedometer"></i> Dashboard </a>

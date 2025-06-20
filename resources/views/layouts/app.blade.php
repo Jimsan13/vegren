@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>VEGGREEN - @yield('title', 'Dashboard')</title> {{-- Título dinámico para cada página --}}
+    <title>VEGGREEN </title> {{-- Título dinámico para cada página --}}
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
