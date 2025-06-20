@@ -54,7 +54,7 @@ body {
 
 #page-content-wrapper {
     flex-grow: 1; display: flex; flex-direction: column; min-width: 0; padding: 20px;
-    background-color: #f8f9fa; /* Fondo del contenido principal */
+    background-color: #f8f9fa; /*Fondo del contenido principal */
 }
 .navbar-custom {
     padding: 0.75rem 1.5rem;

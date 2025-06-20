@@ -104,12 +104,12 @@
                         <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
                     </a>
 
-                    {{-- Muestra el botón de Registrarse solo si la ruta de registro existe --}}
+                    <!-- {{-- Muestra el botón de Registrarse solo si la ruta de registro existe --}}
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="btn btn-outline-success btn-green-custom">
                             <i class="bi bi-person-plus-fill me-2"></i>Registrarse
                         </a>
-                    @endif
+                    @endif -->
                 @endauth
             @endif
         </div>

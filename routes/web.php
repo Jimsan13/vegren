@@ -46,6 +46,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/cargas', [AdminController::class, 'cargas'])->name('admin.cargas');
+    Route::get('/admin/almacen', [AdminController::class, 'almacen'])->name('admin.almacen');
+    Route::get('/admin/campo', [AdminController::class,'campo'])->name('admin.campo');
+    Route::get('/admin/efectivo', [AdminController::class,'efectivo'])->name('admin.efectivo');
+    Route::get('/admin/finanzas', [AdminController::class,'finanzas'])->name('admin.finanzas');
+    Route::get('/admin/gastos',[AdminController::class,'gastos'])->name('admin.gastos');
+    Route::get('/admin/nomina',[AdminController::class,'nomina'])->name('admin.nomina');
+    Route::get('/admin/productos',[AdminController::class,'productos'])->name('admin.productos');
+    Route::get('/admin/proveedores',[AdminController::class,'proveedores'])->name('admin.proveedores');
+    Route::get('/admin/resultados',[AdminController::class,'resultados'])->name('admin.resultados');
+    Route::get('/admin/utilidades',[AdminController::class,'utilidades'])->name('admin.utilidades');
+    Route::get('/admin/ventas', [AdminController::class,'ventas'])->name('admin.ventas');
 });
 
 // Las rutas para otros roles (Contador, Campo, Almacen, Nomina)
