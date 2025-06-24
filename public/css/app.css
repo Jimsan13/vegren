@@ -3,180 +3,230 @@
     --dark-green: #388E3C;
     --light-green: #E8F5E9;
     --lighter-green: #DCEDC8;
-    --text-dark: #333; /* Mantener oscuro para texto general */
-    --text-light: #666; /* Mantener un poco más claro para texto secundario */
+    --text-dark: #333;
+    --text-light: #666;
     --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    --black-icons-text: #000; /* Nueva variable para el negro de los iconos y el dashboard */
+    --black-icons-text: #000;
 }
 
 body {
     font-family: 'Nunito', sans-serif;
-    display: flex;
-    min-height: 100vh;
-    background-color: #f8f9fa; /* Fondo general de la página */
+    background-color: #f8f9fa;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-#wrapper { display: flex; width: 100%; }
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
 #sidebar-wrapper {
-    width: 250px; transition: all 0.3s ease-in-out;
-    background-color: var(--light-green); /* Fondo verde claro del sidebar */
-    color: var(--text-dark); /* Color de texto general del sidebar */
+    width: 250px;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--light-green);
+    color: var(--text-dark);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
     padding: 20px;
+    flex-shrink: 0;
     box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
 }
-.sidebar-heading {
-    background-color: var(--dark-green); /* Fondo del encabezado del sidebar */
-    color: white; /* Texto blanco en el encabezado */
-    padding: 1.5rem 1rem;
-    text-align: center; font-weight: 700; font-size: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 1rem; border-radius: 0.5rem;
-}
-.sidebar-heading img { height: 50px; margin-bottom: 0.5rem; }
-#sidebar-wrapper .list-group-item {
-    color: var(--text-dark); /* Color de texto normal de los elementos del sidebar */
-    background-color: transparent; border: none; font-weight: 500;
-    padding: 0.75rem 1.5rem; display: flex; align-items: center; border-radius: 0.5rem;
-    margin-bottom: 0.25rem;
-}
-#sidebar-wrapper .list-group-item i {
-    margin-right: 0.75rem; font-size: 1.2rem;
-    color: var(--primary-green); /* Iconos de los elementos del sidebar en verde primario */
-}
-#sidebar-wrapper .list-group-item.active {
-    background-color: var(--primary-green); /* Fondo del elemento activo en verde primario */
-    color: white; /* Texto blanco en el elemento activo */
-}
-#sidebar-wrapper .list-group-item.active i { color: white; /* Icono blanco en el elemento activo */ }
-#sidebar-wrapper .list-group-item:hover:not(.active) { background-color: var(--lighter-green); }
 
-#page-content-wrapper {
-    flex-grow: 1; display: flex; flex-direction: column; min-width: 0; padding: 20px;
-    background-color: #f8f9fa; /* Fondo del contenido principal */
-}
-.navbar-custom {
-    padding: 0.75rem 1.5rem;
-    background-color: white !important; /* Fondo de la barra de navegación */
-    border-bottom: 1px solid #dee2e6;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); z-index: 1000; margin-bottom: 1.5rem;
+.sidebar-heading {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
     border-radius: 0.5rem;
 }
-.navbar-custom .nav-link { color: var(--text-dark); font-weight: 500; }
-.navbar-custom .nav-link i { margin-right: 0.5rem; }
 
-#wrapper.toggled #sidebar-wrapper { margin-left: -250px; }
-
-/* Estilos para las tarjetas del dashboard */
-.card-custom {
-    border-radius: 1rem; box-shadow: var(--card-shadow); transition: transform 0.2s ease-in-out;
-    border: none; padding: 1.5rem;
-    background-color: white; /* ¡Cambiado de #e0ffe0 a blanco! */
-    height: 100%; display: flex;
-    flex-direction: column; align-items: center; justify-content: center; text-align: center;
-}
-.card-custom:hover { transform: translateY(-5px); }
-.card-custom i {
-    font-size: 3em; margin-bottom: 1rem;
-    color: var(--black-icons-text); /* Iconos de las tarjetas ahora son negros */
-}
-.card-custom .card-title {
-    font-weight: 600;
-    color: var(--black-icons-text); /* Título de la tarjeta ahora es negro */
+.sidebar-heading img {
+    height: 50px;
     margin-bottom: 0.5rem;
 }
-.card-custom .card-text { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; }
-.btn-custom {
-    background-color: #28a745; border-color: #28a745; color: white; border-radius: 0.5rem;
-    padding: 0.5rem 1.5rem; font-weight: 500; transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-}
-.btn-custom:hover { background-color: #218838; border-color: #1e7e34; color: white; }
 
-/* Estilos para el encabezado de contenido */
-.content-header h3 {
-    color: var(--black-icons-text); /* El título "Resumen General" ahora es negro */
-    font-weight: 700; margin-bottom: 1.5rem;
-}
-.header-top-right { text-align: right; font-size: 0.9em; color: #555; }
-.header-top-right .bi { margin-right: 5px; }
-
-@media (min-width: 768px) {
-    #sidebar-wrapper { margin-left: 0; position: relative; }
-    #page-content-wrapper { width: auto; margin-left: 0; }
-}
-@media (max-width: 767.98px) {
-    #sidebar-wrapper { margin-left: -250px; position: fixed; height: 100vh; z-index: 1001; box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.1); }
-    #page-content-wrapper { width: 100vw; margin-left: 0; }
-    #wrapper.toggled #sidebar-wrapper { margin-left: 0; }
-    #wrapper.toggled #page-content-wrapper { margin-left: 250px; }
-    .navbar .container-fluid { padding-right: 0 !important; padding-left: 0 !important; }
-    .content-header h3 { padding-left: 0.5rem; }
-}
-/* Estilos para el fondo del cuerpo de la página de login */
-body {
-    background-image: url('../images/login.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta desde la raíz CSS */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Si este body es exclusivo para el login, puedes añadir aquí también el
-       display: flex; align-items: center; justify-content: center; min-height: 100vh;
-       para centrar el contenido, o dejar que el layout lo haga si usas @extends('layouts.app')
-       y el layout ya tiene esas propiedades en su <body>.
-       Si el layout.app ya tiene esas propiedades, no las dupliques aquí en el body.
-    */
+#sidebar-wrapper .list-group-item {
+    color: var(--text-dark);
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-/* Estilos para la tarjeta de login */
-.login-card {
+#sidebar-wrapper .list-group-item i {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--primary-green);
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+#sidebar-wrapper .list-group-item.active i {
+    color: white;
+}
+
+#sidebar-wrapper .list-group-item:hover:not(.active) {
+    background-color: var(--lighter-green);
+}
+
+/* Contenido principal */
+#page-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar-custom {
+    padding: 0.75rem 1.5rem;
+    background-color: white !important;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    z-index: 1000;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link i {
+    margin-right: 0.5rem;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+/* Tarjetas del dashboard */
+.card-custom {
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease-in-out;
+    border: none;
+    padding: 1.5rem;
     background-color: white;
-    border-radius: 1.5rem; /* Esquinas redondeadas */
-    padding: 2.5rem; /* Espaciado interno */
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Sombra suave */
-    width: 100%; /* Ancho completo */
-    max-width: 450px; /* Ancho máximo para la tarjeta */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Contenedor para iconos dentro de los campos de formulario */
-.form-group {
-    position: relative; /* Necesario para posicionar el icono absolutamente */
+.card-custom:hover {
+    transform: translateY(-5px);
 }
 
-/* Estilos para los iconos dentro de los campos de formulario */
-.form-icon {
-    position: absolute;
-    right: 15px; /* Separación desde la derecha del input */
-    top: 50%; /* Centra verticalmente */
-    transform: translateY(-50%); /* Ajuste fino para centrado vertical */
-    color: #6c757d; /* Color gris suave para los iconos */
+.card-custom i {
+    font-size: 3em;
+    margin-bottom: 1rem;
+    color: var(--black-icons-text);
 }
 
-/* Estilos para el botón de inicio de sesión */
-.btn-green {
-    background-color: #00994c; /* Verde distintivo */
-    color: white; /* Texto blanco */
-    border-radius: 1.5rem; /* Bordes redondeados */
-    padding: 0.5rem 1.5rem; /* Espaciado interno */
-    font-weight: bold; /* Texto en negrita */
+.card-custom .card-title {
+    font-weight: 600;
+    color: var(--black-icons-text);
+    margin-bottom: 0.5rem;
 }
 
-/* Estilos para el botón al pasar el ratón por encima */
-.btn-green:hover {
-    background-color: #007a3a; /* Verde más oscuro al pasar el ratón */
+.card-custom .card-text {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
 }
 
-/* Estilos para el mensaje de Bienvenida y el subtítulo */
-.login-card h4.text-success { /* Asegúrate de que este selector sea específico si hay otros h4 */
-    color: #28a745; /* Verde vibrante para el título "Bienvenido a Veggreen" */
-    /* Otros estilos si los tienes para este h4 en tu archivo CSS principal */
+.btn-custom {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.login-card p { /* Selector general para párrafos dentro de la tarjeta */
-    color: #6c757d; /* Color para el subtítulo "Sistema Integral de Control Interno" */
-    /* Otros estilos si los tienes para párrafos en tu archivo CSS principal */
+.btn-custom:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: white;
 }
 
-/* Ajustes para el feedback de validación de Bootstrap */
-.invalid-feedback.d-block {
-    display: block !important; /* Sobrescribe el display por defecto para que siempre se muestre si tiene errores */
+/* Título del contenido */
+.content-header h3 {
+    color: var(--black-icons-text);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.header-top-right {
+    text-align: right;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.header-top-right .bi {
+    margin-right: 5px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+        position: relative;
+    }
+
+    #page-content-wrapper {
+        width: auto;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+        position: fixed;
+        height: 100vh;
+        z-index: 1001;
+        box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    #page-content-wrapper {
+        width: 100vw;
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 250px;
+    }
+
+    .navbar .container-fluid {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .content-header h3 {
+        padding-left: 0.5rem;
+    }
 }
