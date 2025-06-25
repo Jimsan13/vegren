@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Carga;
 class AdminController extends Controller
 {
     public function index()
@@ -12,10 +12,27 @@ class AdminController extends Controller
     return view('rol.admin.dashboard');
 }   
 
-    public function cargas()
+     public function cargas()
     {
-        return view('rol.admin.cargas');
+        $cargas = Carga::all(); // Obtiene todas las cargas para la tabla
+
+        // === CALCULO DE INDICADORES (DATOS REALES) ===
+
+        // 1. Ventas mensuales
+        $ventas_mensuales = $cargas->sum('totalEnvio');
+
+        // 2. Estado de pago (Contar cargas pendientes de facturación)
+        $cargas_pendientes_pago = $cargas->where('facturacion', 'pendiente')->count();
+        $estado_pago_texto = ($cargas_pendientes_pago > 0) ? 'Pendiente (' . $cargas_pendientes_pago . ')' : 'Pagado'; // Cambié "Todo pagado" a "Pagado" para ser más conciso
+
+
+        // 3. Adeudos (Suma de saldoCarga donde facturasPagadas es falso/0)
+        $adeudos = $cargas->where('facturasPagadas', false)->sum('saldoCarga');
+
+        // Pasamos todas las variables a la vista
+        return view('rol.admin.cargas', compact('cargas', 'ventas_mensuales', 'estado_pago_texto', 'adeudos'));
     }
+
 
     public function gastos()
     {

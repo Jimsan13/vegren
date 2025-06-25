@@ -5,43 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>VEGGREEN </title> {{-- Título dinámico para cada página --}}
+    <title>VEGGREEN @yield('title', '')</title> {{-- Título dinámico para cada página --}}
 
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    {{-- BOOTSTRAP 4.5.2 CSS --}}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- FONT AWESOME 5.15.4 CSS (CDN, para evitar problemas de CORS del kit.js) --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" xintegrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- Si la integridad de Font Awesome da error, puedes quitar el atributo integrity y crossorigin para probar --}}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    {{-- BOOTSTRAP ICONS (Si lo usas, se mantiene) --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    {{-- Tus propios estilos CSS (usando Vite para Laravel moderno). ¡Estos son CRUCIALES! --}}
+    @vite(['resources/sass/app.scss'])
+    {{-- Si 'login.css' NO está incluido en tu 'app.scss', déjalo aquí. Si sí, bórralo para evitar duplicados. --}}
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet"> 
+   <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    {{-- Google Fonts (Nunito, si lo usas) --}}
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     @yield('styles') {{-- Para estilos adicionales específicos de la página --}}
 </head>
 <body>
     <div id="app">
         <div class="d-flex" id="wrapper"> {{-- Contenedor principal de tu layout de dashboard --}}
-            {{-- Aquí se incluirá el sidebar. Usarías un componente Blade, no @yield directamente aquí si es el componente --}}
             @yield('sidebar')
 
             <div id="page-content-wrapper">
-                {{-- Aquí se incluirá el navbar. Usarías un componente Blade, no @yield directamente aquí si es el componente --}}
                 @yield('navbar')
 
-                <main class="container-fluid py-4"> {{-- Se ajusta el main para que coincida con tu estructura de dashboard --}}
+                <main class="container-fluid py-4">
                     @yield('content')
                 </main>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihz+8dAy313K+AY7g0qfB" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    {{-- SCRIPTS JAVASCRIPT (¡ORDEN CRÍTICO PARA BOOTSTRAP 4 CON JQUERY!) --}}
+
+    {{-- 1. jQuery (Versión slim, para Bootstrap 4) --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" xintegrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    {{-- 2. Popper.js (Necesario para modales, tooltips, etc. en Bootstrap 4) --}}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" xintegrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+
+    {{-- 3. Bootstrap 4.5.2 JS (Depende de jQuery y Popper) --}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" xintegrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57B+Y1dJwhW4iYpE5a2q51fJz6c/J9u2K" crossorigin="anonymous"></script>
+
+    {{-- Tus propios scripts JS (usando Vite para Laravel moderno). ¡Este es CRUCIAL! --}}
+    @vite(['resources/js/app.js'])
+
     @yield('scripts') {{-- Para scripts adicionales específicos de la página --}}
 </body>
 </html>
