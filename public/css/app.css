@@ -114,6 +114,25 @@ body {
 #wrapper.toggled #sidebar-wrapper {
     margin-left: -250px;
 }
+/* varra de navegacion internas*/
+
+  .gastos-tabs .nav-link {
+      border: none;
+      color: #000;
+      font-weight: normal;
+  }
+
+  .gastos-tabs .nav-link.active {
+      border: none;
+      border-bottom: 3px solid #000;
+      color: #000;
+      font-weight: bold;
+      background-color: transparent;
+  }
+
+  .gastos-tabs .nav-link:hover {
+      color: #198754;
+  }
 
 /* Tarjetas del dashboard */
 .card-custom {

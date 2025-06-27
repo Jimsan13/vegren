@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard de Administración') {{-- Esto establecerá el título en el <head> --}}
-
 @section('sidebar')
     <x-admin.sidebar />
 @endsection
@@ -15,6 +13,7 @@
         <h3>Gastos y Movimientos </h3>
     </div>
     <div class="row g-4">
+         <x-campo-tabs />
     </div>
 @endsection
 

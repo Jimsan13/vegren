@@ -82,7 +82,13 @@ class AdminController extends Controller
 
     public function finanzas()
     {
-        return view('rol.admin.campos');
+        return view('rol.admin.finanzas');
+    }
+
+
+    public function campo()
+    {
+        return view('rol.admin.campo');
     }
 }
 

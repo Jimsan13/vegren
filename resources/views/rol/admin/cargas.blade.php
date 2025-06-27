@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Registro de Cargas') {{-- El título de esta página --}}
-
 @section('sidebar')
     <x-admin.sidebar />
 @endsection
