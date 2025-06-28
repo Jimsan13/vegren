@@ -10,9 +10,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4 content-header">
-        <h3>Resumen de cargas</h3>
+        <h3>Estado Financiero</h3>
     </div>
     <div class="row g-4">
+        <x-finanzas-tabs />
     </div>
 @endsection
 

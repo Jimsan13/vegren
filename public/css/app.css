@@ -175,7 +175,7 @@ body {
 .btn-custom {
     background-color: #28a745;
     border-color: #28a745;
-    color: white;
+    color: rgb(8, 196, 65);
     border-radius: 0.5rem;
     padding: 0.5rem 1.5rem;
     font-weight: 500;
