@@ -14,6 +14,7 @@
     </div>
     <div class="row g-4">
         <x-finanzas-tabs />
+        
     </div>
 @endsection
 

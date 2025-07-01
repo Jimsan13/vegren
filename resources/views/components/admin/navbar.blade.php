@@ -8,41 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        /* Custom styles for the navbar */
-        .navbar-custom {
-            background-color: #ffffff; /* White background for the navbar */
-            border-bottom: 1px solid #e0e0e0; /* Subtle border at the bottom */
-            box-shadow: 0 2px 4px rgba(0,0,0,.05); /* Light shadow for depth */
-        }
-
-        .navbar-brand img {
-            height: 40px; /* Adjust as needed */
-        }
-
-        .header-top-right p {
-            line-height: 1.2; /* Adjust line spacing */
-        }
-
-        .header-top-right .text-dark {
-            font-weight: bold;
-        }
-
-        /* Style for the sidebar toggle button */
-        #sidebarToggle {
-            background-color: #28a745; /* Green button */
-            border-color: #28a745;
-            color: white;
-            /* Added margin-right to separate it from other elements */
-            margin-right: 15px; 
-        }
-        #sidebarToggle:hover {
-            background-color: #218838;
-            border-color: #218838;
-        }
-
-        /* Adjustments for the layout if the sidebar is fixed/toggled */
-        /* This assumes the sidebar is hidden on smaller screens and toggled by this button */
-        /* If you have a specific JS for sidebar toggling, ensure it works with this button */
+   
     </style>
 </head>
 <body>

@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4 content-header">
-        <h3>Estado de resultados</h3>
+        <h3>Estado de Resultados</h3>
     </div>
     <div class="row g-4">
        <x-resultados-tabs />

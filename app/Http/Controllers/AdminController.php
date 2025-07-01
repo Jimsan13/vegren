@@ -75,7 +75,7 @@ class AdminController extends Controller
         return view('rol.admin.proveedores');
     }
 
-    public function resultado()
+    public function resultados()
     {
         return view('rol.admin.resultados');
     }
@@ -90,6 +90,7 @@ class AdminController extends Controller
     {
         return view('rol.admin.campo');
     }
+    
 }
 
 

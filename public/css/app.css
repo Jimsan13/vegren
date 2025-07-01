@@ -1,11 +1,11 @@
 :root {
-    --primary-green: #4CAF50;
-    --dark-green: #388E3C;
+    --primary-green: #000000;
+    --dark-green: #ffffff;
     --light-green: #E8F5E9;
     --lighter-green: #DCEDC8;
-    --text-dark: #333;
+    --text-dark: #444444;
     --text-light: #666;
-    --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --card-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.15);
     --black-icons-text: #000;
 }
 
@@ -27,15 +27,15 @@ body {
     transition: all 0.3s ease-in-out;
     background-color: var(--light-green);
     color: var(--text-dark);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgb(255, 255, 255);
     padding: 20px;
     flex-shrink: 0;
     box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-heading {
-    background-color: var(--dark-green);
-    color: white;
+    background-color: var(-dark-);
+    color: rgb(0, 0, 0);
     padding: 1.5rem 1rem;
     text-align: center;
     font-weight: 700;
@@ -95,7 +95,7 @@ body {
 .navbar-custom {
     padding: 0.75rem 1.5rem;
     background-color: white !important;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #0e0e0e;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     z-index: 1000;
     margin-bottom: 1.5rem;
@@ -131,17 +131,17 @@ body {
   }
 
   .gastos-tabs .nav-link:hover {
-      color: #198754;
+      color: #000000;
   }
 
 /* Tarjetas del dashboard */
 .card-custom {
     border-radius: 1rem;
     box-shadow: var(--card-shadow);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     border: none;
     padding: 1.5rem;
-    background-color: white;
+    background-color: rgb(2, 255, 99);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -183,9 +183,9 @@ body {
 }
 
 .btn-custom:hover {
-    background-color: #218838;
+    background-color: #0da12d;
     border-color: #1e7e34;
-    color: white;
+    color:  rgb(8, 196, 65);
 }
 
 /* Título del contenido */

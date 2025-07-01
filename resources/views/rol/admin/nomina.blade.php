@@ -10,9 +10,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4 content-header">
-        <h3>Módulode control de empleados y nómina</h3>
+        <h3>Módulo de control de empleados y nómina</h3>
     </div>
     <div class="row g-4">
+  <x-nomina-tabs />
     </div>
 @endsection
 

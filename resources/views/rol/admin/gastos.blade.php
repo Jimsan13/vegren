@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard de Administración') {{-- Esto establecerá el título en el <head> --}}
+
 @section('sidebar')
     <x-admin.sidebar />
 @endsection
@@ -13,12 +15,13 @@
         <h3>Gastos por categoría</h3>
     </div>
     <div class="row g-4">
-            <x-gastos-tabs />
+      <x-gastos-tabs />
     </div>
 @endsection
 
 @section('scripts')
     {{-- Script para el toggle del sidebar --}}
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var sidebarToggle = document.getElementById('sidebarToggle');
@@ -31,7 +34,4 @@
             }
         });
     </script>
-
-
-
 @endsection
