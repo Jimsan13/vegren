@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\CargaController; // Asegúrate de que esta línea esté presente
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +25,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
    
       Route::get('/admin/cargas', [AdminController::class, 'cargas'])->name('admin.cargas');
+Route::apiResource('cargas', CargaController::class);
 
-     Route::post('/admin/cargas/store', [CargaController::class, 'store'])->name('admin.cargas.store');
+// Puedes tener una ruta para autenticación si la necesitas
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
   
     Route::get('/admin/almacen', [AdminController::class, 'almacen'])->name('admin.almacen');
     Route::get('/admin/campo', [AdminController::class,'campo'])->name('admin.campo');

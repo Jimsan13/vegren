@@ -223,7 +223,7 @@
 
 <div class="container-fluid mt-5">
     <div class="resultados-container">
-        <h3 class="fw-bold text-success mb-4">4.11. Módulo de Control de Empleos y Nómina Operativa</h3>
+        <h3 class="fw-bold text-success mb-4"></h3>
 
         <div class="section-card">
             <ul class="nav nav-tabs mb-4 nomina-tabs" id="nominaSubTabs" role="tablist">

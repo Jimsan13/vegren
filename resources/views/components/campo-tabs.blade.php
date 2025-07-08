@@ -72,7 +72,7 @@
             align-items: center;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
-            cursor: pointer; /* Make rows clickable for editing */
+            /* Remove cursor: pointer; to avoid confusion with new buttons */
         }
         .details-item:hover {
             background-color: #f8f9fa; /* Highlight on hover */
@@ -89,7 +89,6 @@
         }
         .details-item .info {
             flex-grow: 1;
-            /* Added min-width to ensure alignment, adjust as needed */
             min-width: 120px; /* For date/amount/type columns */
         }
         .details-item .info.description {
@@ -103,7 +102,15 @@
             width: 120px; /* Fixed width for date, amount, type */
             text-align: right;
         }
-
+        .details-item .actions {
+            display: flex;
+            gap: 5px; /* Space between action buttons */
+            margin-left: 15px; /* Space from the last info column */
+        }
+        .details-item .btn-action {
+            padding: .3rem .6rem;
+            font-size: .8em;
+        }
         .btn-add {
             background-color: #28a745;
             color: white;
@@ -126,7 +133,6 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-
         .modal-header {
             background-color: #28a745; /* Green header */
             color: white;
@@ -134,47 +140,38 @@
             border-top-right-radius: 8px;
             border-bottom: none;
         }
-
         .modal-header .close {
             color: white;
             opacity: 0.8;
         }
-
         .modal-title {
             font-weight: 600;
         }
-
         .modal-body .form-group {
             margin-bottom: 15px;
         }
-
         .modal-body .form-label {
             font-weight: 500;
             color: #495057;
         }
-
         .modal-body .input-group-text {
             background-color: #e9ecef;
             border-color: #ced4da;
             color: #495057;
         }
-
         .modal-footer {
             border-top: 1px solid #e9ecef;
             padding: 15px;
             justify-content: flex-end;
         }
-
         .modal-footer .btn {
             padding: 8px 18px;
             border-radius: 5px;
         }
-
         .modal-footer .btn-primary {
             background-color: #28a745;
             border-color: #28a745;
         }
-
         .modal-footer .btn-primary:hover {
             background-color: #218838;
             border-color: #1e7e34;
@@ -191,11 +188,7 @@
                 Planta
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="nomina-tab" data-toggle="tab" href="#nomina" role="tab" aria-controls="nomina" aria-selected="false">
-                Nómina
-            </a>
-        </li>
+      
         <li class="nav-item">
             <a class="nav-link active" id="insumos-tab" data-toggle="tab" href="#insumos" role="tab" aria-controls="insumos" aria-selected="true">
                 Insumos
@@ -240,32 +233,41 @@
             </div>
             <h4>Detalle de Movimientos</h4>
             <div class="details-section" id="planta-details-section">
-                <div class="details-item" data-id="p1" data-fecha="05/06/2024" data-descripcion="Fertilizante" data-monto="8000" data-tipo="Compra">
+                <div class="details-item" data-id="p1" data-fecha="2024-06-05" data-descripcion="Fertilizante" data-monto="8000" data-tipo="Compra" data-categoria="planta">
                     <i class="fas fa-seedling icon"></i>
                     <div class="info description">Fertilizante</div>
                     <div class="info col-date">05/06/2024</div>
                     <div class="info col-amount">$8,000</div>
                     <div class="info col-type">Compra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="p2" data-fecha="03/06/2024" data-descripcion="Riego" data-monto="2500" data-tipo="Servicio">
+                <div class="details-item" data-id="p2" data-fecha="2024-06-03" data-descripcion="Riego" data-monto="2500" data-tipo="Servicio" data-categoria="planta">
                     <i class="fas fa-tint icon"></i>
                     <div class="info description">Riego</div>
                     <div class="info col-date">03/06/2024</div>
                     <div class="info col-amount">$2,500</div>
                     <div class="info col-type">Servicio</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="p3" data-fecha="01/06/2024" data-descripcion="Poda" data-monto="1200" data-tipo="Mano de obra">
+                <div class="details-item" data-id="p3" data-fecha="2024-06-01" data-descripcion="Poda" data-monto="1200" data-tipo="Mano de obra" data-categoria="planta">
                     <i class="fas fa-cut icon"></i>
                     <div class="info description">Poda</div>
                     <div class="info col-date">01/06/2024</div>
                     <div class="info col-amount">$1,200</div>
                     <div class="info col-type">Mano de obra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add">Agregar</button>
+            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add" data-categoria="planta">Agregar</button>
         </div>
 
         <div class="tab-pane fade" id="nomina" role="tabpanel" aria-labelledby="nomina-tab">
@@ -294,32 +296,41 @@
             </div>
             <h4>Detalle de Pagos</h4>
             <div class="details-section" id="nomina-details-section">
-                <div class="details-item" data-id="n1" data-fecha="05/06/2024" data-nombre="Juan Pérez" data-monto="4000" data-tipo="Pago quincenal">
+                <div class="details-item" data-id="n1" data-fecha="2024-06-05" data-nombre="Juan Pérez" data-monto="4000" data-tipo="Pago quincenal" data-categoria="nomina">
                     <i class="fas fa-user icon"></i>
                     <div class="info col-name">Juan Pérez</div>
                     <div class="info col-date">05/06/2024</div>
                     <div class="info col-amount">$4,000</div>
                     <div class="info col-type">Pago quincenal</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="n2" data-fecha="03/06/2024" data-nombre="Ana López" data-monto="3800" data-tipo="Pago semanal">
+                <div class="details-item" data-id="n2" data-fecha="2024-06-03" data-nombre="Ana López" data-monto="3800" data-tipo="Pago semanal" data-categoria="nomina">
                     <i class="fas fa-user icon"></i>
                     <div class="info col-name">Ana López</div>
                     <div class="info col-date">03/06/2024</div>
                     <div class="info col-amount">$3,800</div>
                     <div class="info col-type">Pago semanal</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="n3" data-fecha="01/06/2024" data-nombre="Carlos Ruiz" data-monto="4200" data-tipo="Pago quincenal">
+                <div class="details-item" data-id="n3" data-fecha="2024-06-01" data-nombre="Carlos Ruiz" data-monto="4200" data-tipo="Pago quincenal" data-categoria="nomina">
                     <i class="fas fa-user icon"></i>
                     <div class="info col-name">Carlos Ruiz</div>
                     <div class="info col-date">01/06/2024</div>
                     <div class="info col-amount">$4,200</div>
                     <div class="info col-type">Pago quincenal</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add">Agregar</button>
+            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add" data-categoria="nomina">Agregar</button>
         </div>
 
         <div class="tab-pane fade show active" id="insumos" role="tabpanel" aria-labelledby="insumos-tab">
@@ -348,32 +359,41 @@
             </div>
             <h4>Detalle de Insumos</h4>
             <div class="details-section" id="insumos-details-section">
-                <div class="details-item" data-id="i1" data-fecha="04/06/2024" data-descripcion="Fertilizante NPK" data-monto="2500" data-tipo="Compra">
+                <div class="details-item" data-id="i1" data-fecha="2024-06-04" data-descripcion="Fertilizante NPK" data-monto="2500" data-tipo="Compra" data-categoria="insumos">
                     <i class="fas fa-seedling icon"></i>
                     <div class="info description">Fertilizante NPK</div>
                     <div class="info col-date">04/06/2024</div>
                     <div class="info col-amount">$2,500</div>
                     <div class="info col-type">Compra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="i2" data-fecha="02/06/2024" data-descripcion="Herbicida Selectivo" data-monto="1200" data-tipo="Compra">
+                <div class="details-item" data-id="i2" data-fecha="2024-06-02" data-descripcion="Herbicida Selectivo" data-monto="1200" data-tipo="Compra" data-categoria="insumos">
                     <i class="fas fa-flask icon"></i>
                     <div class="info description">Herbicida Selectivo</div>
                     <div class="info col-date">02/06/2024</div>
                     <div class="info col-amount">$1,200</div>
                     <div class="info col-type">Compra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="i3" data-fecha="30/05/2024" data-descripcion="Semillas Maíz" data-monto="3000" data-tipo="Entrada">
+                <div class="details-item" data-id="i3" data-fecha="2024-05-30" data-descripcion="Semillas Maíz" data-monto="3000" data-tipo="Entrada" data-categoria="insumos">
                     <i class="fas fa-cereal icon"></i>
                     <div class="info description">Semillas Maíz</div>
                     <div class="info col-date">30/05/2024</div>
                     <div class="info col-amount">$3,000</div>
                     <div class="info col-type">Entrada</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add">Agregar</button>
+            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add" data-categoria="insumos">Agregar</button>
         </div>
 
         <div class="tab-pane fade" id="gastosextras" role="tabpanel" aria-labelledby="gastosextras-tab">
@@ -402,32 +422,41 @@
             </div>
             <h4>Detalle de Gastos Extras</h4>
             <div class="details-section" id="gastosextras-details-section">
-                <div class="details-item" data-id="ge1" data-fecha="01/06/2024" data-descripcion="Reparación tractor" data-monto="2000" data-tipo="Servicio">
+                <div class="details-item" data-id="ge1" data-fecha="2024-06-01" data-descripcion="Reparación tractor" data-monto="2000" data-tipo="Servicio" data-categoria="gastosextras">
                     <i class="fas fa-tractor icon"></i>
                     <div class="info description">Reparación tractor</div>
                     <div class="info col-date">01/06/2024</div>
                     <div class="info col-amount">$2,000</div>
                     <div class="info col-type">Servicio</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="ge2" data-fecha="28/05/2024" data-descripcion="Combustible" data-monto="1500" data-tipo="Compra">
+                <div class="details-item" data-id="ge2" data-fecha="2024-05-28" data-descripcion="Combustible" data-monto="1500" data-tipo="Compra" data-categoria="gastosextras">
                     <i class="fas fa-gas-pump icon"></i>
                     <div class="info description">Combustible</div>
                     <div class="info col-date">28/05/2024</div>
                     <div class="info col-amount">$1,500</div>
                     <div class="info col-type">Compra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="ge3" data-fecha="25/05/2024" data-descripcion="Mantenimiento bomba" data-monto="700" data-tipo="Servicio">
+                <div class="details-item" data-id="ge3" data-fecha="2024-05-25" data-descripcion="Mantenimiento bomba" data-monto="700" data-tipo="Servicio" data-categoria="gastosextras">
                     <i class="fas fa-pump-medical icon"></i>
                     <div class="info description">Mantenimiento bomba</div>
                     <div class="info col-date">25/05/2024</div>
                     <div class="info col-amount">$700</div>
                     <div class="info col-type">Servicio</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add">Agregar</button>
+            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add" data-categoria="gastosextras">Agregar</button>
         </div>
 
         <div class="tab-pane fade" id="campo" role="tabpanel" aria-labelledby="campo-tab">
@@ -456,40 +485,52 @@
             </div>
             <h4>Detalle de Movimientos</h4>
             <div class="details-section" id="campo-details-section">
-                <div class="details-item" data-id="c1" data-fecha="20/06/2024" data-descripcion="Preparación de suelo" data-monto="5000" data-tipo="Servicio">
+                <div class="details-item" data-id="c1" data-fecha="2024-06-20" data-descripcion="Preparación de suelo" data-monto="5000" data-tipo="Servicio" data-categoria="campo">
                     <i class="fas fa-seedling icon"></i>
                     <div class="info description">Preparación de suelo</div>
                     <div class="info col-date">20/06/2024</div>
                     <div class="info col-amount">$5,000</div>
                     <div class="info col-type">Servicio</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="c2" data-fecha="18/06/2024" data-descripcion="Sistema de riego" data-monto="7500" data-tipo="Mantenimiento">
+                <div class="details-item" data-id="c2" data-fecha="2024-06-18" data-descripcion="Sistema de riego" data-monto="7500" data-tipo="Mantenimiento" data-categoria="campo">
                     <i class="fas fa-water icon"></i>
                     <div class="info description">Sistema de riego</div>
                     <div class="info col-date">18/06/2024</div>
                     <div class="info col-amount">$7,500</div>
                     <div class="info col-type">Mantenimiento</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="c3" data-fecha="15/06/2024" data-descripcion="Alquiler de tractor" data-monto="3000" data-tipo="Servicio">
+                <div class="details-item" data-id="c3" data-fecha="2024-06-15" data-descripcion="Alquiler de tractor" data-monto="3000" data-tipo="Servicio" data-categoria="campo">
                     <i class="fas fa-tractor icon"></i>
                     <div class="info description">Alquiler de tractor</div>
                     <div class="info col-date">15/06/2024</div>
                     <div class="info col-amount">$3,000</div>
                     <div class="info col-type">Servicio</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
-                <div class="details-item" data-id="c4" data-fecha="10/06/2024" data-descripcion="Jornaleros" data-monto="3000" data-tipo="Mano de obra">
+                <div class="details-item" data-id="c4" data-fecha="2024-06-10" data-descripcion="Jornaleros" data-monto="3000" data-tipo="Mano de obra" data-categoria="campo">
                     <i class="fas fa-hand-holding-usd icon"></i>
                     <div class="info description">Jornaleros</div>
                     <div class="info col-date">10/06/2024</div>
                     <div class="info col-amount">$3,000</div>
                     <div class="info col-type">Mano de obra</div>
-                    <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <div class="actions">
+                        <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add">Agregar</button>
+            <button class="btn-add" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="add" data-categoria="campo">Agregar</button>
         </div>
 
     </div>
@@ -607,106 +648,278 @@ $(document).ready(function() {
         $('#nomina-modal-fields').hide();
     }
 
-    // Function to update modal fields based on category
-    function updateModalFields(category) {
+    // Function to show/hide fields and set modal title based on category and action type
+    function setupModal(category, modalType) {
         hideAllModalFields(); // Hide all fields first
 
         if (category === 'nomina') {
             $('#nomina-modal-fields').show();
-            $('#movimientoEditModalLabel').text('Registrar Pago de Nómina');
+            if (modalType === 'add') {
+                $('#movimientoEditModalLabel').text('Registrar Pago de Nómina');
+            } else {
+                $('#movimientoEditModalLabel').text('Editar Pago de Nómina');
+            }
         } else {
             $('#general-movimiento-fields').show();
-            $('#movimientoEditModalLabel').text('Registrar Movimiento de ' + category.charAt(0).toUpperCase() + category.slice(1));
+            if (modalType === 'add') {
+                $('#movimientoEditModalLabel').text('Registrar Movimiento de ' + category.charAt(0).toUpperCase() + category.slice(1));
+            } else {
+                $('#movimientoEditModalLabel').text('Editar Movimiento de ' + category.charAt(0).toUpperCase() + category.slice(1));
+            }
         }
     }
 
-    // Handle tab change
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        let activeTabId = $(e.target).attr('id');
-        let category = activeTabId.replace('-tab', '');
-        // Update the hidden input for category in the modal
-        $('#movimiento-categoria').val(category);
-        // Update modal fields immediately when tab changes
-        updateModalFields(category);
-    });
-
-    // Handle modal show event for 'Add' button
+    // Handle "Agregar" button click
     $('.btn-add').on('click', function() {
-        let modalType = $(this).data('modal-type');
-        let currentTabId = $('ul.nav-tabs li a.active').attr('id');
-        let category = currentTabId.replace('-tab', '');
-
-        $('#movimiento-modal-type').val(modalType);
+        const category = $(this).data('categoria');
+        $('#movimiento-modal-type').val('add');
         $('#movimiento-categoria').val(category);
+        
+        setupModal(category, 'add');
 
-        // Reset form and set current date for 'add'
-        $('#editMovimientoForm')[0].reset();
-        let today = new Date();
-        let dd = String(today.getDate()).padStart(2, '0');
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        let yyyy = today.getFullYear();
-        $('#movimiento-fecha').val(yyyy + '-' + mm + '-' + dd);
-
-        updateModalFields(category);
+        // Clear form fields for "add" action
+        $('#movimiento-id').val('');
+        $('#movimiento-fecha').val('');
+        $('#movimiento-descripcion').val('');
+        $('#movimiento-monto').val('');
+        $('#movimiento-tipo').val('');
+        $('#movimiento-nombre-empleado').val('');
+        $('#movimiento-monto-nomina').val('');
+        $('#movimiento-tipo-nomina').val('');
     });
 
-    // Handle modal show event for 'Edit' buttons
-    $('.details-section').on('click', '.edit-item-btn', function(event) {
-        event.stopPropagation(); // Prevent the parent .details-item click from firing
-        let button = $(this);
-        let modalType = button.data('modal-type');
-        let row = button.closest('.details-item');
-        let currentTabId = $('ul.nav-tabs li a.active').attr('id');
-        let category = currentTabId.replace('-tab', '');
+    // Handle "Editar" button click
+    $('.edit-item-btn').on('click', function() {
+        const item = $(this).closest('.details-item');
+        const id = item.data('id');
+        const fecha = item.data('fecha');
+        const categoria = item.data('categoria'); // Get category from data attribute
 
-        $('#movimiento-modal-type').val(modalType);
-        $('#movimiento-categoria').val(category);
+        $('#movimiento-id').val(id);
+        $('#movimiento-modal-type').val('edit');
+        $('#movimiento-categoria').val(categoria); // Set category in hidden field
 
-        updateModalFields(category); // Update fields before populating
+        setupModal(categoria, 'edit');
+
+        // Populate common fields
+        $('#movimiento-fecha').val(fecha);
 
         // Populate fields based on category
-        $('#movimiento-id').val(row.data('id'));
-        $('#movimiento-fecha').val(row.data('fecha').split('/').reverse().join('-')); // Format date for input type="date"
-
-        if (category === 'nomina') {
-            $('#movimiento-nombre-empleado').val(row.data('nombre'));
-            $('#movimiento-monto-nomina').val(row.data('monto'));
-            $('#movimiento-tipo-nomina').val(row.data('tipo'));
+        if (categoria === 'nomina') {
+            $('#movimiento-nombre-empleado').val(item.data('nombre'));
+            $('#movimiento-monto-nomina').val(item.data('monto'));
+            $('#movimiento-tipo-nomina').val(item.data('tipo'));
         } else {
-            $('#movimiento-descripcion').val(row.data('descripcion'));
-            $('#movimiento-monto').val(row.data('monto'));
-            $('#movimiento-tipo').val(row.data('tipo'));
+            $('#movimiento-descripcion').val(item.data('descripcion'));
+            $('#movimiento-monto').val(item.data('monto'));
+            $('#movimiento-tipo').val(item.data('tipo'));
         }
     });
 
-    // Handle modal submission (for demonstration)
+    // Handle "Eliminar" button click
+    $('.delete-item-btn').on('click', function() {
+        const item = $(this).closest('.details-item');
+        const id = item.data('id');
+        const categoria = item.data('categoria');
+        const confirmDelete = confirm(`¿Estás seguro de que quieres eliminar este movimiento (ID: ${id}) de ${categoria}?`);
+        if (confirmDelete) {
+            // Here you would typically send an AJAX request to your backend to delete the item
+            // For now, we'll just remove the row from the DOM
+            item.remove();
+            alert(`Movimiento (ID: ${id}) de ${categoria} eliminado.`);
+        }
+    });
+
+    // Handle form submission (for both add and edit)
     $('#editMovimientoForm').on('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
 
-        let formData = {};
-        $(this).find(':input').each(function() {
-            let name = $(this).attr('name');
-            let value = $(this).val();
-            if (name && value !== undefined) { // Only add if name exists and value is not undefined
-                formData[name] = value;
+        const modalType = $('#movimiento-modal-type').val();
+        const categoria = $('#movimiento-categoria').val();
+        const fecha = $('#movimiento-fecha').val();
+        
+        let data = {
+            id: $('#movimiento-id').val(),
+            fecha: fecha,
+            categoria: categoria
+        };
+
+        if (categoria === 'nomina') {
+            data.nombre = $('#movimiento-nombre-empleado').val();
+            data.monto = $('#movimiento-monto-nomina').val();
+            data.tipo = $('#movimiento-tipo-nomina').val();
+        } else {
+            data.descripcion = $('#movimiento-descripcion').val();
+            data.monto = $('#movimiento-monto').val();
+            data.tipo = $('#movimiento-tipo').val();
+        }
+        
+        // Format date for display
+        const displayDate = new Date(fecha + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        
+        if (modalType === 'add') {
+            // Simulate adding a new item
+            const newId = 'new-' + Date.now(); // Generate a unique ID for the new item
+            let newItemHtml = '';
+            if (categoria === 'nomina') {
+                newItemHtml = `
+                    <div class="details-item" data-id="${newId}" data-fecha="${data.fecha}" data-nombre="${data.nombre}" data-monto="${data.monto}" data-tipo="${data.tipo}" data-categoria="${categoria}">
+                        <i class="fas fa-user icon"></i>
+                        <div class="info col-name">${data.nombre}</div>
+                        <div class="info col-date">${displayDate}</div>
+                        <div class="info col-amount">$${parseFloat(data.monto).toLocaleString('en-US')}</div>
+                        <div class="info col-type">${data.tipo}</div>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                newItemHtml = `
+                    <div class="details-item" data-id="${newId}" data-fecha="${data.fecha}" data-descripcion="${data.descripcion}" data-monto="${data.monto}" data-tipo="${data.tipo}" data-categoria="${categoria}">
+                        <i class="fas fa-info-circle icon"></i> <div class="info description">${data.descripcion}</div>
+                        <div class="info col-date">${displayDate}</div>
+                        <div class="info col-amount">$${parseFloat(data.monto).toLocaleString('en-US')}</div>
+                        <div class="info col-type">${data.tipo}</div>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-info edit-item-btn" data-toggle="modal" data-target="#movimientoEditModal" data-modal-type="edit"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="btn btn-sm btn-danger delete-item-btn"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            $(`#${categoria}-details-section`).append(newItemHtml);
+            alert(`Nuevo movimiento de ${categoria} agregado.`);
+            
+            // Re-attach event listeners to new buttons
+            $(`#${categoria}-details-section .details-item[data-id="${newId}"] .edit-item-btn`).on('click', function() {
+                $('.edit-item-btn').off('click'); // Detach previous listeners to prevent duplicates
+                $('.delete-item-btn').off('click'); // Detach previous listeners
+                $(document).off('click', '.edit-item-btn'); // More robust way to remove delegated events
+                $(document).off('click', '.delete-item-btn'); // More robust way to remove delegated events
+
+                attachEventListeners(); // Reattach all listeners
+                $(this).trigger('click'); // Re-trigger the click on the specific new button
+            });
+            $(`#${categoria}-details-section .details-item[data-id="${newId}"] .delete-item-btn`).on('click', function() {
+                $('.edit-item-btn').off('click'); // Detach previous listeners to prevent duplicates
+                $('.delete-item-btn').off('click'); // Detach previous listeners
+                $(document).off('click', '.edit-item-btn'); // More robust way to remove delegated events
+                $(document).off('click', '.delete-item-btn'); // More robust way to remove delegated events
+
+                attachEventListeners(); // Reattach all listeners
+                $(this).trigger('click'); // Re-trigger the click on the specific new button
+            });
+
+
+        } else if (modalType === 'edit') {
+            // Simulate editing an existing item
+            const editedItem = $(`#${categoria}-details-section .details-item[data-id="${data.id}"]`);
+            if (categoria === 'nomina') {
+                editedItem.find('.col-name').text(data.nombre);
+                editedItem.find('.col-amount').text('$' + parseFloat(data.monto).toLocaleString('en-US'));
+                editedItem.find('.col-type').text(data.tipo);
+                editedItem.data('nombre', data.nombre);
+                editedItem.data('monto', data.monto);
+                editedItem.data('tipo', data.tipo);
+            } else {
+                editedItem.find('.description').text(data.descripcion);
+                editedItem.find('.col-amount').text('$' + parseFloat(data.monto).toLocaleString('en-US'));
+                editedItem.find('.col-type').text(data.tipo);
+                editedItem.data('descripcion', data.descripcion);
+                editedItem.data('monto', data.monto);
+                editedItem.data('tipo', data.tipo);
+            }
+            editedItem.find('.col-date').text(displayDate);
+            editedItem.data('fecha', data.fecha);
+
+            alert(`Movimiento de ${categoria} actualizado.`);
+        }
+
+        $('#movimientoEditModal').modal('hide'); // Close the modal
+    });
+    
+    // Initial setup for the currently active tab (insumos by default)
+    const initialActiveTabId = $('#gastosMovimientosTabs .nav-link.active').attr('id');
+    const initialCategory = initialActiveTabId.replace('-tab', '');
+    setupModal(initialCategory, 'add'); // Set up for add initially
+
+    // Function to attach all event listeners
+    function attachEventListeners() {
+        // Handle "Agregar" button click (delegated for dynamically added buttons)
+        $(document).on('click', '.btn-add', function() {
+            const category = $(this).data('categoria');
+            $('#movimiento-modal-type').val('add');
+            $('#movimiento-categoria').val(category);
+            
+            setupModal(category, 'add');
+
+            // Clear form fields for "add" action
+            $('#movimiento-id').val('');
+            $('#movimiento-fecha').val('');
+            $('#movimiento-descripcion').val('');
+            $('#movimiento-monto').val('');
+            $('#movimiento-tipo').val('');
+            $('#movimiento-nombre-empleado').val('');
+            $('#movimiento-monto-nomina').val('');
+            $('#movimiento-tipo-nomina').val('');
+        });
+
+        // Handle "Editar" button click (delegated for dynamically added buttons)
+        $(document).on('click', '.edit-item-btn', function() {
+            const item = $(this).closest('.details-item');
+            const id = item.data('id');
+            const fecha = item.data('fecha');
+            const categoria = item.data('categoria');
+
+            $('#movimiento-id').val(id);
+            $('#movimiento-modal-type').val('edit');
+            $('#movimiento-categoria').val(categoria);
+
+            setupModal(categoria, 'edit');
+
+            $('#movimiento-fecha').val(fecha);
+
+            if (categoria === 'nomina') {
+                $('#movimiento-nombre-empleado').val(item.data('nombre'));
+                $('#movimiento-monto-nomina').val(item.data('monto'));
+                $('#movimiento-tipo-nomina').val(item.data('tipo'));
+            } else {
+                $('#movimiento-descripcion').val(item.data('descripcion'));
+                $('#movimiento-monto').val(item.data('monto'));
+                $('#movimiento-tipo').val(item.data('tipo'));
             }
         });
 
-        console.log("Form data submitted:", formData);
-        alert("Movimiento guardado/actualizado (ver consola). Implementa tu lógica de backend aquí.");
-        $('#movimientoEditModal').modal('hide'); // Hide modal after submission
-        // In a real application, you would send this data to a server
-        // and then update the table dynamically or reload the page.
+        // Handle "Eliminar" button click (delegated for dynamically added buttons)
+        $(document).on('click', '.delete-item-btn', function() {
+            const item = $(this).closest('.details-item');
+            const id = item.data('id');
+            const categoria = item.data('categoria');
+            const confirmDelete = confirm(`¿Estás seguro de que quieres eliminar este movimiento (ID: ${id}) de ${categoria}?`);
+            if (confirmDelete) {
+                // Here you would typically send an AJAX request to your backend to delete the item
+                // For now, we'll just remove the row from the DOM
+                item.remove();
+                alert(`Movimiento (ID: ${id}) de ${categoria} eliminado.`);
+            }
+        });
+    }
+
+    // Attach event listeners initially
+    attachEventListeners();
+
+    // Re-setup modal fields when tab changes (in case user switches tab while modal is open or about to open)
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        const activeTabId = $(e.target).attr('id');
+        const category = activeTabId.replace('-tab', '');
+        // When switching tabs, assume the next action will be 'add' unless an 'edit' button is clicked
+        setupModal(category, 'add');
     });
 
-    // Initial setup on page load for the active tab (Insumos by default)
-    let initialActiveTabId = $('ul.nav-tabs li a.active').attr('id');
-    if (initialActiveTabId) {
-        let initialCategory = initialActiveTabId.replace('-tab', '');
-        updateModalFields(initialCategory);
-    }
 });
 </script>
-
 </body>
 </html>

@@ -7,227 +7,237 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-   <style>
-    /* Estilos generales */
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f7f6;
-        color: #333;
-    }
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
 
-    .container {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        margin-top: 30px;
-    }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
 
-    /* Estilos de las pestañas */
-    .nav-tabs {
-        border-bottom: 2px solid #218838;
-    }
+        /* Estilos de las pestañas */
+        .nav-tabs {
+            border-bottom: 2px solid #218838;
+        }
 
-    .nav-tabs .nav-item .nav-link {
-        color: #555;
-        border: 1px solid transparent;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        padding: 12px 20px;
-        transition: all 0.3s ease;
-    }
+        .nav-tabs .nav-item .nav-link {
+            color: #555;
+            border: 1px solid transparent;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
 
-    .nav-tabs .nav-item .nav-link.active {
-        color: #fff;
-        background-color:  #218838;
-        border-color:rgb(7, 7, 7);
-        border-radius: 5px 5px 0 0;
-    }
+        .nav-tabs .nav-item .nav-link.active {
+            color: #fff;
+            background-color: #218838;
+            border-color: rgb(7, 7, 7);
+            border-radius: 5px 5px 0 0;
+        }
 
-    .nav-tabs .nav-item .nav-link:hover:not(.active) {
-        background-color: #e9ecef;
-        border-color: #e9ecef;
-    }
+        .nav-tabs .nav-item .nav-link:hover:not(.active) {
+            background-color: #e9ecef;
+            border-color: #e9ecef;
+        }
 
-    .gastos-tabs .nav-link {
-        display: flex;
-        align-items: center;
-    }
+        .gastos-tabs .nav-link {
+            display: flex;
+            align-items: center;
+        }
 
-    .gastos-tabs .nav-link i {
-        font-size: 1.1em;
-    }
+        .gastos-tabs .nav-link i {
+            font-size: 1.1em;
+        }
 
-    /* Contenido de las pestañas */
-    .tab-content {
-        padding: 20px 0;
-    }
+        /* Contenido de las pestañas */
+        .tab-content {
+            padding: 20px 0;
+        }
 
-    .tab-pane h4 {
-        color:rgb(0, 0, 0);
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
+        .tab-pane h4 {
+            color: rgb(0, 0, 0);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-    /* Estilos de la tabla */
-    .table {
-        margin-bottom: 20px;
-        border-collapse: separate;
-        border-spacing: 0;
-    }
+        /* Estilos de la tabla */
+        .table {
+            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
 
-    .table thead.thead-dark th {
-        background-color: #343a40;
-        color: #fff;
-        border-color: #454d55;
-        padding: 12px 15px;
-        text-align: left;
-    }
+        .table thead.thead-dark th {
+            background-color: #343a40;
+            color: #fff;
+            border-color: #454d55;
+            padding: 12px 15px;
+            text-align: left;
+        }
 
-    .table tbody tr {
-        background-color: #f8f9fa;
-        transition: all 0.2s ease-in-out;
-    }
+        .table tbody tr {
+            background-color: #f8f9fa;
+            transition: all 0.2s ease-in-out;
+        }
 
-    .table tbody tr:nth-child(even) {
-        background-color: #e2e6ea;
-    }
+        .table tbody tr:nth-child(even) {
+            background-color: #e2e6ea;
+        }
 
-    .table tbody tr:hover {
-        background-color: #d6eaff;
-    }
+        .table tbody tr:hover {
+            background-color: #d6eaff;
+        }
 
-    .table td, .table th {
-        padding: 10px 15px;
-        vertical-align: middle;
-        border-top: 1px solid #dee2e6;
-    }
+        .table td, .table th {
+            padding: 10px 15px;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
 
-    /* Botones de acción en la tabla */
-    .action-buttons {
-        white-space: nowrap;
-    }
+        /* Botones de acción en la tabla */
+        .action-buttons {
+            white-space: nowrap;
+        }
 
-    .action-buttons .btn {
-        padding: 5px 9px;
-        font-size: 0.85em;
-        margin-left: 5px;
-        border-radius: 5px;
-    }
+        .action-buttons .btn {
+            padding: 5px 9px;
+            font-size: 0.85em;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
 
-    .delete-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-    }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
 
-    .delete-btn:hover {
-        background-color: #c82333;
-    }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
 
-    .edit-btn {
-        background-color:rgb(7, 160, 255);
-        color: white;
-        border: none;
-    }
+        .edit-btn {
+            background-color: rgb(7, 160, 255);
+            color: white;
+            border: none;
+        }
 
-    .edit-btn:hover {
-        background-color:rgb(12, 155, 243);
-    }
+        .edit-btn:hover {
+            background-color: rgb(12, 155, 243);
+        }
 
-    /* Total amount display */
-    .total-amount {
-        font-size: 1.4em;
-        font-weight: bold;
-        color:rgb(10, 10, 10);
-        text-align: right;
-        margin-top: 15px;
-        padding-top: 10px;
-        border-top: 1px solid #eee;
-    }
+        /* Total amount display */
+        .total-amount {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: rgb(10, 10, 10);
+            text-align: right;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
 
-    /* Botón agregar */
-    .btn-add {
-        background-color: #218838;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 1em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        transition: background-color 0.3s ease;
-    }
+        /* Botón agregar */
+        .btn-add {
+            background-color: #218838;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
 
-    .btn-add:hover {
-        background-color: #0056b3;
-        color: white;
-    }
+        .btn-add:hover {
+            background-color:rgb(49, 209, 47);
+            color: white;
+        }
 
-    .btn-add i {
-        font-size: 1.2em;
-    }
+        .btn-add i {
+            font-size: 1.2em;
+        }
 
-    /* Estilos del Modal */
-    .modal-content {
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
+        /* Estilos del Modal */
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
 
-    .modal-header {
-        background-color: #007bff;
-        color: white;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        border-bottom: none;
-    }
+        .modal-header {
+            background-color:rgb(59, 222, 70);
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: none;
+        }
 
-    .modal-header .close {
-        color: white;
-        opacity: 0.8;
-    }
+        .modal-header .close {
+            background-color: #dc3545; /* Rojo para el botón de cerrar */
+            border: none;
+            color: white;
+            opacity: 1; /* Asegura que no tenga transparencia por defecto */
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            line-height: 1; /* Ajusta la altura de línea para centrar la X */
+        }
 
-    .modal-title {
-        font-weight: 600;
-    }
+        .modal-header .close:hover {
+            background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+        }
 
-    .modal-body .form-group {
-        margin-bottom: 15px;
-    }
+        .modal-title {
+            font-weight: 600;
+        }
 
-    .modal-body .form-label {
-        font-weight: 500;
-        color: #495057;
-    }
+        .modal-body .form-group {
+            margin-bottom: 15px;
+        }
 
-    .modal-body .input-group-text {
-        background-color: #e9ecef;
-        border-color: #ced4da;
-        color: #495057;
-    }
+        .modal-body .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
 
-    .modal-footer {
-        border-top: 1px solid #e9ecef;
-        padding: 15px;
-        justify-content: flex-end;
-    }
+        .modal-body .input-group-text {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+            color: #495057;
+        }
 
-    .modal-footer .btn {
-        padding: 8px 18px;
-        border-radius: 5px;
-    }
+        .modal-footer {
+            border-top: 1px solid #e9ecef;
+            padding: 15px;
+            justify-content: flex-end;
+        }
 
-    .modal-footer .btn-primary {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
+        .modal-footer .btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
 
-    .modal-footer .btn-primary:hover {
-        background-color: #218838;
-        border-color: #1e7e34;
-    }
-</style>
+        .modal-footer .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
@@ -469,15 +479,16 @@
                             <th>Fecha</th>
                             <th>Concepto</th>
                             <th>Folio / Nombre</th>
-                            <th>Monto</th>
+                            <th>Proveedor</th> <th>Monto</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="pagonotas-table-body">
-                        <tr data-id="p1" data-fecha="20/06/2024" data-concepto="Materiales de oficina" data-folio-nombre="FACT-2024-001" data-monto="700">
+                        <tr data-id="p1" data-fecha="20/06/2024" data-concepto="Materiales de oficina" data-folio-nombre="FACT-2024-001" data-monto="700" data-proveedor="Office Depot">
                             <td>20/06/2024</td>
                             <td>Materiales de oficina</td>
                             <td>FACT-2024-001</td>
+                            <td>Office Depot</td>
                             <td>$700.00</td>
                             <td class="action-buttons">
                                 <button class="btn delete-btn"><i class="fas fa-times"></i></button>
@@ -673,8 +684,17 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="form-group" id="form-group-proveedor" style="display:none;">
+                            <label for="gasto-proveedor" class="form-label">Proveedor</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="gasto-proveedor" name="proveedor" placeholder="Nombre del proveedor">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                     <div class="form-group" id="form-group-total-cliente" style="display:none;">
+                    <div class="form-group" id="form-group-total-cliente" style="display:none;">
                         <label for="gasto-total-cliente" class="form-label">Total</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -704,12 +724,45 @@
     </div>
 </div>
 
+<div class="modal fade" id="proveedorAddModal" tabindex="-1" role="dialog" aria-labelledby="proveedorAddModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proveedorAddModalLabel">Agregar Nuevo Proveedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addProveedorForm">
+                    <div class="form-group">
+                        <label for="proveedor-nombre" class="form-label">Nombre del Proveedor</label>
+                        <input type="text" class="form-control" id="proveedor-nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="proveedor-contacto" class="form-label">Contacto (Teléfono/Email)</label>
+                        <input type="text" class="form-control" id="proveedor-contacto" name="contacto">
+                    </div>
+                    <div class="form-group">
+                        <label for="proveedor-direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="proveedor-direccion" name="direccion">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" form="addProveedorForm" class="btn btn-primary">Guardar Proveedor</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
-    // Function to hide all specific fields
+    // Function to hide all specific fields in the gastoEditModal
     function hideAllSpecificFields() {
         $('#maquinaria-fields').hide();
         $('#entrega-recibe-fields').hide();
@@ -717,176 +770,123 @@ $(document).ready(function() {
         $('#nomina-fields').hide();
         $('#concepto-folio-nombre-fields').hide();
         $('#form-group-total-cliente').hide();
-        $('#form-group-monto').show(); // Show monto by default
-        $('#form-group-descripcion').hide(); // Hide general description by default
+        $('#form-group-descripcion').hide();
+        $('#form-group-proveedor').hide(); // Ocultar el nuevo campo de proveedor
     }
 
-    // Function to show/hide fields based on category
-    function updateModalFields(category) {
-        hideAllSpecificFields(); // Start by hiding everything
-
-        // Common fields to show for almost all categories
-        $('#form-group-monto').show();
-        $('#form-group-descripcion').show(); // Show general description by default, and hide if more specific description fields are present
-
-        switch (category) {
-            case 'maquinaria':
-                $('#maquinaria-fields').show();
-                $('#form-group-descripcion').hide(); // Hide general description for this category
-                break;
-            case 'extras':
-                $('#entrega-recibe-fields').show();
-                break;
-            case 'gasolina':
-                $('#entrega-recibe-fields').show(); // Re-using entrega/recibe for "Recibe"
-                $('#gasolina-fields').show();
-                $('#form-group-descripcion').hide(); // Hide general description, "Unidad" is the specific one
-                break;
-            case 'deudores':
-                $('#entrega-recibe-fields').show();
-                break;
-            case 'nomina':
-                $('#nomina-fields').show();
-                $('#form-group-monto').hide(); // Monto is replaced by Total semanal
-                $('#form-group-descripcion').hide(); // No general description for nomina
-                break;
-            case 'pagonotas':
-                $('#concepto-folio-nombre-fields').show();
-                $('#form-group-descripcion').hide(); // Concepto is the description
-                break;
-            case 'cliente':
-                $('#concepto-folio-nombre-fields').show(); // Re-using concepto
-                $('#form-group-folio-nombre').hide(); // Hide Folio / Nombre for cliente
-                $('#entrega-recibe-fields').show(); // Re-using recibe
-                $('#form-group-total-cliente').show(); // Show Total for cliente
-                $('#form-group-monto').hide(); // Monto is replaced by Total
-                $('#form-group-descripcion').hide(); // Concepto is the description
-                break;
-        }
-    }
-
-    // When a tab is shown (activated)
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        let activeTabId = $(e.target).attr('id');
-        let category = activeTabId.replace('-tab', '');
-        // Update the hidden input for category in the modal
-        $('#gasto-categoria').val(category);
-        // Initially hide all fields when tab changes
-        hideAllSpecificFields();
-    });
-
-
-    // When the modal is about to be shown
+    // Event listener for when the gastoEditModal is about to be shown
     $('#gastoEditModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget); // Button that triggered the modal
-        let modalType = button.data('modal-type'); // 'add' or 'edit'
-        let currentTabId = $('ul.nav-tabs li a.active').attr('id');
-        let category = currentTabId.replace('-tab', '');
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var modalType = button.data('modal-type'); // 'add' or 'edit'
+        var category = button.closest('.tab-pane').attr('id'); // Get category from the parent tab-pane ID
 
-        // Set modal type and category
+        var modal = $(this);
+        modal.find('.modal-title').text(modalType === 'add' ? 'Registrar Gasto' : 'Editar Gasto');
         $('#gasto-modal-type').val(modalType);
-        $('#gasto-categoria').val(category);
+        $('#gasto-categoria').val(category); // Set the category in a hidden field
 
-        // Update modal title
-        if (modalType === 'add') {
-            $('#gastoEditModalLabel').text('Registrar Gasto de ' + category.charAt(0).toUpperCase() + category.slice(1));
-        } else {
-            $('#gastoEditModalLabel').text('Editar Gasto de ' + category.charAt(0).toUpperCase() + category.slice(1));
-        }
-
-        // Hide all specific fields before populating
-        hideAllSpecificFields();
-        // Show/hide fields based on the current category
-        updateModalFields(category);
-
-        if (modalType === 'edit') {
-            let row = button.closest('tr');
-            $('#gasto-id').val(row.data('id'));
-            $('#gasto-fecha').val(row.data('fecha').split('/').reverse().join('-')); // Format date for input type="date"
-
-            // Populate common fields if they exist for the category
-            if ($('#form-group-monto').is(':visible')) {
-                $('#gasto-monto').val(row.data('monto'));
-            }
-            if ($('#form-group-descripcion').is(':visible')) {
-                $('#gasto-descripcion').val(row.data('descripcion'));
-            }
-
-            // Populate specific fields based on category
-            switch (category) {
-                case 'maquinaria':
-                    $('#gasto-pagos-realizados').val(row.data('pagos-realizados'));
-                    $('#gasto-total-acumulado').val(row.data('total-acumulado'));
-                    break;
-                case 'extras':
-                case 'deudores':
-                    $('#gasto-entrega').val(row.data('entrega'));
-                    $('#gasto-recibe').val(row.data('recibe'));
-                    break;
-                case 'gasolina':
-                    $('#gasto-recibe').val(row.data('recibe')); // Recibe for gasolina
-                    $('#gasto-metodo-pago').val(row.data('metodo-pago'));
-                    $('#gasto-unidad').val(row.data('unidad'));
-                    break;
-                case 'nomina':
-                    $('#gasto-numero-semana').val(row.data('numero-semana'));
-                    $('#gasto-total-semanal').val(row.data('total-semanal'));
-                    break;
-                case 'pagonotas':
-                    $('#gasto-concepto').val(row.data('concepto'));
-                    $('#gasto-folio-nombre').val(row.data('folio-nombre'));
-                    break;
-                case 'cliente':
-                    $('#gasto-concepto').val(row.data('concepto'));
-                    $('#gasto-recibe').val(row.data('recibe')); // Recibe for cliente
-                    $('#gasto-total-cliente').val(row.data('total'));
-                    break;
-            }
-        } else { // 'add' mode
-            // Clear form fields for 'add' mode
-            $('#editGastoForm')[0].reset();
-            // Set current date for new entries
-            let today = new Date();
-            let dd = String(today.getDate()).padStart(2, '0');
-            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            let yyyy = today.getFullYear();
-            $('#gasto-fecha').val(yyyy + '-' + mm + '-' + dd);
-        }
-    });
-
-    // When the modal is hidden, reset the form and hide all specific fields
-    $('#gastoEditModal').on('hidden.bs.modal', function () {
+        // Reset form and hide all fields first
         $('#editGastoForm')[0].reset();
         hideAllSpecificFields();
-    });
 
-    // Example for form submission (you'll need to implement actual data handling)
-    $('#editGastoForm').on('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-
-        let formData = {};
-        $(this).find(':input').each(function() {
-            let name = $(this).attr('name');
-            let value = $(this).val();
-            if (name) { // Only add if name exists
-                formData[name] = value;
+        // Show fields based on category
+        if (category === 'maquinaria') {
+            $('#maquinaria-fields').show();
+            // If editing, populate fields
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw')); // Assuming a raw date format in data-attribute
+                $('#gasto-monto').val(row.data('monto'));
+                $('#gasto-pagos-realizados').val(row.data('pagos-realizados'));
+                $('#gasto-total-acumulado').val(row.data('total-acumulado'));
             }
-        });
-
-        console.log("Form data submitted:", formData);
-        alert("Gasto guardado/actualizado (en consola). Implementa tu lógica de backend aquí.");
-        $('#gastoEditModal').modal('hide'); // Hide modal after submission
-        // In a real application, you would send this data to a server
-        // and then update the table dynamically or reload the page.
+        } else if (category === 'extras' || category === 'deudores') {
+            $('#entrega-recibe-fields').show();
+            $('#form-group-descripcion').show();
+            $('#concepto-folio-nombre-fields').show(); // Mostrar concepto
+            $('#form-group-folio-nombre').hide(); // Ocultar folio/nombre si no es relevante aquí
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw'));
+                $('#gasto-monto').val(row.data('monto'));
+                $('#gasto-entrega').val(row.data('entrega'));
+                $('#gasto-recibe').val(row.data('recibe'));
+                $('#gasto-descripcion').val(row.data('descripcion'));
+                $('#gasto-concepto').val(row.data('concepto')); // Populate concepto
+            }
+        } else if (category === 'gasolina') {
+            $('#gasolina-fields').show();
+            $('#entrega-recibe-fields').show(); // Recibe field
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw'));
+                $('#gasto-monto').val(row.data('monto'));
+                $('#gasto-recibe').val(row.data('recibe'));
+                $('#gasto-metodo-pago').val(row.data('metodo-pago'));
+                $('#gasto-unidad').val(row.data('unidad'));
+            }
+        } else if (category === 'nomina') {
+            $('#nomina-fields').show();
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw'));
+                $('#gasto-monto').val(row.data('monto')); // Monto general de la nómina
+                $('#gasto-numero-semana').val(row.data('numero-semana'));
+                $('#gasto-total-semanal').val(row.data('total-semanal'));
+            }
+        } else if (category === 'pagonotas') {
+            $('#concepto-folio-nombre-fields').show();
+            $('#form-group-proveedor').show(); // Mostrar campo de proveedor
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw'));
+                $('#gasto-monto').val(row.data('monto'));
+                $('#gasto-concepto').val(row.data('concepto'));
+                $('#gasto-folio-nombre').val(row.data('folio-nombre'));
+                $('#gasto-proveedor').val(row.data('proveedor')); // Populate proveedor
+            }
+        } else if (category === 'cliente') {
+            $('#concepto-folio-nombre-fields').show(); // Concepto y Folio/Nombre pueden ser útiles aquí
+            $('#form-group-total-cliente').show(); // Mostrar el campo de "Total" para el cliente
+            $('#entrega-recibe-fields').show(); // Mostrar recibe para el cliente
+            if (modalType === 'edit') {
+                var row = button.closest('tr');
+                $('#gasto-id').val(row.data('id'));
+                $('#gasto-fecha').val(row.data('fecha-raw'));
+                $('#gasto-monto').val(row.data('monto')); // Esto sería el "total" del cliente
+                $('#gasto-concepto').val(row.data('concepto'));
+                $('#gasto-recibe').val(row.data('recibe'));
+                $('#gasto-total-cliente').val(row.data('total')); // Asignar al campo total_cliente
+            }
+        }
     });
 
-    // Initial setup on page load for the active tab
-    let initialActiveTabId = $('ul.nav-tabs li a.active').attr('id');
-    if (initialActiveTabId) {
-        let initialCategory = initialActiveTabId.replace('-tab', '');
-        // Initial update of modal fields for the currently active tab
-        updateModalFields(initialCategory);
-    }
+    // Handle form submission (simulated for demonstration)
+    $('#editGastoForm').on('submit', function(e) {
+        e.preventDefault();
+        var formData = $(this).serializeArray();
+        console.log("Datos del formulario:", formData);
+        alert('Gasto guardado/editado exitosamente (simulación)');
+        $('#gastoEditModal').modal('hide');
+        // In a real application, you would send this data to your backend
+        // and then dynamically update the table or reload the data.
+    });
+
+    // Handle submission for adding a new provider (simulated)
+    $('#addProveedorForm').on('submit', function(e) {
+        e.preventDefault();
+        var formData = $(this).serializeArray();
+        console.log("Nuevo Proveedor:", formData);
+        alert('Proveedor agregado exitosamente (simulación)');
+        $('#proveedorAddModal').modal('hide');
+        // In a real application, you might refresh a dropdown list of providers
+        // or add the new provider to a database.
+    });
 });
 </script>
 </body>

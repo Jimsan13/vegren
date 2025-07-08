@@ -14,7 +14,7 @@
     </div>
     <div class="row g-4">
     </div>
-    
+      <x-productos-tabs />
 @endsection
 
 @section('scripts')
