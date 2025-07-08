@@ -1,0 +1,209 @@
+
+
+        :root {
+            --primary-green: #28a745; /* Un verde más intenso */
+            --text-dark: #343a40;
+            --light-green-bg: #f0fff0;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-green-bg);
+            color: var(--text-dark);
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+        h3 {
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+        h4 {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor principal de la sección */
+        .section-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para las pestañas de Bootstrap */
+        .nav-tabs .nav-link {
+            color: var(--text-dark);
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-tabs .nav-link:hover {
+            border-color: #eee;
+        }
+        .nav-tabs .nav-link.active {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+            background-color: transparent;
+            font-weight: 600;
+        }
+        .tab-content {
+            padding-top: 1.5rem;
+        }
+
+        /* Estilos de las tarjetas de resumen */
+        .card-summary {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            height: 100%; /* Asegura que las tarjetas tengan la misma altura */
+        }
+        .card-summary .icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: var(--primary-green); /* Default green */
+        }
+        .card-summary .title {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        .card-summary .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .card-summary .description {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        /* Colores de iconos específicos para las tarjetas (ejemplo de nómina) */
+        .card-summary.sales-summary .icon { color: #28a745; } /* Green for Total Nómina Pagada */
+        .card-summary.cost-summary .icon { color: #dc3545; } /* Red for Total Descuentos */
+        .card-summary.profit-summary .icon { color: #007bff; } /* Blue for Neto a Pagar */
+        .card-summary.profit-before-tax .icon { color: #ffc107; } /* Yellow for Costo Total de Nómina */
+
+        /* Estilos para la sección de detalles (Desglose de Gastos de Nómina) */
+        .details-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+        .details-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .details-item:last-child {
+            border-bottom: none;
+        }
+        .details-item .icon {
+            font-size: 1.2em;
+            margin-right: 15px;
+            color: #6c757d;
+            width: 25px;
+            text-align: center;
+        }
+        .details-item .col-concept {
+            flex: 1.5;
+            padding: 0 5px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+        }
+        .details-item .col-amount {
+            flex: 1;
+            text-align: right;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .text-success { color: var(--primary-green) !important; }
+        .text-danger { color: #dc3545 !important; }
+
+        /* Estilos para la tabla (general) */
+        .table-responsive {
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table thead th {
+            background-color: var(--primary-green);
+            color: #fff;
+            border-bottom: none;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+        }
+        .table tbody td {
+            vertical-align: middle;
+            padding: 0.75rem 1.25rem;
+            color: var(--text-dark);
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .action-icon {
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 1.1em;
+            transition: color 0.2s ease;
+        }
+        .action-icon:hover {
+            opacity: 0.7;
+        }
+        /* Estilos para los botones "Agregar" en las tablas */
+        .btn-add-table {
+            background-color: var(--primary-green);
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn-add-table:hover {
+            background-color: #218838; /* Un verde un poco más oscuro al pasar el ratón */
+            color: #fff;
+        }
+
+        /* Estilos específicos para modales (opcional, si quieres un aspecto particular) */
+        .modal-header {
+            background-color: var(--primary-green);
+            color: #fff;
+            border-bottom: none;
+        }
+        .modal-header .btn-close {
+            filter: invert(1); /* Hace que la X del botón de cierre sea blanca */
+        }
+        .modal-footer .btn-primary {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        .modal-footer .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }

@@ -1,0 +1,231 @@
+
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        /* Estilos de las pestañas */
+        .nav-tabs {
+            border-bottom: 2px solid #218838;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            color: #555;
+            border: 1px solid transparent;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-item .nav-link.active {
+            color: #fff;
+            background-color: #218838;
+            border-color: rgb(7, 7, 7);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .nav-tabs .nav-item .nav-link:hover:not(.active) {
+            background-color: #111111;
+            border-color: #e9ecef;
+        }
+
+        .gastos-tabs .nav-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .gastos-tabs .nav-link i {
+            font-size: 1.1em;
+        }
+
+        /* Contenido de las pestañas */
+        .tab-content {
+            padding: 20px 0;
+        }
+
+        .tab-pane h4 {
+            color: rgb(0, 0, 0);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Estilos de la tabla */
+        .table {
+            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table thead.thead-dark th {
+            background-color: #343a40;
+            color: #fff;
+            border-color: #454d55;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .table tbody tr {
+            background-color: #f8f9fa;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #e2e6ea;
+        }
+
+        .table tbody tr:hover {
+            background-color: #d6eaff;
+        }
+
+        .table td, .table th {
+            padding: 10px 15px;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* Botones de acción en la tabla */
+        .action-buttons {
+            white-space: nowrap;
+        }
+
+        .action-buttons .btn {
+            padding: 5px 9px;
+            font-size: 0.85em;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        .edit-btn {
+            background-color: rgb(7, 160, 255);
+            color: white;
+            border: none;
+        }
+
+        .edit-btn:hover {
+            background-color: rgb(12, 155, 243);
+        }
+
+        /* Total amount display */
+        .total-amount {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: rgb(10, 10, 10);
+            text-align: right;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Botón agregar */
+        .btn-add {
+            background-color: #218838;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background-color:rgb(49, 209, 47);
+            color: white;
+        }
+
+        .btn-add i {
+            font-size: 1.2em;
+        }
+
+        /* Estilos del Modal */
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background-color:rgb(59, 222, 70);
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: none;
+        }
+
+        .modal-header .close {
+            background-color: #dc3545; /* Rojo para el botón de cerrar */
+            border: none;
+            color: white;
+            opacity: 1; /* Asegura que no tenga transparencia por defecto */
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            line-height: 1; /* Ajusta la altura de línea para centrar la X */
+        }
+
+        .modal-header .close:hover {
+            background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-body .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .modal-body .input-group-text {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+            color: #495057;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #e9ecef;
+            padding: 15px;
+            justify-content: flex-end;
+        }
+
+        .modal-footer .btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
