@@ -1,0 +1,206 @@
+/* Estilos generales para el contenedor principal, si es necesario */
+body {
+    background-color: #f8f9fa; /* Un fondo claro para que el contenido resalte */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos de la tabla */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse; /* Para evitar dobles bordes */
+}
+
+.table thead th {
+    background-color: #f2f2f2; /* Fondo para el encabezado de la tabla */
+    border-bottom: 2px solid #dee2e6;
+    padding: 0.75rem;
+    vertical-align: bottom;
+    text-align: left;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table tbody td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #949494;
+}
+
+/* Estilos específicos para las celdas de acciones */
+.actions-cell {
+    white-space: nowrap; /* Evita que los botones se envuelvan */
+    text-align: center; /* Centra los botones en la celda */
+}
+
+/* Estilos para los botones de acción (editar y borrar) */
+.action-btn {
+    border: none;
+  
+    padding: 5px 8px; /* Ajusta el padding para el tamaño */
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    font-size: 1rem; /* Tamaño del icono */
+    margin: 0 2px; /* Pequeño margen entre botones */
+}
+
+.action-btn i {
+    pointer-events: none; /* Asegura que el clic sea en el botón, no en el icono */
+}
+
+/* Colores SIEMPRE presentes para el botón de editar (amarillo) */
+.edit-btn {
+    background-color: #ffc107; /* Amarillo */
+    color: #212529; /* Color de texto oscuro para que resalte en el amarillo */
+}
+
+.edit-btn:hover {
+    background-color: #e0a800; /* Un amarillo ligeramente más oscuro al pasar el ratón */
+    color: #fff; /* Opcional: Cambiar el color del texto a blanco al hacer hover */
+}
+
+/* Colores SIEMPRE presentes para el botón de borrar (rojo) */
+.delete-btn {
+    background-color: #dc3545; /* Rojo */
+    color: #fff; /* Color de texto blanco para que resalte en el rojo */
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Un rojo ligeramente más oscuro al pasar el ratón */
+    color: #fff;
+}
+
+/* Contenedor para el botón de agregar para posicionarlo */
+.add-button-container {
+    display: flex; /* Usa flexbox para alinear el botón */
+    justify-content: flex-start; /* Alinea a la izquierda */
+    margin-top: 20px; /* Espacio superior */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Estilos para el botón de "Agregar" */
+.add-new-btn {
+    background-color: #28a745; /* Verde similar al de las imágenes */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: flex; /* Para alinear el icono y el texto */
+    align-items: center; /* Centra verticalmente el icono y el texto */
+    gap: 8px; /* Espacio entre el icono y el texto */
+    
+    transition: background-color 0.2s ease-in-out;
+}
+
+.add-new-btn:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+    color: #fff; /* Asegura que el color del texto no cambie */
+}
+
+.add-new-btn i {
+    font-size: 1.1rem; /* Ajusta el tamaño del icono de suma */
+}
+
+/* Estilos del modal */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.modal-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.btn-primary-custom { /* Botón de Guardar en el modal */
+    background-color: #06cc31; /* Azul de Bootstrap por defecto, puedes cambiarlo si deseas */
+    border-color: #09e038;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-primary-custom:hover {
+    background-color: #0bdd0b;
+    border-color: #18d407;
+    color: #fff;
+}
+
+.btn-secondary { /* Botón de Cancelar en el modal */
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .table thead th,
+    .table tbody td {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .action-btn {
+        padding: 3px 6px;
+        font-size: 0.9rem;
+    }
+}

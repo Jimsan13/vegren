@@ -1,0 +1,236 @@
+
+        /* Global styles based on your example */
+        body {
+            font-family: sans-serif;
+            background-color: #f0fff0; /* Light green background to match image */
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+
+        /* Variables CSS para colores */
+        :root {
+            --primary-green: #28a745;
+            --secondary-green: #218838;
+            --yellow-highlight: #ffc107;
+            --red-alert: #dc3545;
+            --blue-info: #17a2b8;
+            --gray-text: #6c757d;
+            --dark-text: #343a40;
+            --light-border: #eee;
+            --medium-border: #ddd;
+        }
+
+        /* Tabs styling from your example */
+        .gastos-tabs .nav-link { /* Original class name retained */
+            color: var(--gray-text);
+            border: 1px solid transparent;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            padding: .5rem 1rem;
+        }
+        .gastos-tabs .nav-link.active { /* Original class name retained */
+            color: var(--primary-green); /* Green for active tab */
+            background-color: #fff;
+            border-color: var(--medium-border) var(--medium-border) #fff;
+            font-weight: bold;
+        }
+
+        /* Summary Card styling from your example */
+        .card-summary {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-summary .icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: var(--primary-green); /* Green icon */
+        }
+        .card-summary .icon.movement {
+            color: var(--blue-info); /* Blue-green for movements (e.g., total cobro/pagos) */
+        }
+        .card-summary .icon.total-cash { /* Specific for total efectivo */
+            color: var(--yellow-highlight); /* Yellow */
+        }
+        .card-summary .icon.income { /* Specific for Cobro */
+            color: var(--primary-green); /* Green */
+        }
+        .card-summary .icon.expense { /* Specific for Pago */
+            color: var(--red-alert); /* Red */
+        }
+        .card-summary .title {
+            font-size: 0.9em;
+            color: var(--gray-text);
+            margin-bottom: 5px;
+        }
+        .card-summary .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+        .card-summary .description {
+            font-size: 0.8em;
+            color: var(--gray-text);
+        }
+
+        /* Details Section (Table-like list) styling from your example */
+        .details-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        }
+        .details-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-border);
+            flex-wrap: nowrap; /* Por defecto, no envolver */
+        }
+        .details-item:last-child {
+            border-bottom: none;
+        }
+        .details-item .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--gray-text);
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0; /* Previene que el icono se encoja */
+        }
+        .details-item .info {
+            flex-grow: 1;
+            padding: 0 5px; /* Pequeño padding para espaciar contenido */
+        }
+        .details-item .info.description {
+            flex-grow: 2; /* Make description column wider */
+            min-width: 150px; /* Ancho mínimo para descripción */
+        }
+        /* Ajustes para las columnas de datos */
+        .details-item .col-date,
+        .details-item .col-amount,
+        .details-item .col-type,
+        .details-item .col-status-text,
+        .details-item .col-beneficiary, /* Nuevo */
+        .details-item .col-invoice { /* Nuevo */
+            flex-basis: 120px; /* Usa flex-basis en lugar de width para mejor control de flexbox */
+            min-width: 80px; /* Un ancho mínimo para evitar colapsos */
+            text-align: right;
+            white-space: nowrap; /* Prevent text wrapping */
+            flex-shrink: 0; /* Evita que se encojan más allá de min-width */
+        }
+        .details-item .col-actions { /* For edit/delete buttons */
+            flex-basis: 90px; /* Ajustado para botones */
+            min-width: 70px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            padding-left: 5px;
+        }
+        .details-item .col-actions .btn {
+            font-size: 0.9em;
+            padding: .3em .6em;
+            margin-left: 5px; /* Spacing between buttons */
+        }
+
+        /* Add button styling from your example */
+        .btn-add {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            width: fit-content;
+        }
+        .btn-add:hover {
+            background-color: var(--secondary-green);
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 992px) { /* Medium devices (tablets) */
+            .details-item .info.description {
+                flex-basis: 120px;
+                min-width: 120px;
+            }
+            .details-item .col-date,
+            .details-item .col-amount,
+            .details-item .col-type,
+            .details-item .col-status-text,
+            .details-item .col-beneficiary,
+            .details-item .col-invoice {
+                flex-basis: 90px;
+                min-width: 70px;
+            }
+        }
+
+        @media (max-width: 767px) { /* Small devices (phones) */
+            .details-item {
+                flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+                align-items: flex-start; /* Alinear arriba si hay múltiples líneas */
+            }
+            .details-item .icon {
+                margin-top: 5px; /* Ajuste para el icono en móviles */
+                margin-bottom: 5px;
+            }
+            .details-item .info.description {
+                flex-basis: calc(100% - 45px); /* Restar ancho del icono + margen */
+                min-width: unset; /* Quitar min-width fijo */
+                order: 1; /* Poner la descripción primero */
+            }
+            .details-item .col-date,
+            .details-item .col-amount,
+            .details-item .col-type,
+            .details-item .col-status-text,
+            .details-item .col-beneficiary,
+            .details-item .col-invoice {
+                flex-basis: 48%; /* Dos columnas por fila en móviles */
+                text-align: left; /* Ajustar alineación para móviles */
+                white-space: normal; /* Permitir que el texto se envuelva */
+                min-width: unset;
+                margin-bottom: 5px;
+                order: 2; /* Después de la descripción */
+            }
+            .details-item .col-actions {
+                flex-basis: 100%; /* Acciones en su propia línea */
+                justify-content: flex-start; /* Alinear botones a la izquierda */
+                margin-top: 5px;
+                order: 3; /* Al final */
+            }
+            .details-item .info:empty { /* Ocultar columnas vacías en móviles si no se usan */
+                display: none;
+            }
+        }
+
+        /* Estilo para los modales */
+        .modal-header {
+            background-color: var(--primary-green);
+            color: white;
+            border-bottom: none;
+        }
+        .modal-header .close {
+            color: white;
+            opacity: 1;
+        }
+        .modal-body .form-group label {
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+        .modal-footer .btn-primary {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        .modal-footer .btn-primary:hover {
+            background-color: var(--secondary-green);
+            border-color: var(--secondary-green);
+        }

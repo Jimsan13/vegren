@@ -1,0 +1,67 @@
+
+body {
+    background-image: url('../images/login.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta desde la raíz CSS */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Si este body es exclusivo para el login, puedes añadir aquí también el
+       display: flex; align-items: center; justify-content: center; min-height: 100vh;
+       para centrar el contenido, o dejar que el layout lo haga si usas @extends('layouts.app')
+       y el layout ya tiene esas propiedades en su <body>.
+       Si el layout.app ya tiene esas propiedades, no las dupliques aquí en el body.
+    */
+}
+
+/* Estilos para la tarjeta de login */
+.login-card {
+    background-color: white;
+    border-radius: 1.5rem; /* Esquinas redondeadas */
+    padding: 2.5rem; /* Espaciado interno */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Sombra suave */
+    width: 100%; /* Ancho completo */
+    max-width: 450px; /* Ancho máximo para la tarjeta */
+}
+
+/* Contenedor para iconos dentro de los campos de formulario */
+.form-group {
+    position: relative; /* Necesario para posicionar el icono absolutamente */
+}
+
+/* Estilos para los iconos dentro de los campos de formulario */
+.form-icon {
+    position: absolute;
+    right: 15px; /* Separación desde la derecha del input */
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centrado vertical */
+    color: #6c757d; /* Color gris suave para los iconos */
+}
+
+/* Estilos para el botón de inicio de sesión */
+.btn-green {
+    background-color: #00994c; /* Verde distintivo */
+    color: white; /* Texto blanco */
+    border-radius: 1.5rem; /* Bordes redondeados */
+    padding: 0.5rem 1.5rem; /* Espaciado interno */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos para el botón al pasar el ratón por encima */
+.btn-green:hover {
+    background-color: #007a3a; /* Verde más oscuro al pasar el ratón */
+}
+
+/* Estilos para el mensaje de Bienvenida y el subtítulo */
+.login-card h4.text-success { /* Asegúrate de que este selector sea específico si hay otros h4 */
+    color: #28a745; /* Verde vibrante para el título "Bienvenido a Veggreen" */
+    /* Otros estilos si los tienes para este h4 en tu archivo CSS principal */
+}
+
+.login-card p { /* Selector general para párrafos dentro de la tarjeta */
+    color: #6c757d; /* Color para el subtítulo "Sistema Integral de Control Interno" */
+    /* Otros estilos si los tienes para párrafos en tu archivo CSS principal */
+}
+
+/* Ajustes para el feedback de validación de Bootstrap */
+.invalid-feedback.d-block {
+    display: block !important; /* Sobrescribe el display por defecto para que siempre se muestre si tiene errores */
+}

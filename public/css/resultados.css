@@ -1,0 +1,146 @@
+
+        /* Estilos generales */
+        body {
+            font-family: sans-serif;
+            background-color: #f0fff0; /* Light green background */
+            color: #343a40;
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+        h3 {
+            font-weight: bold;
+            color: #28a745; /* Green color for main headings */
+        }
+        h4 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos de las tarjetas de resumen */
+        .card-summary {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-summary .icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: #28a745; /* Default green */
+        }
+        .card-summary .title {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        .card-summary .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .card-summary .description {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        /* Colores de iconos específicos para las tarjetas de Resultados */
+        .card-summary.sales-summary .icon { color: #28a745; } /* Green */
+        .card-summary.cost-summary .icon { color: #dc3545; } /* Red */
+        .card-summary.profit-summary .icon { color: #17a2b8; } /* Info blue */
+        .card-summary.profit-before-tax .icon { color: #ffc107; } /* Yellow */
+
+        /* Estilos para las secciones de detalles (Tablas) */
+        .details-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+        .details-section table {
+            width: 100%;
+            margin-bottom: 0;
+        }
+        .details-section th {
+            font-size: 0.9em;
+            color: #6c757d;
+            border-bottom: 2px solid #ddd;
+            padding: 10px 5px;
+            text-align: left;
+        }
+        .details-section td {
+            padding: 8px 5px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        .details-section tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .details-section td.text-right, .details-section th.text-right {
+            text-align: right;
+        }
+        .details-section .btn-actions {
+            font-size: 0.8em;
+            padding: .2em .5em;
+            margin-left: 5px;
+        }
+
+        .btn-add-movement {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            float: right; /* Alinearlo a la derecha */
+        }
+        .btn-add-movement i {
+            margin-right: 5px;
+        }
+        .btn-add-movement:hover {
+            background-color: #218838;
+        }
+
+        /* Estilo para el total en tablas */
+        .table-total-row {
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #f8f9fa;
+            border-top: 2px solid #ddd;
+        }
+        .table-total-row td {
+            padding-top: 15px !important;
+            padding-bottom: 15px !important;
+        }
+        .text-success { color: #28a745 !important; }
+        .text-danger { color: #dc3545 !important; }
+
+        /* Modal styles */
+        .modal-header {
+            background-color: #28a745;
+            color: white;
+            border-bottom: none;
+        }
+        .modal-header .close {
+            color: white;
+            opacity: 1;
+        }
+        .modal-body .form-group label {
+            font-weight: bold;
+            color: #343a40;
+        }
+        .modal-footer .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .modal-footer .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }

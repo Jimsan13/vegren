@@ -1,3 +1,12 @@
-*
-!data/
-!.gitignore
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vscode
+/.env
+Homestead.yaml
+Homestead.json
+npm-debug.log
+yarn-error.log
+

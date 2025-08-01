@@ -1,0 +1,493 @@
+
+        body {
+            font-family: sans-serif;
+            background-color: #f0fff0;
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+
+        :root {
+            --primary-green: #28a745;
+            --secondary-green: #218838;
+            --yellow-highlight: #ffc107;
+            --red-alert: #dc3545;
+            --blue-info: #17a2b8;
+            --gray-text: #6c757d;
+            --dark-text: #343a40;
+            --light-border: #eee;
+            --medium-border: #ddd;
+            --card-border-radius: 12px;
+        }
+
+        .main-title {
+            color: var(--dark-text);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .ventas-tabs .nav-link {
+            color: var(--gray-text);
+            border: 1px solid transparent;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            padding: .5rem 1rem;
+        }
+        .ventas-tabs .nav-link.active {
+            color: var(--primary-green);
+            background-color: #fff;
+            border-color: var(--medium-border) var(--medium-border) #fff;
+            font-weight: bold;
+        }
+
+        /* CARD SUMMARY STYLES */
+        .card-summary {
+            background-color: #fff;
+            border-radius: var(--card-border-radius);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.08);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-summary .icon-background {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 5em;
+            color: rgba(0,0,0,0.05);
+            z-index: 0;
+        }
+
+        .card-summary .icon-main {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: var(--primary-green);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Specific icon colors based on your images */
+        .card-summary.income .icon-main { color: #28a745; } /* Green */
+        .card-summary.expense .icon-main { color: #dc3545; } /* Red */
+        .card-summary.profit .icon-main { color: #007bff; } /* Blue (similar to chart-line in image) */
+        .card-summary.balance .icon-main { color: #17a2b8; } /* Teal/Cyan */
+        .card-summary.debt .icon-main { color: #ffc107; } /* Yellow for Debt */
+        .card-summary.maquinaria .icon-main { color: #6f42c1; } /* Purple */
+        .card-summary.administracion .icon-main { color: #fd7e14; } /* Orange */
+        .card-summary.financieros .icon-main { color: #6610f2; } /* Dark Purple */
+
+
+        .card-summary .content {
+            z-index: 1;
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .card-summary .title {
+            font-size: 0.9em;
+            color: var(--gray-text);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .card-summary .value {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+        .card-summary .description {
+            font-size: 0.8em;
+            color: var(--gray-text);
+            margin-top: 5px;
+        }
+
+        /* Specific styles for the "Resumen de Ingresos y Egresos por Tipo" cards and Debt Type cards */
+        .card-summary.type-summary {
+            background-color: #f8f9fa;
+            border: 1px solid var(--light-border);
+            padding: 15px;
+        }
+        .card-summary.type-summary .icon-main {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+        .card-summary.type-summary .value {
+            font-size: 1.3em;
+        }
+
+        .details-section {
+            background-color: #fff;
+            border-radius: var(--card-border-radius);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        }
+        .details-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-border);
+            flex-wrap: nowrap;
+        }
+        .details-item:last-child {
+            border-bottom: none;
+        }
+        .details-item .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--gray-text);
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .details-item .info {
+            flex-grow: 1;
+            padding: 0 5px;
+            color: var(--dark-text);
+        }
+        .details-item .info.col-costo,
+        .details-item .info.col-ingreso,
+        .details-item .info.col-egreso,
+        .details-item .info.col-ganancia {
+            text-align: right;
+        }
+
+        .details-item .info.description {
+            flex-grow: 2;
+            min-width: 150px;
+        }
+        .details-item .col-date,
+        .details-item .col-lote,
+        .details-item .col-caja,
+        .details-item .col-costo,
+        .details-item .col-proveedor,
+        .details-item .col-ingreso,
+        .details-item .col-egreso,
+        .details-item .col-ganancia {
+            flex-basis: 120px;
+            min-width: 80px;
+            text-align: right;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .details-item .col-actions {
+            flex-basis: 90px;
+            min-width: 70px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            padding-left: 5px;
+        }
+        .details-item .col-actions .btn {
+            font-size: 0.9em;
+            padding: .3em .6em;
+            margin-left: 5px;
+        }
+
+        .btn-add {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+        }
+        .btn-add:hover {
+            background-color: var(--secondary-green);
+        }
+
+        <style>
+    /* ... your existing styles ... */
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto; /* This helps with centering for block elements, but flexbox's justify/align items is better */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more specific, like max-width: 500px; */
+        max-width: 600px; /* Example: set a max-width for better responsiveness */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        position: relative;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Additional styles for your existing elements for better presentation */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align to the top of the container */
+        min-height: 100vh;
+    }
+
+    .ventana {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+        max-width: 1000px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+    .tab-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #eee;
+    }
+
+    .tab-button {
+        padding: 15px 20px;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        color: #555;
+        transition: all 0.3s ease;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .tab-button.active {
+        color: #007bff;
+        border-bottom: 3px solid #007bff;
+        font-weight: bold;
+    }
+
+    .tab-button:hover:not(.active) {
+        background-color: #f0f0f0;
+    }
+
+    .tab-button i {
+        margin-right: 8px;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 20px 0;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .card {
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h4 {
+        color: #007bff;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    .card p {
+        margin: 8px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .card i {
+        margin-right: 10px;
+        color: #007bff;
+    }
+
+    .positivo {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .negativo {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    .add-button-container {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .add-button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-button:hover {
+        background-color: #218838;
+    }
+
+    .add-button i {
+        margin-right: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden; /* Ensures rounded corners apply to content */
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f7f7f7;
+    }
+
+    tr:hover {
+        background-color: #f0f0f0;
+    }
+
+    td i {
+        margin-right: 5px;
+        color: #666;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-editar {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-editar:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-borrar {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-borrar:hover {
+        background-color: #c82333;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="date"],
+    form input[type="month"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    form button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    form button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    hr {
+        border: 0;
+        border-top: 1px solid #eee;
+        margin: 20px 0;
+    }
+</style>

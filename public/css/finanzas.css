@@ -1,0 +1,190 @@
+
+
+    /* Styles for finanzas-tabs component */
+    .finanzas-tabs .nav-link {
+        color: #495057;
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        padding: .5rem 1rem;
+    }
+    .finanzas-tabs .nav-link.active {
+        color: #28a745; /* Green for active tab */
+        background-color: #fff;
+        border-color: #dee2e6 #dee2e6 #fff;
+        font-weight: bold;
+    }
+
+    /* Card Summary Styles (consistent) */
+    .card-summary {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .card-summary .icon {
+        font-size: 2.5em;
+        margin-right: 15px;
+        color: #28a745; /* Default green */
+    }
+    .card-summary .title {
+        font-size: 0.9em;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+    .card-summary .value {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #343a40;
+    }
+    .card-summary .description {
+        font-size: 0.8em;
+        color: #6c757d;
+    }
+    /* Specific icon colors for finance cards */
+    .card-summary.available-balance .icon { color: #28a745; } /* Green */
+    .card-summary.net-profit .icon { color: #17a2b8; } /* Info blue */
+    .card-summary.accumulated-debt .icon { color: #dc3545; } /* Red */
+    .card-summary.total-debt .icon { color: #dc3545; } /* Red for total debt */
+    .card-summary.pending-payments .icon { color: #ffc107; } /* Yellow for pending payments */
+    .card-summary.paid-payments .icon { color: #28a745; } /* Green for paid payments */
+
+
+    /* Chart container */
+    .chart-container {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        margin-bottom: 20px;
+    }
+
+    /* Recent Movements / Details Section (Table-like list - consistent with previous) */
+    .details-section {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        margin-bottom: 20px;
+    }
+    .details-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .details-item:last-child {
+        border-bottom: none;
+    }
+    .details-item .icon {
+        font-size: 1.2em;
+        margin-right: 15px;
+        color: #6c757d;
+        width: 25px; /* Adjust icon width for alignment */
+        text-align: center;
+    }
+    .details-item .col-date, .details-item .col-concept, .details-item .col-amount, .details-item .col-status {
+        flex: 1;
+        padding: 0 5px;
+    }
+    .details-item .col-info { /* General info column */
+        flex: 1.5;
+        padding: 0 5px;
+        font-size: 0.95em;
+    }
+    .details-item .col-action-icon {
+        width: 30px;
+        text-align: right;
+        color: #6c757d;
+    }
+    .details-item .col-amount {
+        text-align: right;
+        font-weight: bold;
+    }
+    .details-item .col-status {
+        text-align: right;
+        font-weight: bold;
+    }
+    .text-success { color: #28a745 !important; }
+    .text-danger { color: #dc3545 !important; }
+    .text-warning { color: #ffc107 !important; } /* For 'Pendiente' */
+
+    /* Specific styles for the Deudas section details */
+    .details-section .debt-item .col-amount-due {
+        flex: 0.7; /* Smaller for amount due */
+        text-align: right;
+    }
+    .details-section .debt-item .col-action-icon-debt {
+        width: 20px; /* Even smaller for debt action icon */
+        text-align: right;
+    }
+    .details-section .debt-item .col-due-date {
+        flex: 0.8;
+        text-align: center;
+    }
+    .details-section .debt-item .col-pay-button {
+        width: 100px; /* Fixed width for pay button column */
+        text-align: right;
+        flex-shrink: 0;
+    }
+    .btn-sm-pay {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+        background-color: #28a745;
+        color: white;
+        border: none;
+    }
+    .btn-sm-pay:hover {
+        background-color: #218838;
+    }
+
+    /* Simple placeholder for chart */
+    .placeholder-chart {
+        background-color: #e9ecef;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #6c757d;
+        font-size: 1.2em;
+        border-radius: 5px;
+    }
+    .placeholder-bar-chart {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(to top, #28a745 5%, #28a745 10%, #28a745 8%, #28a745 15%, #28a745 12%, #28a745 20%, #28a745 18%, #28a745 25%, #28a745 22%, #28a745 30%, #28a745 28%, #28a745 35%);
+        background-size: 8% 100%; /* Simulate bars */
+        background-repeat: repeat-x;
+        background-position: bottom;
+        border-radius: 5px;
+        position: relative;
+    }
+    .placeholder-bar-chart::before {
+        content: "Gráfica de Ingresos (simulada)";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .chart-nav {
+        margin-bottom: 15px;
+    }
+    .chart-nav .nav-link {
+        padding: .25rem .75rem;
+        font-size: .9em;
+        color: #6c757d;
+        border-bottom: 2px solid transparent;
+    }
+    .chart-nav .nav-link.active {
+        font-weight: bold;
+        color: #28a745;
+        border-color: #28a745;
+    }
