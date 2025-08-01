@@ -14,6 +14,7 @@ use App\Http\Controllers\GastoMovimientoController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\EstadoResultadosController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\MovimientoController;
 
 
 
@@ -165,6 +166,14 @@ Route::get('/admin/proveedores', [ProveedorController::class, 'index'])->name('a
 Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
 Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
 Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
+
+
+        // ==  M O  V I M I E N T O S
+Route::post('/movimientos', [MovimientoController::class, 'store'])->name('movimientos.store');
+Route::get('/admin/efectivo', [MovimientoController::class, 'index'])->name('admin.efectivo');
+
+Route::put('/movimientos/{id}', [MovimientoController::class, 'update'])->name('movimientos.update');
+Route::delete('/movimientos/{id}', [MovimientoController::class, 'destroy'])->name('movimientos.destroy');
 
 /*
 // Grupo para rol "contador" (si decides implementarlo después)

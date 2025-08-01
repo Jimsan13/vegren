@@ -15,7 +15,21 @@
         <h3>Registro de salidas de efectivo</h3>
     </div>
     <div class="row g-4">
-        <x-efectivo-tabs />
+    <x-efectivo-tabs
+        :totalEfectivo="$totalEfectivo"
+        :totalCobrosEfectivo="$totalCobrosEfectivo"
+        :totalPagosEfectivo="$totalPagosEfectivo"
+        :efectivos="$efectivos"
+        :totalTransferenciasRecibidas="$totalTransferenciasRecibidas"
+        :totalTransferenciasEnviadas="$totalTransferenciasEnviadas"
+        :transferencias="$transferencias"
+        :totalChequesEmitidos="$totalChequesEmitidos"
+        :valorTotalChequesEmitidos="$valorTotalChequesEmitidos"
+        :cheques="$cheques"
+    />
+
+
+
     </div>
 @endsection
 

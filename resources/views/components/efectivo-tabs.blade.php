@@ -32,250 +32,284 @@
             </a>
         </li>
     </ul>
+    @props([
+        'totalEfectivo',
+        'totalCobrosEfectivo',
+        'totalPagosEfectivo',
+        'efectivos',
+        'totalTransferenciasRecibidas',
+        'totalTransferenciasEnviadas',
+        'transferencias',
+        'totalChequesEmitidos',
+        'valorTotalChequesEmitidos',
+        'cheques',
+    ])
 
     <div class="tab-content" id="gastosMovimientosTabsContent">
-        {{-- Content for "Efectivo" tab (image_35677f.png, image_356760.png, image_356742.png) --}}
-        <div class="tab-pane fade {{ request()->is('gastos/efectivo') ? 'show active' : '' }}" id="efectivo" role="tabpanel" aria-labelledby="efectivo-tab">
-            <h4 class="mb-3">Resumen de Efectivo</h4>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card-summary">
-                        <i class="fas fa-money-bill-wave icon total-cash"></i>
-                        <div>
-                            <div class="title">Total de Efectivo</div>
-                            <div class="value">$1,500,000</div>
-                            <div class="description">Saldo actual en efectivo</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-summary">
-                        <i class="fas fa-arrow-alt-circle-down icon income"></i>
-                        <div>
-                            <div class="title">Total Cobros</div>
-                            <div class="value">$800,000</div>
-                            <div class="description">Entradas de efectivo este mes</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-summary">
-                        <i class="fas fa-arrow-alt-circle-up icon expense"></i>
-                        <div>
-                            <div class="title">Total Pagos</div>
-                            <div class="value">$300,000</div>
-                            <div class="description">Salidas de efectivo este mes</div>
-                        </div>
+    {{-- Efectivo --}}
+    <div class="tab-pane fade {{ request()->is('gastos/efectivo') ? 'show active' : '' }}" id="efectivo" role="tabpanel" aria-labelledby="efectivo-tab">
+        <h4 class="mb-3">Resumen de Efectivo</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-summary">
+                    <i class="fas fa-money-bill-wave icon total-cash"></i>
+                    <div>
+                        <div class="title">Total de Efectivo</div>
+                        <div class="value">${{ number_format($totalEfectivo, 2) }}</div>
+                        <div class="description">Saldo actual en efectivo</div>
                     </div>
                 </div>
             </div>
-
-            <h4 class="mb-3">Detalle de Movimientos</h4>
-            <div class="details-section">
-                {{-- Headers for columns --}}
-                <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
-                    <div class="icon"></div> {{-- Placeholder for icon alignment --}}
-                    <div class="info description">Descripción</div>
-                    <div class="info col-beneficiary">Persona / Factura</div> {{-- Campo adicional sugerido --}}
-                    <div class="info col-date">Fecha</div>
-                    <div class="info col-type">Tipo</div>
-                    <div class="info col-amount">Monto</div>
-                    <div class="info col-status-text">Estado</div>
-                    <div class="col-actions">Acciones</div>
-                </div>
-                {{-- Example movements (matching image_356760.png and image_356742.png) --}}
-                <div class="details-item">
-                    <i class="fas fa-money-check-alt icon"></i>
-                    <div class="info description">Venta de Cosecha Maíz</div>
-                    <div class="info col-beneficiary">Cliente A / Fact. 001</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">25/06/2024</div>
-                    <div class="info col-type text-success">Cobro</div>
-                    <div class="info col-amount">$150,000</div>
-                    <div class="info col-status-text text-success">Pagado</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+            <div class="col-md-4">
+                <div class="card-summary">
+                    <i class="fas fa-arrow-alt-circle-down icon income"></i>
+                    <div>
+                        <div class="title">Total Cobros</div>
+                        <div class="value">${{ number_format($totalCobrosEfectivo, 2) }}</div>
+                        <div class="description">Entradas de efectivo este mes</div>
                     </div>
                 </div>
-                <div class="details-item">
-                    <i class="fas fa-hand-holding-usd icon"></i>
-                    <div class="info description">Pago de Nómina Quincenal</div>
-                    <div class="info col-beneficiary">Equipo / Nómina 2024</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">20/06/2024</div>
-                    <div class="info col-type text-danger">Pago</div>
-                    <div class="info col-amount">$45,000</div>
-                    <div class="info col-status-text text-success">Pagado</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-truck-moving icon"></i>
-                    <div class="info description">Compra de Fertilizante</div>
-                    <div class="info col-beneficiary">Agro S.A. / Fact. F-005</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">18/06/2024</div>
-                    <div class="info col-type text-danger">Pago</div>
-                    <div class="info col-amount">$20,000</div>
-                    <div class="info col-status-text text-success">Pagado</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-leaf icon"></i>
-                    <div class="info description">Venta de Hortalizas</div>
-                    <div class="info col-beneficiary">Mercado Local / Rem. 120</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">15/06/2024</div>
-                    <div class="info col-type text-success">Cobro</div>
-                    <div class="info col-amount">$8,500</div>
-                    <div class="info col-status-text text-success">Pagado</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                {{-- Add more example movements as needed --}}
             </div>
-            <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="efectivo">Agregar Movimiento</button>
+            <div class="col-md-4">
+                <div class="card-summary">
+                    <i class="fas fa-arrow-alt-circle-up icon expense"></i>
+                    <div>
+                        <div class="title">Total Pagos</div>
+                        <div class="value">${{ number_format($totalPagosEfectivo, 2) }}</div>
+                        <div class="description">Salidas de efectivo este mes</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        {{-- Content for "Transferencia" tab --}}
-        <div class="tab-pane fade {{ request()->is('gastos/transferencia') ? 'show active' : '' }}" id="transferencia" role="tabpanel" aria-labelledby="transferencia-tab">
-            <h4 class="mb-3">Resumen de Transferencias</h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card-summary">
-                        <i class="fas fa-exchange-alt icon movement"></i>
-                        <div>
-                            <div class="title">Total de Transferencias Recibidas</div>
-                            <div class="value">$1,200,000</div>
-                            <div class="description">Entradas por transferencia este mes</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-summary">
-                        <i class="fas fa-paper-plane icon expense"></i>
-                        <div>
-                            <div class="title">Total de Transferencias Enviadas</div>
-                            <div class="value">$700,000</div>
-                            <div class="description">Salidas por transferencia este mes</div>
-                        </div>
-                    </div>
-                </div>
+        <h4 class="mb-3">Detalle de Movimientos</h4>
+        <div class="details-section">
+            <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
+                <div class="icon"></div>
+                <div class="info description">Descripción</div>
+                <div class="info col-beneficiary">Persona / Entidad</div>
+                <div class="info col-date">Fecha</div>
+                <div class="info col-type">Tipo</div>
+                <div class="info col-amount">Monto</div>
+                <div class="info col-status-text">Estado</div>
+                <div class="col-actions">Acciones</div>
             </div>
-            <h4 class="mb-3">Detalle de Transferencias</h4>
-            <div class="details-section">
-                {{-- Headers for columns --}}
-                <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
-                    <div class="icon"></div> {{-- Placeholder for icon alignment --}}
-                    <div class="info description">Descripción</div>
-                    <div class="info col-beneficiary">Originador / Destino</div> {{-- Campo adicional sugerido --}}
-                    <div class="info col-date">Fecha</div>
-                    <div class="info col-type">Tipo</div>
-                    <div class="info col-amount">Monto</div>
-                    <div class="info col-status-text">Cuenta</div>
-                    <div class="col-actions">Acciones</div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-university icon"></i>
-                    <div class="info description">Pago a Proveedor Químicos</div>
-                    <div class="info col-beneficiary">Químicos Global S.A.</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">24/06/2024</div>
-                    <div class="info col-type text-danger">Envío</div>
-                    <div class="info col-amount">$120,000</div>
-                    <div class="info col-status-text">Banco Azteca</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-piggy-bank icon"></i>
-                    <div class="info description">Depósito de Cliente</div>
-                    <div class="info col-beneficiary">Cliente B</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">22/06/2024</div>
-                    <div class="info col-type text-success">Recepción</div>
-                    <div class="info col-amount">$250,000</div>
-                    <div class="info col-status-text">BBVA</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="transferencia">Agregar Transferencia</button>
-        </div>
+            @foreach ($efectivos as $mov)
+            <div class="details-item">
+                <div class="info description">{{ $mov->descripcion }}</div>
+                <div class="info col-beneficiary">{{ $mov->beneficiario }}</div>
+                <div class="info col-date">{{ \Carbon\Carbon::parse($mov->fecha)->format('d/m/Y') }}</div>
+                <div class="info col-type {{ $mov->tipo == 'Cobro' ? 'text-success' : 'text-danger' }}">{{ $mov->tipo }}</div>
+                <div class="info col-amount">${{ number_format($mov->monto, 2) }}</div>
+                <div class="info col-status-text text-success">{{ $mov->estado }}</div>
+                <div class="col-actions">
+                    {{-- Editar --}}
+                    <button 
+                        class="btn btn-info btn-sm edit-btn"
+                        data-id="{{ $mov->id }}"
+                        data-descripcion="{{ $mov->descripcion }}"
+                        data-beneficiario="{{ $mov->beneficiario }}"
+                        data-monto="{{ $mov->monto }}"
+                        data-fecha="{{ $mov->fecha }}"
+                        data-tipo="{{ $mov->tipo }}"
+                        data-estado="{{ $mov->estado }}"
+                        data-cuenta="{{ $mov->cuenta }}"
+                        data-numero_cheque="{{ $mov->numero_cheque }}"
+                        data-origen="{{ $mov->origen }}"
+                        data-toggle="modal"
+                        data-target="#addMovementModal"
+                        title="Editar"
+                    >
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
 
-        {{-- Content for "Cheque" tab --}}
-        <div class="tab-pane fade {{ request()->is('gastos/cheque') ? 'show active' : '' }}" id="cheque" role="tabpanel" aria-labelledby="cheque-tab">
-            <h4 class="mb-3">Resumen de Cheques</h4>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card-summary">
-                        <i class="fas fa-money-check icon total-cash"></i>
-                        <div>
-                            <div class="title">Cheques Emitidos</div>
-                            <div class="value">5</div>
-                            <div class="description">Número de cheques emitidos este mes</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-summary">
-                        <i class="fas fa-file-invoice-dollar icon expense"></i>
-                        <div>
-                            <div class="title">Valor de Cheques Emitidos</div>
-                            <div class="value">$180,000</div>
-                            <div class="description">Suma total de cheques emitidos</div>
-                        </div>
-                    </div>
+                    {{-- Eliminar --}}
+                    <button 
+                        class="btn btn-danger btn-sm delete-btn"
+                        data-id="{{ $mov->id }}"
+                        title="Eliminar"
+                    >
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </div>
             </div>
-            <h4 class="mb-3">Detalle de Cheques</h4>
-            <div class="details-section">
-                {{-- Headers for columns --}}
-                <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
-                    <div class="icon"></div> {{-- Placeholder for icon alignment --}}
-                    <div class="info description">Concepto</div>
-                    <div class="info col-beneficiary">Beneficiario</div> {{-- Campo adicional sugerido --}}
-                    <div class="info col-date">Fecha</div>
-                    <div class="info col-type">No. Cheque</div>
-                    <div class="info col-amount">Monto</div>
-                    <div class="info col-status-text">Estado</div>
-                    <div class="col-actions">Acciones</div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-clipboard-check icon"></i>
-                    <div class="info description">Pago de servicios de agua</div>
-                    <div class="info col-beneficiary">Comisión de Agua</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">10/06/2024</div>
-                    <div class="info col-type">001234</div>
-                    <div class="info col-amount">$5,000</div>
-                    <div class="info col-status-text text-success">Cobrado</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item">
-                    <i class="fas fa-times-circle icon"></i>
-                    <div class="info description">Pago a contratista (Pendiente)</div>
-                    <div class="info col-beneficiary">Ing. Obras S.A.</div> {{-- Ejemplo de uso --}}
-                    <div class="info col-date">05/06/2024</div>
-                    <div class="info col-type">001235</div>
-                    <div class="info col-amount">$15,000</div>
-                    <div class="info col-status-text text-warning">Pendiente</div>
-                    <div class="col-actions">
-                        <button class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="cheque">Emitir Cheque</button>
+            @endforeach
+
+
         </div>
+        <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="efectivo">Agregar Movimiento</button>
+    </div>
+
+    {{-- Transferencia --}}
+    <div class="tab-pane fade {{ request()->is('gastos/transferencia') ? 'show active' : '' }}" id="transferencia" role="tabpanel" aria-labelledby="transferencia-tab">
+        <h4 class="mb-3">Resumen de Transferencias</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-summary">
+                    <i class="fas fa-exchange-alt icon movement"></i>
+                    <div>
+                        <div class="title">Total de Transferencias Recibidas</div>
+                        <div class="value">${{ number_format($totalTransferenciasRecibidas, 2) }}</div>
+                        <div class="description">Entradas por transferencia este mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-summary">
+                    <i class="fas fa-paper-plane icon expense"></i>
+                    <div>
+                        <div class="title">Total de Transferencias Enviadas</div>
+                        <div class="value">${{ number_format($totalTransferenciasEnviadas, 2) }}</div>
+                        <div class="description">Salidas por transferencia este mes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="mb-3">Detalle de Transferencias</h4>
+        <div class="details-section">
+            <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
+                <div class="icon"></div>
+                <div class="info description">Descripción</div>
+                <div class="info col-beneficiary">Persona / Entidad:</div>
+                <div class="info col-date">Fecha</div>
+                <div class="info col-type">Tipo</div>
+                <div class="info col-amount">Monto</div>
+                <div class="info col-status-text">Cuenta</div>
+                <div class="col-actions">Acciones</div>
+            </div>
+            @foreach ($transferencias as $mov)
+            <div class="details-item">
+                <div class="info description">{{ $mov->descripcion }}</div>
+                <div class="info col-beneficiary">{{ $mov->beneficiario }}</div>
+                <div class="info col-date">{{ \Carbon\Carbon::parse($mov->fecha)->format('d/m/Y') }}</div>
+                <div class="info col-type {{ $mov->tipo == 'Recepción' ? 'text-success' : 'text-danger' }}">{{ $mov->tipo }}</div>
+                <div class="info col-amount">${{ number_format($mov->monto, 2) }}</div>
+                <div class="info col-status-text">{{ $mov->estado }}</div>
+                <div class="col-actions">
+                    {{-- Editar --}}
+                    <button 
+                        class="btn btn-info btn-sm edit-btn"
+                        data-id="{{ $mov->id }}"
+                        data-descripcion="{{ $mov->descripcion }}"
+                        data-beneficiario="{{ $mov->beneficiario }}"
+                        data-monto="{{ $mov->monto }}"
+                        data-fecha="{{ $mov->fecha }}"
+                        data-tipo="{{ $mov->tipo }}"
+                        data-estado="{{ $mov->estado }}"
+                        data-cuenta="{{ $mov->cuenta }}"
+                        data-numero_cheque="{{ $mov->numero_cheque }}"
+                        data-origen="{{ $mov->origen }}"
+                        data-toggle="modal"
+                        data-target="#addMovementModal"
+                        title="Editar"
+                    >
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+
+                    {{-- Eliminar --}}
+                    <button 
+                        class="btn btn-danger btn-sm delete-btn"
+                        data-id="{{ $mov->id }}"
+                        title="Eliminar"
+                    >
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+            @endforeach
+
+
+
+        </div>
+        <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="transferencia">Agregar Transferencia</button>
+    </div>
+
+    {{-- Cheque --}}
+    <div class="tab-pane fade {{ request()->is('gastos/cheque') ? 'show active' : '' }}" id="cheque" role="tabpanel" aria-labelledby="cheque-tab">
+        <h4 class="mb-3">Resumen de Cheques</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-summary">
+                    <i class="fas fa-money-check icon total-cash"></i>
+                    <div>
+                        <div class="title">Cheques Emitidos</div>
+                        <div class="value">{{ $totalChequesEmitidos }}</div>
+                        <div class="description">Número de cheques emitidos este mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-summary">
+                    <i class="fas fa-file-invoice-dollar icon expense"></i>
+                    <div>
+                        <div class="title">Valor de Cheques Emitidos</div>
+                        <div class="value">${{ number_format($valorTotalChequesEmitidos, 2) }}</div>
+                        <div class="description">Suma total de cheques emitidos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="mb-3">Detalle de Cheques</h4>
+        <div class="details-section">
+            <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid var(--medium-border);">
+                <div class="icon"></div>
+                <div class="info description">Concepto</div>
+                <div class="info col-beneficiary">Persona / Entidad:</div>
+                <div class="info col-date">Fecha</div>
+                <div class="info col-type">No. Cheque</div>
+                <div class="info col-amount">Monto</div>
+                <div class="info col-status-text">Estado</div>
+                <div class="col-actions">Acciones</div>
+            </div>
+
+        @foreach ($cheques as $mov)
+        <div class="details-item">
+            <div class="info description">{{ $mov->descripcion }}</div>
+            <div class="info col-beneficiary">{{ $mov->beneficiario }}</div>
+            <div class="info col-date">{{ \Carbon\Carbon::parse($mov->fecha)->format('d/m/Y') }}</div>
+            <div class="info col-type">{{ $mov->numero_cheque }}</div>
+            <div class="info col-amount">${{ number_format($mov->monto, 2) }}</div>
+            <div class="info col-status-text {{ $mov->estado == 'Cobrado' ? 'text-success' : 'text-warning' }}">{{ $mov->estado }}</div>
+            <div class="col-actions">
+                {{-- Editar --}}
+                <button 
+                    class="btn btn-info btn-sm edit-btn"
+                    data-id="{{ $mov->id }}"
+                    data-descripcion="{{ $mov->descripcion }}"
+                    data-beneficiario="{{ $mov->beneficiario }}"
+                    data-monto="{{ $mov->monto }}"
+                    data-fecha="{{ $mov->fecha }}"
+                    data-tipo="{{ $mov->tipo }}"
+                    data-estado="{{ $mov->estado }}"
+                    data-cuenta="{{ $mov->cuenta }}"
+                    data-numero_cheque="{{ $mov->numero_cheque }}"
+                    data-origen="{{ $mov->origen }}"
+                    data-toggle="modal"
+                    data-target="#addMovementModal"
+                    title="Editar"
+                >
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+
+                {{-- Eliminar --}}
+                <button 
+                    class="btn btn-danger btn-sm delete-btn"
+                    data-id="{{ $mov->id }}"
+                    title="Eliminar"
+                >
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+        @endforeach
+
+
+
+        </div>
+        <button class="btn-add" data-toggle="modal" data-target="#addMovementModal" data-movement-type="cheque">Emitir Cheque</button>
+    </div>
+
+
     </div>
 </div>
 
@@ -289,31 +323,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="movementForm">
+                <form id="movementForm" method="POST" action="{{ route('movimientos.store') }}">
+                    @csrf
+                    <input type="hidden" name="origen" id="movementOrigin">
+
                     <div class="form-group">
                         <label for="movementDescription">Descripción:</label>
-                        <input type="text" class="form-control" id="movementDescription" required>
+                        <input type="text" class="form-control" id="movementDescription" name="descripcion" required>
                     </div>
                     <div class="form-group">
                         <label for="movementBeneficiary">Persona / Entidad:</label>
-                        <input type="text" class="form-control" id="movementBeneficiary" placeholder="Ej: Cliente A, Agro S.A.">
+                        <input type="text" class="form-control" id="movementBeneficiary" name="beneficiario" placeholder="Ej: Cliente A, Agro S.A.">
                     </div>
                     <div class="form-group">
                         <label for="movementAmount">Monto:</label>
-                        <input type="number" class="form-control" id="movementAmount" step="0.01" required>
+                        <input type="number" class="form-control" id="movementAmount" name="monto" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="movementDate">Fecha:</label>
-                        <input type="date" class="form-control" id="movementDate" required>
+                        <input type="date" class="form-control" id="movementDate" name="fecha" required>
                     </div>
                     <div class="form-group" id="movementTypeGroup">
                         <label for="movementType">Tipo:</label>
-                        <select class="form-control" id="movementType" required>
-                            </select>
+                        <select class="form-control" id="movementType" name="tipo" required></select>
                     </div>
                     <div class="form-group" id="movementStatusGroup">
                         <label for="movementStatus">Estado:</label>
-                        <select class="form-control" id="movementStatus">
+                        <select class="form-control" id="movementStatus" name="estado">
                             <option value="Pagado">Pagado</option>
                             <option value="Pendiente">Pendiente</option>
                             <option value="Anulado">Anulado</option>
@@ -321,13 +357,13 @@
                     </div>
                     <div class="form-group" id="movementAccountGroup" style="display: none;">
                         <label for="movementAccount">Cuenta Bancaria:</label>
-                        <input type="text" class="form-control" id="movementAccount" placeholder="Ej: BBVA, Banco Azteca">
+                        <input type="text" class="form-control" id="movementAccount" name="cuenta" placeholder="Ej: BBVA, Banco Azteca">
                     </div>
                     <div class="form-group" id="movementCheckNumberGroup" style="display: none;">
                         <label for="movementCheckNumber">Número de Cheque:</label>
-                        <input type="text" class="form-control" id="movementCheckNumber" placeholder="Ej: 001234">
+                        <input type="text" class="form-control" id="movementCheckNumber" name="numero_cheque" placeholder="Ej: 001234">
                     </div>
-                    </form>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -338,24 +374,23 @@
 </div>
 
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
 <script>
-    // Manually activate tab based on URL if coming directly to a specific tab route
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var currentPath = window.location.pathname;
         var tabs = document.querySelectorAll('.gastos-tabs .nav-link');
 
-        // Check if any tab matches the current URL path
         var anyTabActive = false;
-        tabs.forEach(function(tab) {
+        tabs.forEach(function (tab) {
             tab.classList.remove('active');
             tab.setAttribute('aria-selected', 'false');
 
             var tabHref = tab.getAttribute('href');
-            // Check if the current path contains the tab's href, allowing for base paths like /gastos
             if (currentPath.includes(tabHref)) {
                 tab.classList.add('active');
                 tab.setAttribute('aria-selected', 'true');
@@ -364,36 +399,34 @@
                 anyTabActive = true;
             } else {
                 var tabPaneId = tab.getAttribute('href');
-                if (document.querySelector(tabPaneId)) { // Check if pane exists before removing classes
+                if (document.querySelector(tabPaneId)) {
                     document.querySelector(tabPaneId).classList.remove('show', 'active');
                 }
             }
         });
 
-        // Fallback: If no specific tab matches (e.g., just /gastos), activate the 'Efectivo' tab by default
         if (!anyTabActive) {
-             var defaultTab = document.getElementById('efectivo-tab');
-             if (defaultTab) {
+            var defaultTab = document.getElementById('efectivo-tab');
+            if (defaultTab) {
                 defaultTab.classList.add('active');
                 defaultTab.setAttribute('aria-selected', 'true');
                 var defaultTabPane = document.querySelector(defaultTab.getAttribute('href'));
                 if (defaultTabPane) {
                     defaultTabPane.classList.add('show', 'active');
                 }
-             }
+            }
         }
     });
 
-    // Handle Bootstrap's tab switching logic via data-toggle
     $('#gastosMovimientosTabs a').on('click', function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
 
-    // Script para manejar el modal y sus campos según la pestaña activa
+    // Abrir modal para crear nuevo movimiento (por botón "Agregar")
     $('#addMovementModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Botón que activó el modal
-        var movementType = button.data('movement-type'); // Extrae la información de data-movement-type
+        var button = $(event.relatedTarget);
+        var movementType = button.data('movement-type');
 
         var modal = $(this);
         var modalTitle = modal.find('.modal-title');
@@ -401,65 +434,141 @@
         var movementAccountGroup = modal.find('#movementAccountGroup');
         var movementCheckNumberGroup = modal.find('#movementCheckNumberGroup');
 
-        // Limpiar campos del formulario
+        // Reset form al abrir
         $('#movementForm')[0].reset();
         movementAccountGroup.hide();
         movementCheckNumberGroup.hide();
-        movementTypeSelect.empty(); // Limpiar opciones de tipo
+        movementTypeSelect.empty();
 
-        // Personalizar el modal según el tipo de movimiento
+        // Set hidden input para "origen"
+        $('#movementOrigin').val(movementType);
+
         if (movementType === 'efectivo') {
             modalTitle.text('Agregar Nuevo Movimiento de Efectivo');
             movementTypeSelect.append('<option value="Cobro">Cobro</option>');
             movementTypeSelect.append('<option value="Pago">Pago</option>');
-            // Ocultar campos específicos de otras pestañas
         } else if (movementType === 'transferencia') {
             modalTitle.text('Agregar Nueva Transferencia');
             movementTypeSelect.append('<option value="Envío">Envío</option>');
             movementTypeSelect.append('<option value="Recepción">Recepción</option>');
-            movementAccountGroup.show(); // Mostrar campo de cuenta
+            movementAccountGroup.show();
         } else if (movementType === 'cheque') {
             modalTitle.text('Emitir Nuevo Cheque');
             movementTypeSelect.append('<option value="Emitido">Emitido</option>');
-            movementCheckNumberGroup.show(); // Mostrar campo de número de cheque
+            movementCheckNumberGroup.show();
+        }
+
+        // Botón guardar para creación
+        modal.find('button[type="submit"]').text('Guardar Movimiento');
+
+        // Form action a ruta store
+        $('#movementForm').attr('action', originalAction);
+
+        // Quitar método PUT si existe
+        $('#movementForm').find('input[name="_method"]').remove();
+    });
+
+    let originalAction = "{{ route('movimientos.store') }}";
+
+    // Delegación para botón Editar (importante para carga dinámica)
+    $(document).on('click', '.edit-btn', function () {
+        const modal = $('#addMovementModal');
+        const form = $('#movementForm');
+
+        // Cambiar action y agregar _method PUT
+        const id = $(this).data('id');
+        form.attr('action', `/movimientos/${id}`);
+
+        if (!form.find('input[name="_method"]').length) {
+            form.append('<input type="hidden" name="_method" value="PUT">');
+        } else {
+            form.find('input[name="_method"]').val('PUT');
+        }
+
+        // Rellenar campos con datos del botón
+        $('#movementDescription').val($(this).data('descripcion'));
+        $('#movementBeneficiary').val($(this).data('beneficiario'));
+        $('#movementAmount').val($(this).data('monto'));
+        $('#movementDate').val($(this).data('fecha'));
+        $('#movementStatus').val($(this).data('estado'));
+        $('#movementAccount').val($(this).data('cuenta'));
+        $('#movementCheckNumber').val($(this).data('numero_cheque'));
+        $('#movementOrigin').val($(this).data('origen'));
+
+        // Mostrar campos condicionales y llenar select tipo
+        const origen = $(this).data('origen');
+        const movementAccountGroup = $('#movementAccountGroup');
+        const movementCheckNumberGroup = $('#movementCheckNumberGroup');
+        const movementTypeSelect = $('#movementType');
+
+        movementAccountGroup.hide();
+        movementCheckNumberGroup.hide();
+        movementTypeSelect.empty();
+
+        if (origen === 'efectivo') {
+            movementTypeSelect.append('<option value="Cobro">Cobro</option><option value="Pago">Pago</option>');
+        } else if (origen === 'transferencia') {
+            movementTypeSelect.append('<option value="Envío">Envío</option><option value="Recepción">Recepción</option>');
+            movementAccountGroup.show();
+        } else if (origen === 'cheque') {
+            movementTypeSelect.append('<option value="Emitido">Emitido</option>');
+            movementCheckNumberGroup.show();
+        }
+
+        movementTypeSelect.val($(this).data('tipo'));
+
+        // Cambiar título y botón
+        modal.find('.modal-title').text('Editar Movimiento');
+        modal.find('button[type="submit"]').text('Actualizar Movimiento');
+
+        // Mostrar modal explícitamente
+        modal.modal('show');
+    });
+
+    // Reset modal al cerrar
+    $('#addMovementModal').on('hidden.bs.modal', function () {
+        const form = $('#movementForm');
+        form.attr('action', originalAction);
+        form.find('input[name="_method"]').remove();
+        form[0].reset();
+
+        $('#movementAccountGroup').hide();
+        $('#movementCheckNumberGroup').hide();
+
+        $(this).find('.modal-title').text('Agregar Nuevo Movimiento');
+        $(this).find('button[type="submit"]').text('Guardar Movimiento');
+    });
+
+    // Eliminar Movimiento
+    $(document).on('click', '.delete-btn', function () {
+        if (confirm('¿Estás seguro de eliminar este movimiento?')) {
+            const id = $(this).data('id');
+            const form = $('<form>', {
+                method: 'POST',
+                action: `/movimientos/${id}`
+            });
+
+            const token = '{{ csrf_token() }}';
+
+            form.append($('<input>', {
+                type: 'hidden',
+                name: '_token',
+                value: token
+            }));
+
+            form.append($('<input>', {
+                type: 'hidden',
+                name: '_method',
+                value: 'DELETE'
+            }));
+
+            $('body').append(form);
+            form.submit();
         }
     });
-
-    // Manejar el envío del formulario del modal (solo ejemplo, la lógica real iría aquí)
-    $('#movementForm').on('submit', function(e) {
-        e.preventDefault(); // Prevenir el envío real del formulario
-
-        // Aquí podrías capturar los datos del formulario:
-        var description = $('#movementDescription').val();
-        var beneficiary = $('#movementBeneficiary').val();
-        var amount = $('#movementAmount').val();
-        var date = $('#movementDate').val();
-        var type = $('#movementType').val();
-        var status = $('#movementStatus').val();
-        var account = $('#movementAccount').val(); // Solo si es transferencia
-        var checkNumber = $('#movementCheckNumber').val(); // Solo si es cheque
-
-        console.log("Datos del movimiento:", {
-            description,
-            beneficiary,
-            amount,
-            date,
-            type,
-            status,
-            account,
-            checkNumber
-        });
-
-        // En una aplicación real, aquí enviarías estos datos a tu backend
-        // o los añadirías dinámicamente a la tabla (requiere más JS/manejo de DOM).
-
-        // Cerrar el modal
-        $('#addMovementModal').modal('hide');
-
-        // Opcional: Mostrar un mensaje de éxito o actualizar la tabla
-        alert('Movimiento guardado (simulado)! Revisa la consola para ver los datos.');
-    });
 </script>
+
+
 
 </body>
 </html>
