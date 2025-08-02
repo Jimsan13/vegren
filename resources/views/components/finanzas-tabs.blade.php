@@ -1,4 +1,5 @@
 <div class="finanzas-tabs-container">
+    {{-- S U B  M E N U --}}
     <ul class="nav nav-tabs mb-4 finanzas-tabs" id="finanzasTabs" role="tablist">
         <li class="nav-item">
             <a class="nav-link {{ request()->is('finanzas') || request()->is('finanzas/estado-financiero') ? 'active' : '' }}"
@@ -52,7 +53,7 @@
     </ul>
 
     <div class="tab-content" id="finanzasTabsContent">
-        {{-- Estado Financiero Tab Content (image_33fc37.png, image_33fc17.png) --}}
+        {{-- Estado Financiero P R I N C I P A L--}}
         <div class="tab-pane fade {{ request()->is('finanzas') || request()->is('finanzas/estado-financiero') ? 'show active' : '' }}"
              id="estadoFinanciero" role="tabpanel" aria-labelledby="estado-financiero-tab">
 
@@ -150,7 +151,7 @@
             </div>
         </div>
 
-        {{-- Ingresos Tab Content (image_1c7a3a.png) --}}
+        {{-- Ingresos C O N T E N I D O--}}
         <div class="tab-pane fade {{ request()->is('finanzas/ingresos') ? 'show active' : '' }}"
              id="ingresos" role="tabpanel" aria-labelledby="ingresos-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -976,203 +977,7 @@
     </div>
 </div>
 
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/finanzas.css') }}">
-<style>
-    /* Custom Styles for Finanzas Dashboard - Add to finanzas.css */
-    .finanzas-tabs .nav-link {
-        color: #6c757d; /* Default tab text color */
-        border: none;
-        border-bottom: 2px solid transparent;
-        padding-bottom: 0.75rem;
-    }
 
-    .finanzas-tabs .nav-link.active {
-        color: #28a745; /* Active tab text color */
-        border-color: #28a745; /* Active tab underline color */
-        font-weight: bold;
-    }
-
-    .finanzas-tabs .nav-link:hover {
-        border-color: #e2e6ea;
-    }
-
-    .card-summary {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card-summary .icon {
-        font-size: 2.5rem;
-        color: #6c757d;
-    }
-
-    .card-summary .title {
-        font-size: 1rem;
-        color: #6c757d;
-        margin-bottom: 5px;
-    }
-
-    .card-summary .value {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #343a40;
-    }
-
-    .card-summary .description {
-        font-size: 0.85rem;
-        color: #6c757d;
-    }
-
-    /* Specific card colors if needed */
-    .card-summary.available-balance .icon { color: #007bff; }
-    .card-summary.net-profit .icon { color: #28a745; }
-    .card-summary.accumulated-debt .icon { color: #dc3545; }
-    .card-summary.total-debt .icon { color: #17a2b8; }
-    .card-summary.pending-payments .icon { color: #ffc107; }
-    .card-summary.paid-payments .icon { color: #28a745; }
-
-    .chart-container {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        min-height: 250px; /* Placeholder height */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .placeholder-chart, .placeholder-bar-chart {
-        color: #6c757d;
-        font-style: italic;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .finanzas-table thead th {
-        background-color: #f8f9fa;
-        color: #495057;
-        font-weight: bold;
-    }
-
-    .finanzas-table tbody tr:hover {
-        background-color: #f2f2f2;
-    }
-
-    .badge-success { background-color: #28a745; color: #fff; }
-    .badge-warning { background-color: #ffc107; color: #212529; }
-    .badge-danger { background-color: #dc3545; color: #fff; }
-    .badge-secondary { background-color: #6c757d; color: #fff; }
-
-    .action-buttons button {
-        margin-right: 5px;
-    }
-
-    .search-filter-group {
-        max-width: 300px;
-    }
-
-    /* Styles for the "details-section" if you want to mimic the clean table-like layout from "Estado Financiero" and "Deudas" */
-    .details-section {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
-    }
-
-    .details-item {
-        display: flex;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .details-item:last-child {
-        border-bottom: none;
-    }
-
-    .details-item .icon {
-        width: 30px;
-        text-align: center;
-        font-size: 1.2rem;
-        color: #6c757d;
-    }
-
-    .details-item .info {
-        flex-grow: 1;
-        padding: 0 10px;
-    }
-
-    .details-item .col-date {
-        flex-basis: 120px; /* Fixed width for date column */
-        flex-shrink: 0;
-    }
-
-    .details-item .col-info {
-        flex-basis: 250px; /* Fixed width for description */
-        flex-shrink: 0;
-    }
-
-    .details-item .col-amount {
-        flex-basis: 100px; /* Fixed width for amount */
-        flex-shrink: 0;
-        text-align: right;
-        font-weight: bold;
-    }
-
-    .details-item .col-status {
-        flex-basis: 80px; /* Fixed width for status */
-        flex-shrink: 0;
-        text-align: right;
-    }
-
-    .details-item .col-action-icon, .details-item .col-action-icon-debt {
-        width: 80px; /* Space for action icons */
-        text-align: right;
-    }
-    .details-item .col-pay-button {
-        width: 150px;
-        text-align: right;
-    }
-
-    .debt-item .info {
-        flex-grow: 1;
-        padding: 0 10px;
-    }
-    .debt-item .col-amount-due {
-        flex-basis: 120px;
-        flex-shrink: 0;
-        text-align: right;
-    }
-    .debt-item .col-date {
-        flex-basis: 150px;
-    }
-    .debt-item .col-pay-button .btn {
-        margin-left: 5px;
-    }
-    .btn-sm-pay {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 0.8rem;
-    }
-</style>
-@endsection
 
 {{-- All the Modals (Add, Edit, Delete) --}}
 

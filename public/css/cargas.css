@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #f8f9fa; /* Fondo general del body, un gris muy claro */
+    background-color: #f8f9fa;
 }
 .container-fluid {
     padding: 30px;
@@ -10,7 +10,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,.05);
-    margin-bottom: 20px; /* Added for consistency */
+    margin-bottom: 20px;
 }
 h2 {
     margin-bottom: 20px;
@@ -21,35 +21,33 @@ h2 {
     font-weight: bold;
     margin-bottom: 15px;
     color: var(--text-dark);
-    display: flex; /* Flexbox for title and button */
-    justify-content: space-between; /* Space between title and button */
-    align-items: center; /* Vertically align */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .details-section {
     background-color: #fff;
     border-radius: 8px;
     padding: 10px 0;
-    /* Se ajustó la sombra para ser menos agresiva y más consistente con las otras sombras */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .details-item {
     display: flex;
     align-items: center;
-    padding: 10px 15px; /* Added horizontal padding */
+    padding: 10px 15px;
     border-bottom: 1px solid #eee;
 }
 .details-item:last-child {
     border-bottom: none;
 }
 .details-item .info {
-    padding: 0 5px; /* Reduced internal padding */
+    padding: 0 5px;
     text-align: left;
     color: var(--text-dark);
-    white-space: nowrap; /* Prevent wrapping for small columns */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-/* Specific column widths for the "Tabla de cargas" to ensure alignment */
 .details-item .col-fecha { flex-basis: 120px; min-width: 120px; font-weight: bold; }
 .details-item .col-lote { flex-basis: 100px; min-width: 100px; font-weight: bold; }
 .details-item .col-cliente { flex-basis: 120px; min-width: 120px; font-weight: bold; }
@@ -58,46 +56,12 @@ h2 {
 .details-item .col-anticipo { flex-basis: 100px; min-width: 100px; text-align: left; }
 .details-item .col-total-envio { flex-basis: 100px; min-width: 100px; text-align: left; }
 .details-item .col-saldo { flex-basis: 100px; min-width: 100px; text-align: right; font-weight: bold; }
-
 .details-item .action-buttons {
     display: flex;
     gap: 5px;
     flex-basis: 70px;
     min-width: 70px;
     justify-content: flex-end;
-}
-.details-item .action-buttons .btn {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-}
-.btn-delete {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-}
-.btn-edit {
-    background-color: #007bff; /* Azul para editar */
-    color: white;
-    border: none;
-}
-.btn-add {
-    background-color: var(--primary-green); /* Usa el verde primario */
-    color: white;
-    border: none;
-    padding: 8px 15px; /* Adjusted padding to match other add buttons */
-    border-radius: 5px;
-    font-size: 0.9em; /* Adjusted font size */
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.btn-add:hover {
-    background-color: var(--dark-green); /* Un verde más oscuro al hacer hover */
 }
 
 .indicators-section {
@@ -107,17 +71,16 @@ h2 {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
-    /* Aplica la variable card-shadow que ya definimos con un rgba(0,0,0,0.15) */
-    box-shadow: var(--card-shadow); 
+    box-shadow: var(--card-shadow);
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    height: 100%; /* Ensure cards have same height */
+    height: 100%;
 }
 .card-indicator .icon {
     font-size: 2.5em;
     margin-right: 15px;
-    color: var(--primary-green); /* Iconos de tarjeta en verde principal */
+    color: var(--primary-green);
 }
 .card-indicator .icon.orange {
     color: #ffc107;
@@ -127,96 +90,38 @@ h2 {
 }
 .card-indicator .title {
     font-size: 0.9em;
-    color: var(--text-light); /* Títulos de tarjeta en color de texto más claro */
+    color: var(--text-light);
     margin-bottom: 5px;
 }
 .card-indicator .value {
     font-size: 1.5em;
     font-weight: bold;
-    color: var(--black-icons-text); /* Valores en negro para contraste */
+    color: var(--black-icons-text);
 }
 .card-indicator .description {
     font-size: 0.8em;
     color: var(--text-light);
 }
 
-/* Modal specific styles */
-.modal-header {
-    background-color: var(--primary-green); /* Encabezado del modal en verde principal */
-    color: #fff;
-    border-bottom: none;
-}
-.modal-header .close { /* For Bootstrap 4, use .close for the button */
-    color: #fff;
-    opacity: 1;
-}
-.modal-footer .btn-primary {
-    background-color: var(--primary-green); /* Botón primario del modal en verde */
-    border-color: var(--primary-green);
-}
-.modal-footer .btn-primary:hover {
-    background-color: var(--dark-green); /* Hover del botón primario en verde oscuro */
-    border-color: var(--dark-green);
-}
-
-/* Input Group with icon alignment */
-.input-group-append .input-group-text,
-.input-group-prepend .input-group-text {
-    background-color: #e9ecef; /* Light gray background for icon */
-    border-color: #ced4da;
-}
-.input-group-append .btn-outline-secondary {
-    background-color: #f8f9fa; /* Light background for the + button */
-    border-color: #ced4da;
-}
-.input-group-append .btn-outline-secondary:hover {
-    background-color: #e2e6ea;
-}
-
-/* Estilo para la fila de encabezados de la tabla */
-.details-section .details-item[style*="background-color:rgb(137, 137, 137)"] {
-    background-color: var(--dark-green) !important; /* Fondo verde oscuro para el encabezado de la tabla */
-    color: white !important; /* Texto blanco para el encabezado de la tabla */
-    border-bottom: 2px solid var(--primary-green) !important; /* Borde inferior verde */
-}
-
-th i {
-    margin-right: 5px; /* Espacio entre el icono y el texto */
-}
-/* Tus estilos CSS existentes (no los muevo ni cambio aquí, solo añado el nuevo) */
-/* ... */
-
-/* Estilo para la fila de encabezados de la tabla (ajustado para que sea una clase) */
-/* NOTA: Tu CSS original ya tenía una regla para .details-item[style*="background-color:rgb(137, 137, 137)"]
-    Si vas a usar la clase 'header-row' en el HTML, puedes reemplazar esa regla con la siguiente: */
+/* Estilo para encabezado de la tabla */
 .details-item.header-row {
-    background-color: var(--dark-green) !important; /* Fondo verde oscuro para el encabezado de la tabla */
-    color: rgb(0, 0, 0) !important; /* Texto blanco para el encabezado de la tabla */
-    border-bottom: 2px solid var(--primary-green) !important; /* Borde inferior verde */
-    font-weight: bold; /* Hacer el texto más audaz */
-    text-align: center; /* Centrar el texto en los encabezados */
-    padding: 10px 15px; /* Mantener el padding de details-item */
+    background-color: var(--dark-green) !important;
+    color: rgb(0, 0, 0) !important;
+    border-bottom: 2px solid var(--primary-green) !important;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 15px;
 }
-
-/* Estilo para los DIVs que actúan como columnas en el encabezado */
 .details-item.header-row > div {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra el contenido dentro de cada celda de encabezado */
-    padding: 0 5px; /* Ajusta el padding horizontal si es necesario */
+    justify-content: center;
+    padding: 0 5px;
 }
-
-/* Estilo específico para los iconos dentro de los encabezados */
-.details-item.header-row .fas { /* Apunta a los iconos FAS dentro de los encabezados */
-    margin-right: 5px; /* Espacio entre el icono y el texto */
-    font-size: 1em; /* Asegura que el tamaño del icono sea estándar */
+.details-item.header-row .fas {
+    margin-right: 5px;
+    font-size: 1em;
 }
-
-
-
-
-/* Asegúrate de que las columnas individuales en el encabezado tengan el mismo ancho que las columnas de datos.
-    Tus .col-fecha, .col-lote, etc., deben aplicarse tanto a la fila de encabezado como a las filas de datos. */
 .col-fecha { flex-basis: 120px; min-width: 120px; }
 .col-lote { flex-basis: 100px; min-width: 100px; }
 .col-cliente { flex-basis: 120px; min-width: 120px; }
@@ -225,16 +130,15 @@ th i {
 .col-anticipo { flex-basis: 100px; min-width: 100px; }
 .col-total-envio { flex-basis: 100px; min-width: 100px; }
 .col-saldo { flex-basis: 100px; min-width: 100px; }
-.action-buttons { flex-basis: 70px; min-width: 70px; } /* Ajusta si es necesario */
+.action-buttons { flex-basis: 70px; min-width: 70px; }
 
-/* Ajuste específico para el texto en los encabezados */
 .details-item.header-row .col-bultos,
 .details-item.header-row .col-precio,
 .details-item.header-row .col-anticipo,
 .details-item.header-row .col-total-envio,
 .details-item.header-row .col-saldo {
-    text-align: center; /* Centrar los encabezados numéricos */
+    text-align: center;
 }
 .details-item.header-row .action-buttons {
-    justify-content: center; /* Centrar el encabezado de acciones */
+    justify-content: center;
 }

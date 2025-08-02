@@ -10,9 +10,13 @@
 
         <div class="table-header">
             Tabla de cargas
-            <button class="btn btn-add" data-toggle="modal" data-target="#cargaEditModal" data-modal-type="add">
-                <i class="fas fa-plus-circle me-2"></i> Agregar
-            </button>
+        <a href="{{ route('admin.cargas.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i> Agregar
+        </a>
+
+
+
+
         </div>
         <div class="details-section">
             <div class="details-item header-row">

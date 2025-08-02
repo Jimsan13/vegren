@@ -42,8 +42,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // === RUTAS DE CARGAS ===
     Route::get('/admin/cargas', [AdminController::class, 'cargas'])->name('admin.cargas');
+
+    // Mostrar formulario para agregar nueva carga
+    Route::get('/admin/cargas/create', [CargaController::class, 'create'])->name('admin.cargas.create');
+
+    // Guardar nueva carga
     Route::post('/admin/cargas', [CargaController::class, 'store'])->name('admin.cargas.store');
+
+    // Mostrar formulario para editar carga
+    Route::get('/admin/cargas/{id}/edit', [CargaController::class, 'edit'])->name('admin.cargas.edit');
+
+    // Actualizar carga existente
+    Route::put('/admin/cargas/{id}', [CargaController::class, 'update'])->name('admin.cargas.update');
+
+    // Eliminar carga
     Route::delete('/admin/cargas/{id}', [CargaController::class, 'destroy'])->name('admin.cargas.destroy');
+
 
     // === RUTAS DE GASTOS ===
     Route::get('/admin/gastos', [GastoController::class, 'index'])->name('admin.gastos.index');
