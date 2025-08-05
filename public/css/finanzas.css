@@ -188,3 +188,15 @@
         color: #28a745;
         border-color: #28a745;
     }
+
+.chart-container {
+    position: relative;
+    height: 300px; /* altura deseada */
+    width: 100%;
+}
+
+#ingresosChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+

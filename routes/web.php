@@ -15,6 +15,7 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\EstadoResultadosController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\FinanzasController;
 
 
 
@@ -86,29 +87,67 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
+    // == F I N A N Z A S ==
+    Route::prefix('finanzas')->name('finanzas.')->group(function () {
+        Route::get('/', [FinanzasController::class, 'index'])->name('index');
+
+
+        // Ingresos
+        Route::get('/ingresos', [FinanzasController::class, 'ingresos'])->name('ingresos');
+        Route::get('/ingresos/crear', [FinanzasController::class, 'crearIngreso'])->name('ingresos.create');
+        Route::post('/ingresos', [FinanzasController::class, 'guardarIngreso'])->name('ingresos.store');
+
+        // Egresos
+        Route::get('/egresos', [FinanzasController::class, 'egresos'])->name('egresos');
+        Route::get('/egresos/crear', [FinanzasController::class, 'crearEgreso'])->name('egresos.create');
+        Route::post('/egresos', [FinanzasController::class, 'guardarEgreso'])->name('egresos.store');
+
+        // Pagos
+        Route::get('/pagos', [FinanzasController::class, 'pagos'])->name('pagos');
+        Route::get('/pagos/crear', [FinanzasController::class, 'crearPago'])->name('pagos.create');
+        Route::post('/pagos', [FinanzasController::class, 'guardarPago'])->name('pagos.store');
+
+        // Facturación
+        Route::get('/facturacion', [FinanzasController::class, 'facturacion'])->name('facturacion');
+        Route::get('/facturacion/crear', [FinanzasController::class, 'crearFactura'])->name('facturacion.create');
+        Route::post('/facturacion', [FinanzasController::class, 'guardarFactura'])->name('facturacion.store');
+
+        // Utilidades
+        Route::get('/utilidades', [FinanzasController::class, 'utilidades'])->name('utilidades');
+        Route::get('/utilidades/crear', [FinanzasController::class, 'crearUtilidad'])->name('utilidades.create');
+        Route::post('/utilidades', [FinanzasController::class, 'guardarUtilidad'])->name('utilidades.store');
+
+        // Deudas
+        Route::get('/deudas', [FinanzasController::class, 'deudas'])->name('deudas');
+        Route::get('/deudas/crear', [FinanzasController::class, 'crearDeuda'])->name('deudas.create');
+        Route::post('/deudas', [FinanzasController::class, 'guardarDeuda'])->name('deudas.store');
+    });
+
+Route::delete('/finanzas/eliminar/{id}', [FinanzasController::class, 'eliminarRegistro'])->name('finanzas.eliminar');
+
 
 
     // == U T I L I D A D E S ==
-Route::post('/utilidades/socio', [UtilidadesController::class, 'storeSocio'])->name('utilidades.socio.store');
-Route::post('/utilidades/ingreso', [UtilidadesController::class, 'storeIngreso'])->name('utilidades.ingreso.store');
-Route::post('/utilidades/diferencia', [UtilidadesController::class, 'storeDiferencia'])->name('utilidades.diferencia.store');
-Route::get('/utilidades', [UtilidadesController::class, 'index'])->name('utilidades.index');
-Route::get('/admin/utilidades', [UtilidadesController::class, 'index'])->name('admin.utilidades');
+    Route::post('/utilidades/socio', [UtilidadesController::class, 'storeSocio'])->name('utilidades.socio.store');
+    Route::post('/utilidades/ingreso', [UtilidadesController::class, 'storeIngreso'])->name('utilidades.ingreso.store');
+    Route::post('/utilidades/diferencia', [UtilidadesController::class, 'storeDiferencia'])->name('utilidades.diferencia.store');
+    Route::get('/utilidades', [UtilidadesController::class, 'index'])->name('utilidades.index');
+    Route::get('/admin/utilidades', [UtilidadesController::class, 'index'])->name('admin.utilidades');
 
-// Eliminar mediante ID ;v (DELETE)
-Route::delete('/utilidades/socio/{id}', [UtilidadesController::class, 'destroySocio'])->name('utilidades.socio.destroy');
-Route::delete('/utilidades/ingreso/{id}', [UtilidadesController::class, 'destroyIngreso'])->name('utilidades.ingreso.destroy');
-Route::delete('/utilidades/diferencia/{id}', [UtilidadesController::class, 'destroyDiferencia'])->name('utilidades.diferencia.destroy');
+    // Eliminar mediante ID ;v (DELETE)
+    Route::delete('/utilidades/socio/{id}', [UtilidadesController::class, 'destroySocio'])->name('utilidades.socio.destroy');
+    Route::delete('/utilidades/ingreso/{id}', [UtilidadesController::class, 'destroyIngreso'])->name('utilidades.ingreso.destroy');
+    Route::delete('/utilidades/diferencia/{id}', [UtilidadesController::class, 'destroyDiferencia'])->name('utilidades.diferencia.destroy');
 
-// Mostrar formulario de edición (GET)
-Route::get('/utilidades/socio/{id}/edit', [UtilidadesController::class, 'editSocio'])->name('utilidades.socio.edit');
-Route::get('/utilidades/ingreso/{id}/edit', [UtilidadesController::class, 'editIngreso'])->name('utilidades.ingreso.edit');
-Route::get('/utilidades/diferencia/{id}/edit', [UtilidadesController::class, 'editDiferencia'])->name('utilidades.diferencia.edit');
+    // Mostrar formulario de edición (GET)
+    Route::get('/utilidades/socio/{id}/edit', [UtilidadesController::class, 'editSocio'])->name('utilidades.socio.edit');
+    Route::get('/utilidades/ingreso/{id}/edit', [UtilidadesController::class, 'editIngreso'])->name('utilidades.ingreso.edit');
+    Route::get('/utilidades/diferencia/{id}/edit', [UtilidadesController::class, 'editDiferencia'])->name('utilidades.diferencia.edit');
 
-// Actualizar datos (PUT/PATCH)
-Route::put('/utilidades/socio/{id}', [UtilidadesController::class, 'updateSocio'])->name('utilidades.socio.update');
-Route::put('/utilidades/ingreso/{id}', [UtilidadesController::class, 'updateIngreso'])->name('utilidades.ingreso.update');
-Route::put('/utilidades/diferencia/{id}', [UtilidadesController::class, 'updateDiferencia'])->name('utilidades.diferencia.update');
+    // Actualizar datos (PUT/PATCH)
+    Route::put('/utilidades/socio/{id}', [UtilidadesController::class, 'updateSocio'])->name('utilidades.socio.update');
+    Route::put('/utilidades/ingreso/{id}', [UtilidadesController::class, 'updateIngreso'])->name('utilidades.ingreso.update');
+    Route::put('/utilidades/diferencia/{id}', [UtilidadesController::class, 'updateDiferencia'])->name('utilidades.diferencia.update');
 
 
 

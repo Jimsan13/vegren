@@ -151,143 +151,160 @@
             </div>
         </div>
 
+
+@props([
+    'saldoDisponible' => 0,
+    'gananciaNeta' => 0,
+    'deudasAcumuladas' => 0,
+    'movimientosRecientes' => [],
+    'ingresos' => [],
+    'egresos' => [],
+    'pagos' => [],
+    'facturaciones' => [],
+    'utilidades' => [],
+    'deudas' => [],
+    'totalIngresos' => 0,
+    'promedioIngresos' => 0,
+    'ingresosPendientes' => 0,
+    'cantidadIngresosPendientes' => 0,
+    'totalEgresos' => 0,
+    'promedioEgresos' => 0,
+    'egresosPendientes' => 0,
+    'cantidadEgresosPendientes' => 0,
+    'totalPagado' => 0,
+    'pagosPendientes' => 0,
+    'cantidadPagosPendientes' => 0,
+    'pagosAtrasados' => 0,
+    'cantidadPagosAtrasados' => 0,
+    'totalFacturado' => 0,
+    'facturasPendientes' => 0,
+    'cantidadFacturasPendientes' => 0,
+    'facturasVencidas' => 0,
+    'cantidadFacturasVencidas' => 0,
+    'gananciaNetaUtilidades' => 0,
+    'margenUtilidad' => 0,
+    'proyeccionAnual' => 0,
+    'totalDeuda' => 0,
+    'proximosVencimientos' => [],
+    'ultimoPago' => 0,
+    'fechaUltimoPago' => 'N/A',
+    'variacionMensual' => 'N/A',
+    'promedioMensual' => 'N/A',
+    'montoPendiente' => 0,
+    'totalPendientes' => 0,
+
+
+])
+
+
         {{-- Ingresos C O N T E N I D O--}}
         <div class="tab-pane fade {{ request()->is('finanzas/ingresos') ? 'show active' : '' }}"
-             id="ingresos" role="tabpanel" aria-labelledby="ingresos-tab">
+            id="ingresos" role="tabpanel" aria-labelledby="ingresos-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold text-success m-0">Resumen de Ingresos</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngresoModal">
+                <a href="{{ route('finanzas.ingresos.create') }}" class="btn btn-success">
                     <i class="fas fa-plus-circle me-2"></i> Agregar Ingreso
-                </button>
+                </a>
             </div>
 
+            {{-- Resumen --}}
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Total Ingresos</div>
-                        <div class="value text-success">$12,500.00</div>
-                        <div class="description"><i class="fas fa-arrow-up text-success"></i> 15.2% este mes</div>
+                        <div class="value text-success">${{ number_format($totalIngresos, 2) }}</div>
+                        <div class="description"><i class="fas fa-arrow-up text-success"></i> Este mes</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Ingresos Promedio Mensual</div>
-                        <div class="value">$4,166.67</div>
+                        <div class="value">${{ number_format($promedioIngresos, 2) }}</div>
                         <div class="description">Últimos 3 meses</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Ingresos Pendientes</div>
-                        <div class="value text-warning">$1,200.00</div>
-                        <div class="description">2 facturas</div>
+                        <div class="value text-warning">${{ number_format($ingresosPendientes, 2) }}</div>
+                        <div class="description">{{ $cantidadIngresosPendientes }} facturas</div>
                     </div>
                 </div>
             </div>
-
-            <div class="chart-container mb-4">
-                <div class="placeholder-chart">Gráfico de Ingresos (Placeholder)</div>
-            </div>
-
+            {{-- Tabla de ingresos --}}
             <div class="table-responsive">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="input-group search-filter-group">
-                        <input type="text" class="form-control" placeholder="Buscar ingreso..." aria-label="Buscar ingreso">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="input-group search-filter-group">
+                                <input type="text" class="form-control" placeholder="Buscar ingreso..." aria-label="Buscar ingreso">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <select class="form-control me-2">
+                                    <option>Categoría</option>
+                                    <option>Ventas</option>
+                                    <option>Servicios</option>
+                                    <option>Inversiones</option>
+                                    <option>Otros</option>
+                                </select>
+                                <select class="form-control me-2">
+                                    <option>Estado</option>
+                                    <option>Recibido</option>
+                                    <option>Pendiente</option>
+                                </select>
+                                <select class="form-control">
+                                    <option>Ordenar por</option>
+                                    <option>Fecha (reciente)</option>
+                                    <option>Monto (mayor)</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex">
-                        <select class="form-control me-2">
-                            <option>Categoría</option>
-                            <option>Ventas</option>
-                            <option>Servicios</option>
-                            <option>Inversiones</option>
-                            <option>Otros</option>
-                        </select>
-                        <select class="form-control me-2">
-                            <option>Estado</option>
-                            <option>Recibido</option>
-                            <option>Pendiente</option>
-                        </select>
-                        <select class="form-control">
-                            <option>Ordenar por</option>
-                            <option>Fecha (reciente)</option>
-                            <option>Monto (mayor)</option>
-                        </select>
-                    </div>
-                </div>
 
-                <table class="table table-hover finanzas-table">
-                    <thead>
-                        <tr>
-                            <th>FECHA</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>CATEGORÍA</th>
-                            <th>MONTO</th>
-                            <th>ESTADO</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2023-10-26</td>
-                            <td>Venta de Producto X</td>
-                            <td>Ventas</td>
-                            <td>$3,000.00</td>
-                            <td><span class="badge badge-success">Recibido</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editIngresoModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteIngresoModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-25</td>
-                            <td>Servicio de Consultoría</td>
-                            <td>Servicios</td>
-                            <td>$1,500.00</td>
-                            <td><span class="badge badge-success">Recibido</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editIngresoModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteIngresoModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-24</td>
-                            <td>Reembolso de Gastos</td>
-                            <td>Otros</td>
-                            <td>$200.00</td>
-                            <td><span class="badge badge-success">Recibido</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editIngresoModal" data-id="3"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteIngresoModal" data-id="3"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-23</td>
-                            <td>Factura Cliente A</td>
-                            <td>Ventas</td>
-                            <td>$800.00</td>
-                            <td><span class="badge badge-warning">Pendiente</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editIngresoModal" data-id="4"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteIngresoModal" data-id="4"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-22</td>
-                            <td>Intereses de Inversión</td>
-                            <td>Inversiones</td>
-                            <td>$50.00</td>
-                            <td><span class="badge badge-success">Recibido</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editIngresoModal" data-id="5"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteIngresoModal" data-id="5"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <table class="table table-hover finanzas-table">
+                            <thead>
+                                <tr>
+                                    <th>FECHA</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>CATEGORÍA</th>
+                                    <th>MONTO</th>
+                                    <th>ESTADO</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($ingresos as $ingreso)
+                                <tr>
+                                    <td>{{ \Carbon\Carbon::parse($ingreso->fecha)->format('Y-m-d') }}</td>
+                                    <td>{{ $ingreso->descripcion }}</td>
+                                    <td>{{ $ingreso->categoria }}</td>
+                                    <td>${{ number_format($ingreso->monto, 2) }}</td>
+                                    <td>
+                                        <span class="badge {{ $ingreso->estado === 'Recibido' ? 'badge-success' : 'badge-warning' }}">
+                                            {{ ucfirst($ingreso->estado) }}
+                                        </span>
+                                    </td>
+                                    <td class="action-buttons d-flex gap-1">
+                                        {{-- Botón editar --}}
+                                        <a href="{{ route('finanzas.ingresos.create', ['edit' => $ingreso->id]) }}" class="btn btn-sm btn-warning">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+
+                                        {{-- Formulario eliminar --}}
+                                        <form action="{{ route('finanzas.eliminar', $ingreso->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este ingreso?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+
+                        </table>
+                    </div>
         </div>
 
         {{-- Egresos Tab Content (image_1c7773.png) --}}
@@ -295,31 +312,31 @@
              id="egresos" role="tabpanel" aria-labelledby="egresos-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold text-danger m-0">Resumen de Egresos</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addEgresoModal">
+                <a href="{{ route('finanzas.egresos.create') }}" class="btn btn-success">
                     <i class="fas fa-plus-circle me-2"></i> Agregar Egreso
-                </button>
+                </a>
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Total Egresos</div>
-                        <div class="value text-danger">$8,200.00</div>
-                        <div class="description"><i class="fas fa-arrow-down text-danger"></i> -3.5% este mes</div>
+                        <div class="value text-danger">${{ number_format($totalEgresos, 2) }}</div>
+                        <div class="description"><i class="fas fa-arrow-down text-danger"></i> {{ $variacionMensual }} este mes</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Egresos Promedio Mensual</div>
-                        <div class="value">$2,733.33</div>
+                        <div class="value">${{ number_format($promedioMensual, 2) }}</div>
                         <div class="description">Últimos 3 meses</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Pagos Pendientes</div>
-                        <div class="value text-warning">$950.00</div>
-                        <div class="description">3 facturas</div>
+                        <div class="value text-warning">${{ number_format($montoPendiente, 2) }}</div>
+                        <div class="description">{{ $totalPendientes }} facturas</div>
                     </div>
                 </div>
             </div>
@@ -369,62 +386,43 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($egresos as $egreso)
                         <tr>
-                            <td>2023-10-26</td>
-                            <td>Alquiler de Oficina</td>
-                            <td>Operaciones</td>
-                            <td>$2,500.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEgresoModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEgresoModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
+                            <td>{{ \Carbon\Carbon::parse($egreso->fecha)->format('Y-m-d') }}</td>
+                            <td>{{ $egreso->descripcion }}</td>
+                            <td>{{ $egreso->categoria }}</td>
+                            <td>${{ number_format($egreso->monto, 2) }}</td>
+                            <td>
+                                @php
+                                    $estado = strtolower($egreso->estado);
+                                    $badgeClass = match($estado) {
+                                        'pagado' => 'badge-success',
+                                        'pendiente' => 'badge-warning',
+                                        default => 'badge-secondary'
+                                    };
+                                @endphp
+                                <span class="badge {{ $badgeClass }}">{{ ucfirst($estado) }}</span>
+                            </td>
+                            <td class="action-buttons d-flex gap-1">
+                                {{-- Botón editar --}}
+                                <a href="{{ route('finanzas.egresos.create', ['edit' => $egreso->id]) }}" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+
+                                {{-- Formulario eliminar --}}
+                                <form action="{{ route('finanzas.eliminar', $egreso->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este egreso?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2023-10-25</td>
-                            <td>Suministros de Oficina</td>
-                            <td>Materiales</td>
-                            <td>$150.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEgresoModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEgresoModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-24</td>
-                            <td>Servicio de Internet</td>
-                            <td>Servicios</td>
-                            <td>$80.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEgresoModal" data-id="3"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEgresoModal" data-id="3"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-23</td>
-                            <td>Factura de Electricidad</td>
-                            <td>Servicios</td>
-                            <td>$220.00</td>
-                            <td><span class="badge badge-warning">Pendiente</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEgresoModal" data-id="4"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEgresoModal" data-id="4"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-22</td>
-                            <td>Campaña de Marketing</td>
-                            <td>Marketing</td>
-                            <td>$500.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editEgresoModal" data-id="5"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEgresoModal" data-id="5"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                    @endforeach
                     </tbody>
+
+
                 </table>
             </div>
         </div>
@@ -434,34 +432,36 @@
              id="pagos" role="tabpanel" aria-labelledby="pagos-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold text-info m-0">Resumen de Pagos</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addPagoModal">
+                <a href="{{ route('finanzas.pagos.create') }}" class="btn btn-success">
                     <i class="fas fa-plus-circle me-2"></i> Agregar Pago
-                </button>
+                </a>
+
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Total Pagado</div>
-                        <div class="value text-success">$8,500.00</div>
+                        <div class="value text-success">${{ number_format($totalPagado, 2) }}</div>
                         <div class="description"><i class="fas fa-check-circle text-success"></i> Pagado este mes</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Pagos Pendientes</div>
-                        <div class="value text-warning">$1,500.00</div>
-                        <div class="description">5 pagos</div>
+                        <div class="value text-warning">${{ number_format($pagosPendientes, 2) }}</div>
+                        <div class="description">{{ $cantidadPagosPendientes }} pagos</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Pagos Atrasados</div>
-                        <div class="value text-danger">$500.00</div>
-                        <div class="description">1 pago</div>
+                        <div class="value text-danger">${{ number_format($pagosAtrasados, 2) }}</div>
+                        <div class="description">{{ $cantidadPagosAtrasados }} pagos</div>
                     </div>
                 </div>
             </div>
+
 
             <div class="chart-container mb-4">
                 <div class="placeholder-chart">Gráfico de Pagos (Placeholder)</div>
@@ -510,96 +510,76 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2023-10-26</td>
-                            <td>Proveedor A</td>
-                            <td>Materiales de Oficina</td>
-                            <td>$300.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editPagoModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePagoModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-25</td>
-                            <td>Servicios Web S.A.</td>
-                            <td>Hosting y Dominio</td>
-                            <td>$150.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editPagoModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePagoModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-24</td>
-                            <td>Arrendador Inmueble</td>
-                            <td>Alquiler Oficina</td>
-                            <td>$1,000.00</td>
-                            <td><span class="badge badge-warning">Pendiente</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editPagoModal" data-id="3"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePagoModal" data-id="3"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-23</td>
-                            <td>Servicio de Limpieza</td>
-                            <td>Limpieza Mensual</td>
-                            <td>$120.00</td>
-                            <td><span class="badge badge-success">Pagado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editPagoModal" data-id="4"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePagoModal" data-id="4"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-22</td>
-                            <td>Banco XYZ</td>
-                            <td>Cuota Préstamo</td>
-                            <td>$500.00</td>
-                            <td><span class="badge badge-danger">Atrasado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editPagoModal" data-id="5"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePagoModal" data-id="5"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($pagos as $pago)
+                            <tr>
+                                <td>{{ $pago->fecha }}</td>
+                                <td>{{ $pago->beneficiario }}</td>
+                                <td>{{ $pago->concepto }}</td>
+                                <td>${{ number_format($pago->monto, 2) }}</td>
+                                <td>
+                                    @php
+                                        $estado = strtolower($pago->estado);
+                                        $badgeClass = match($estado) {
+                                            'pagado' => 'badge-success',
+                                            'pendiente' => 'badge-warning',
+                                            'atrasado' => 'badge-danger',
+                                            default => 'badge-secondary'
+                                        };
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">{{ ucfirst($estado) }}</span>
+                                </td>
+                                <td class="action-buttons">
+                                    <a href="{{ route('finanzas.pagos.create', $pago->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+
+                                    <form action="{{ route('finanzas.eliminar', $pago->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este pago?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
                     </tbody>
+
                 </table>
             </div>
         </div>
 
-        {{-- Facturación Tab Content (image_1c771d.png) --}}
+        {{-- Facturación Tab Content --}}
         <div class="tab-pane fade {{ request()->is('finanzas/facturacion') ? 'show active' : '' }}"
-             id="facturacion" role="tabpanel" aria-labelledby="facturacion-tab">
+            id="facturacion" role="tabpanel" aria-labelledby="facturacion-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold text-primary m-0">Resumen de Facturación</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFacturaModal">
+                <a href="{{ route('finanzas.facturacion.create') }}" class="btn btn-success">
                     <i class="fas fa-plus-circle me-2"></i> Agregar Factura
-                </button>
+                </a>
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Total Facturado</div>
-                        <div class="value text-success">$12,500.00</div>
+                        <div class="value text-success">${{ number_format($totalFacturado, 2) }}</div>
                         <div class="description"><i class="fas fa-dollar-sign text-success"></i> Este mes</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Facturas Pendientes</div>
-                        <div class="value text-warning">$3,200.00</div>
-                        <div class="description">5 facturas</div>
+                        <div class="value text-warning">${{ number_format($facturasPendientes, 2) }}</div>
+                        <div class="description">{{ $cantidadFacturasPendientes }} facturas</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Facturas Vencidas</div>
-                        <div class="value text-danger">$800.00</div>
-                        <div class="description">2 facturas</div>
+                        <div class="value text-danger">${{ number_format($facturasVencidas, 2) }}</div>
+                        <div class="description">{{ $cantidadFacturasVencidas }} facturas</div>
                     </div>
                 </div>
             </div>
@@ -619,6 +599,7 @@
                     <div class="d-flex">
                         <select class="form-control me-2">
                             <option>Cliente</option>
+                            {{-- Opciones de cliente podrían generarse dinámicamente si tienes la lista --}}
                             <option>Cliente A</option>
                             <option>Cliente B</option>
                             <option>Cliente C</option>
@@ -651,95 +632,76 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2023-10-26</td>
-                            <td>Cliente A</td>
-                            <td>Desarrollo WEB</td>
-                            <td>$2,500.00</td>
-                            <td><span class="badge badge-success">Pagada</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editFacturaModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteFacturaModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-25</td>
-                            <td>Cliente B</td>
-                            <td>Consultoría SEO</td>
-                            <td>$800.00</td>
-                            <td><span class="badge badge-warning">Pendiente</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editFacturaModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteFacturaModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-24</td>
-                            <td>Cliente C</td>
-                            <td>Mantenimiento Mensual</td>
-                            <td>$300.00</td>
-                            <td><span class="badge badge-success">Pagada</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editFacturaModal" data-id="3"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteFacturaModal" data-id="3"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-23</td>
-                            <td>Cliente D</td>
-                            <td>Diseño Gráfico</td>
-                            <td>$500.00</td>
-                            <td><span class="badge badge-danger">Vencida</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editFacturaModal" data-id="4"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteFacturaModal" data-id="4"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-22</td>
-                            <td>Cliente E</td>
-                            <td>Soporte Técnico</td>
-                            <td>$150.00</td>
-                            <td><span class="badge badge-success">Pagada</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editFacturaModal" data-id="5"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteFacturaModal" data-id="5"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @foreach($facturaciones as $factura)
+                            <tr>
+                                <td>{{ $factura->fecha_emision }}</td>
+                                <td>{{ $factura->cliente }}</td>
+                                <td>{{ $factura->concepto }}</td>
+                                <td>${{ number_format($factura->monto, 2) }}</td>
+                                <td>
+                                    @php
+                                        $estado = strtolower($factura->estado);
+                                        $badgeClass = match($estado) {
+                                            'pagada' => 'badge-success',
+                                            'pendiente' => 'badge-warning',
+                                            'vencida' => 'badge-danger',
+                                            default => 'badge-secondary'
+                                        };
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">{{ ucfirst($estado) }}</span>
+                                </td>
+                                <td class="action-buttons">
+                                    <a href="{{ route('finanzas.facturacion.create', $factura->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+
+                                    <form action="{{ route('finanzas.eliminar', $factura->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" 
+                                                onclick="return confirm('¿Estás seguro de eliminar esta factura?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+
 
         {{-- Utilidades Tab Content (image_1c76fd.png) --}}
         <div class="tab-pane fade {{ request()->is('finanzas/utilidades') ? 'show active' : '' }}"
              id="utilidades" role="tabpanel" aria-labelledby="utilidades-tab">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold text-success m-0">Resumen de Utilidades</h4>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#generateReportModal">
-                    <i class="fas fa-file-export me-2"></i> Generar Reporte
-                </button>
+                <a href="{{ route('finanzas.utilidades.create') }}" class="btn btn-success">
+                    <i class="fas fa-plus-circle me-2"></i> Agregar Utilidad
+                </a>
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Ganancia Neta</div>
-                        <div class="value text-success">$9,300.00</div>
-                        <div class="description"><i class="fas fa-arrow-up text-success"></i> 15% este mes</div>
+                        <div class="value text-success">${{ number_format($gananciaNetaUtilidades, 2) }}</div>
+                        <div class="description"><i class="fas fa-arrow-up text-success"></i> {{ $variacionMensual }} este mes</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Margen de Utilidad</div>
-                        <div class="value">35%</div>
+                        <div class="value">{{ number_format($margenUtilidad, 1) }}%</div>
                         <div class="description">% Objetivo: 40%</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card-summary">
                         <div class="title">Proyección Anual</div>
-                        <div class="value">$110,000.00</div>
+                        <div class="value">${{ number_format($proyeccionAnual, 2) }}</div>
                         <div class="description">Basado en tendencias</div>
                     </div>
                 </div>
@@ -791,247 +753,168 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($utilidades as $utilidad)
                         <tr>
-                            <td>2023-10-26</td>
-                            <td>Venta de Producto X</td>
-                            <td>Ventas</td>
-                            <td><span class="badge badge-success">Ingreso</span></td>
-                            <td>$2,500.00</td>
-                            <td><span class="badge badge-secondary">Completado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUtilidadModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUtilidadModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
+                            <td>{{ \Carbon\Carbon::parse($utilidad->fecha)->format('Y-m-d') }}</td>
+                            <td>{{ $utilidad->concepto }}</td>
+                            <td>{{ $utilidad->categoria }}</td>
+                            <td>
+                                @if(strtolower($utilidad->tipo_utilidad) == 'ingreso')
+                                    <span class="badge badge-success">Ingreso</span>
+                                @else
+                                    <span class="badge badge-danger">Egreso</span>
+                                @endif
                             </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-25</td>
-                            <td>Pago de Alquiler</td>
-                            <td>Gastos Operativos</td>
-                            <td><span class="badge badge-danger">Egreso</span></td>
-                            <td>$800.00</td>
-                            <td><span class="badge badge-secondary">Completado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUtilidadModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUtilidadModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
+                            <td>${{ number_format($utilidad->monto, 2) }}</td>
+                            <td>
+                                @if($utilidad->estado == 'completado')
+                                    <span class="badge badge-secondary">Completado</span>
+                                @else
+                                    <span class="badge badge-warning">{{ ucfirst($utilidad->estado) }}</span>
+                                @endif
                             </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-24</td>
-                            <td>Servicio de Consultoría</td>
-                            <td>Servicios</td>
-                            <td><span class="badge badge-success">Ingreso</span></td>
-                            <td>$1,200.00</td>
-                            <td><span class="badge badge-secondary">Completado</span></td>
                             <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUtilidadModal" data-id="3"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUtilidadModal" data-id="3"><i class="fas fa-trash-alt"></i></button>
+                                <a href="{{ route('finanzas.utilidades.create', $utilidad->id) }}" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+
+                                <form action="{{ route('finanzas.eliminar', $utilidad->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta utilidad?')">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </td>
+
                         </tr>
-                        <tr>
-                            <td>2023-10-23</td>
-                            <td>Compra de Suministros</td>
-                            <td>Gastos Operativos</td>
-                            <td><span class="badge badge-danger">Egreso</span></td>
-                            <td>$150.00</td>
-                            <td><span class="badge badge-secondary">Completado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUtilidadModal" data-id="4"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUtilidadModal" data-id="4"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2023-10-22</td>
-                            <td>Reembolso de Cliente</td>
-                            <td>Ventas</td>
-                            <td><span class="badge badge-success">Ingreso</span></td>
-                            <td>$50.00</td>
-                            <td><span class="badge badge-secondary">Completado</span></td>
-                            <td class="action-buttons">
-                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editUtilidadModal" data-id="5"><i class="fas fa-pencil-alt"></i></button>
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUtilidadModal" data-id="5"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
 
-        {{-- Deudas Tab Content (image_33fb3b.png) --}}
-        <div class="tab-pane fade {{ request()->is('finanzas/deudas') ? 'show active' : '' }}"
-             id="deudas" role="tabpanel" aria-labelledby="deudas-tab">
-
-            <h4 class="mb-3">Resumen de Deudas</h4>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card-summary total-debt">
-                        <i class="fas fa-hand-holding-usd icon"></i>
-                        <div>
-                            <div class="title">Total Deuda</div>
-                            <div class="value">$45,000</div>
-                            <div class="description">Saldo pendiente</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-summary pending-payments">
-                        <i class="fas fa-hourglass-half icon"></i>
-                        <div>
-                            <div class="title">Pagos Vencidos</div>
-                            <div class="value">$8,500</div>
-                            <div class="description">Al día de hoy</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-summary paid-payments">
-                        <i class="fas fa-check-circle icon"></i>
-                        <div>
-                            <div class="title">Último Pago</div>
-                            <div class="value">$2,000</div>
-                            <div class="description">15 Jun 2024</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="mt-4">Historial de Pagos</h4>
-            <div class="details-section">
-                {{-- Headers for Historial de Pagos --}}
-                <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid #ddd;">
-                    <div class="icon"></div>
-                    <div class="info col-date">Fecha</div>
-                    <div class="info">Banco / Proveedor</div>
-                    <div class="info">Concepto</div>
-                    <div class="info col-amount text-right">Monto</div>
-                    <div class="info col-amount-due text-right">Saldo Anterior</div>
-                    <div class="col-action-icon-debt">ACCIONES</div>
-                </div>
-                {{-- Payment History Examples from image_33fb3b.png --}}
-                <div class="details-item debt-item">
-                    <i class="fas fa-calendar-check icon"></i>
-                    <div class="info col-date">2024-06-16</div>
-                    <div class="info">Banco Rural</div>
-                    <div class="info">Compra insumos</div>
-                    <div class="info col-amount text-success">$2,500</div>
-                    <div class="info col-amount-due">$3,000</div>
-                    <div class="col-action-icon-debt">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editDeudaHistorialModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteDeudaHistorialModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item debt-item">
-                    <i class="fas fa-calendar-check icon"></i>
-                    <div class="info col-date">2024-06-10</div>
-                    <div class="info">Banco Rural</div>
-                    <div class="info">Compra fertilizante</div>
-                    <div class="info col-amount text-success">$3,000</div>
-                    <div class="info col-amount-due">$3,000</div>
-                    <div class="col-action-icon-debt">
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editDeudaHistorialModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteDeudaHistorialModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="mt-4">Próximos Vencimientos</h4>
-            <div class="details-section">
-                {{-- Headers for Próximos Vencimientos --}}
-                <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid #ddd;">
-                    <div class="icon"></div>
-                    <div class="info col-date">Fecha Vencimiento</div>
-                    <div class="info">Proveedor / Concepto</div>
-                    <div class="info">Monto Original</div>
-                    <div class="info col-status text-right">Estado</div>
-                    <div class="info col-amount text-right">Monto a Pagar</div>
-                    <div class="col-pay-button">ACCIONES</div>
-                </div>
-                {{-- Upcoming Due Dates Examples from image_33fb3b.png --}}
-                <div class="details-item debt-item">
-                    <i class="fas fa-exclamation-circle icon text-danger"></i>
-                    <div class="info col-date">2024-06-25</div>
-                    <div class="info">Proveedor Agua - Compra fertilizante</div>
-                    <div class="info">$2,000</div>
-                    <div class="info col-status text-warning">Pendiente</div>
-                    <div class="info col-amount">$2,000</div>
-                    <div class="col-pay-button">
-                        <button class="btn btn-sm btn-success">Pagar</button>
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editDeudaVencimientoModal" data-id="1"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteDeudaVencimientoModal" data-id="1"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-                <div class="details-item debt-item">
-                    <i class="fas fa-exclamation-circle icon text-warning"></i>
-                    <div class="info col-date">2024-07-01</div>
-                    <div class="info">Banco Rural</div>
-                    <div class="info">$4,000</div>
-                    <div class="info col-status text-warning">Pendiente</div>
-                    <div class="info col-amount">$4,000</div>
-                    <div class="col-pay-button">
-                        <button class="btn btn-sm btn-success">Pagar</button>
-                        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editDeudaVencimientoModal" data-id="2"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteDeudaVencimientoModal" data-id="2"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
+    {{-- Deudas Tab Content --}}
+    <div class="tab-pane fade {{ request()->is('finanzas/deudas') ? 'show active' : '' }}"
+        id="deudas" role="tabpanel" aria-labelledby="deudas-tab">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold text-success m-0">Resumen de Deudas</h4>
+            <a href="{{ route('finanzas.deudas.create') }}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-2"></i> Agregar Deuda
+            </a>
         </div>
+
+        {{-- Tarjetas resumen --}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-summary total-debt">
+                    <i class="fas fa-hand-holding-usd icon"></i>
+                    <div>
+                        <div class="title">Total Deuda</div>
+                        <div class="value">${{ number_format($totalDeuda, 2) }}</div>
+                        <div class="description">Saldo pendiente</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-summary pending-payments">
+                    <i class="fas fa-hourglass-half icon"></i>
+                    <div>
+                        <div class="title">Pagos Atrasados</div>
+                    <div class="value">
+                    ${{ number_format(collect($deudas)->where('estado', 'Atrasado')->sum('monto_original'), 2) }}
+                    </div>
+                        <div class="description">Hasta hoy</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-summary paid-payments">
+                    <i class="fas fa-check-circle icon"></i>
+                    <div>
+                        <div class="title">Último Pago</div>
+                        <div class="value">${{ number_format($ultimoPago, 2) }}</div>
+            <div class="description">
+                @if ($fechaUltimoPago && strtotime($fechaUltimoPago) !== false)
+                    {{ \Carbon\Carbon::parse($fechaUltimoPago)->format('d M Y') }}
+                @else
+                    No disponible
+                @endif
+            </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- Tabla de deudas en formato unificado --}}
+        <h4 class="mt-4">Listado de Deudas</h4>
+        <div class="details-section">
+            <div class="details-item fw-bold text-muted" style="border-bottom: 2px solid #ddd;">
+                <div class="icon" style="width: 5%;"></div>
+                <div class="info" style="width: 15%;">Fecha</div>
+                <div class="info" style="width: 20%;">Proveedor</div>
+                <div class="info" style="width: 20%;">Concepto</div>
+                <div class="info" style="width: 10%;">Monto</div>
+                <div class="info" style="width: 15%;">F. Vencimiento</div>
+                <div class="info" style="width: 10%;">Estado</div>
+                <div class="col-action-icon-debt" style="width: 5%;">Acciones</div>
+            </div>
+
+            @forelse ($deudas as $deuda)
+                <div class="details-item debt-item">
+                    <i class="fas fa-file-invoice-dollar icon 
+                        @if($deuda->estado == 'Atrasado') text-warning 
+                        @elseif($deuda->estado == 'Pagado') text-success 
+                        @else text-danger @endif" style="width: 5%;"></i>
+
+                    <div class="info" style="width: 15%;">{{ \Carbon\Carbon::parse($deuda->fecha)->format('Y-m-d') }}</div>
+                    <div class="info" style="width: 20%;">{{ $deuda->proveedor ?? '---' }}</div>
+                    <div class="info" style="width: 20%;">{{ $deuda->concepto ?? '---' }}</div>
+                    <div class="info" style="width: 10%;">${{ number_format($deuda->monto_original, 2) }}</div>
+                    <div class="info" style="width: 15%;">{{ \Carbon\Carbon::parse($deuda->fecha_vencimiento)->format('Y-m-d') }}</div>
+                    <div class="info" style="width: 10%;">
+                        <span class="badge 
+                            @if($deuda->estado == 'Pendiente') bg-danger 
+                            @elseif($deuda->estado == 'Pagado') bg-success 
+                            @else bg-warning text-dark @endif">
+                            {{ ucfirst($deuda->estado) }}
+                        </span>
+                    </div>
+                    <div class="col-action-icon-debt" style="width: 5%;">
+                        <td class="action-buttons">
+                            <a href="{{ route('finanzas.deudas.create', $deuda->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+
+                            <form action="{{ route('finanzas.eliminar', $deuda->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta deuda?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </div>
+                </div>
+            @empty
+                <div class="details-item text-center">
+                    <div class="info w-100">No hay deudas registradas.</div>
+                </div>
+            @endforelse
+        </div>
+
     </div>
+
+
 </div>
 
 
 
-{{-- All the Modals (Add, Edit, Delete) --}}
 
-{{-- Generic Add Modal Structure (Adapt for each section) --}}
-<div class="modal fade" id="addIngresoModal" tabindex="-1" role="dialog" aria-labelledby="addIngresoModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addIngresoModalLabel">Agregar Nuevo Ingreso</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="ingresoFecha" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="ingresoFecha" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ingresoDescripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="ingresoDescripcion" placeholder="Ej: Venta de Producto Z" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ingresoCategoria" class="form-label">Categoría</label>
-                        <select class="form-control" id="ingresoCategoria" required>
-                            <option value="">Seleccione una categoría</option>
-                            <option>Ventas</option>
-                            <option>Servicios</option>
-                            <option>Inversiones</option>
-                            <option>Otros</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ingresoMonto" class="form-label">Monto</label>
-                        <input type="number" step="0.01" class="form-control" id="ingresoMonto" placeholder="Ej: 500.00" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ingresoEstado" class="form-label">Estado</label>
-                        <select class="form-control" id="ingresoEstado" required>
-                            <option value="">Seleccione un estado</option>
-                            <option>Recibido</option>
-                            <option>Pendiente</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar Ingreso</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 {{-- Generic Edit Modal Structure (Adapt for each section) --}}
 <div class="modal fade" id="editIngresoModal" tabindex="-1" role="dialog" aria-labelledby="editIngresoModalLabel" aria-hidden="true">
@@ -1084,27 +967,7 @@
     </div>
 </div>
 
-{{-- Generic Delete Confirmation Modal Structure (Adapt for each section) --}}
-<div class="modal fade" id="deleteIngresoModal" tabindex="-1" role="dialog" aria-labelledby="deleteIngresoModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteIngresoModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro que desea eliminar este ingreso?</p>
-                <input type="hidden" id="deleteIngresoId">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 {{-- Repeat the Add, Edit, Delete modal structures for Egresos, Pagos, Facturacion, Utilidades, and Deudas sections,
     adjusting IDs, labels, and form fields as per their respective data. --}}
