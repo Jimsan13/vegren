@@ -59,6 +59,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Eliminar carga
     Route::delete('/admin/cargas/{id}', [CargaController::class, 'destroy'])->name('admin.cargas.destroy');
 
+    Route::get('/admin/cargas/{id}/edit', [CargaController::class, 'edit']);
 
     // === RUTAS DE GASTOS ===
     Route::get('/admin/gastos', [GastoController::class, 'index'])->name('admin.gastos.index');
@@ -124,6 +125,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 Route::delete('/finanzas/eliminar/{id}', [FinanzasController::class, 'eliminarRegistro'])->name('finanzas.eliminar');
+
+// Editar ingreso
+Route::get('/ingresos/editar/{id}', [FinanzasController::class, 'editarIngreso'])->name('ingresos.edit');
+
+// Actualizar ingreso
+Route::put('/ingresos/{id}', [FinanzasController::class, 'actualizarIngreso'])->name('ingresos.update');
 
 
 

@@ -63,8 +63,9 @@ class CargaController extends Controller
     public function edit($id)
     {
         $carga = Carga::findOrFail($id);
-        return view('rol.admin.modal_carga', compact('carga')); // misma vista pero con datos para editar
+        return response()->json($carga);
     }
+
 
     // Actualizar carga existente
     public function update(Request $request, $id)
@@ -107,6 +108,7 @@ class CargaController extends Controller
 
         return redirect()->route('admin.cargas')->with('success', '¡Carga actualizada exitosamente!');
     }
+    
 
     public function destroy($id)
     {
@@ -115,4 +117,5 @@ class CargaController extends Controller
 
         return response()->json(['message' => 'Carga eliminada correctamente']);
     }
+    
 }

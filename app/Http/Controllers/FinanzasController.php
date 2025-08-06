@@ -295,4 +295,28 @@ class FinanzasController extends Controller
         }
     }
 
+
+    // E D I T A R    Y A C T U A L I  Z A R
+    public function editarIngreso($id)
+    {
+        $ingreso = Finanzas::findOrFail($id);
+        return view('rol.admin.FinanzaAgregarIngreso', compact('ingreso'));
+    }
+
+    public function actualizarIngreso(Request $request, $id)
+    {
+        $ingreso = Finanzas::findOrFail($id);
+        $ingreso->update([
+            'fecha' => $request->fecha,
+            'descripcion' => $request->descripcion,
+            'categoria' => $request->categoria,
+            'monto' => $request->monto,
+            'estado' => $request->estado,
+            'tipo' => 'ingreso',
+        ]);
+
+        return redirect()->route('finanzas.ingresos')->with('success', 'Ingreso actualizado correctamente.');
+    }
+
+
 }
