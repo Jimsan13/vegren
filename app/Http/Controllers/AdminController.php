@@ -8,6 +8,8 @@ use App\Models\Carga;
 use App\Models\Gasto; 
 use App\Models\GastoMovimiento;
 use App\Models\Cotizacion;
+use App\Models\AlmacenProveedor;
+
 
 class AdminController extends Controller
 {
@@ -33,10 +35,7 @@ class AdminController extends Controller
         return view('rol.admin.ventas');
     }
 
-    public function almacen()
-    {
-        return view('rol.admin.almacen');
-    }
+
 
     public function nomina()
     {
@@ -79,4 +78,36 @@ class AdminController extends Controller
         $cotizaciones = Cotizacion::orderBy('fecha', 'desc')->get();
         return view('rol.admin.productos', compact('cotizaciones'));
     }
+
+public function almacen(Request $request)
+{
+    $proveedores = AlmacenProveedor::all();
+
+    $compras = collect();
+    $pagos = collect();
+    $proveedorSeleccionado = null;
+
+    $proveedor_id = $request->input('proveedor_id', null); // Valor por defecto null
+
+    if ($proveedor_id) {
+        $proveedorSeleccionado = AlmacenProveedor::find($proveedor_id);
+
+        $compras = DB::table('almacen_compras')
+            ->where('proveedor_id', $proveedor_id)
+            ->get();
+
+        $pagos = AlmacenPagoProveedor::where('proveedor_id', $proveedor_id)
+            ->orderBy('fecha_pago', 'desc')
+            ->get();
+    }
+
+    return view('rol.admin.almacen', compact(
+        'proveedores',
+        'compras',
+        'pagos',
+        'proveedorSeleccionado',
+        'proveedor_id'  // <--- asegúrate de enviarla
+    ));
+}
+
 }

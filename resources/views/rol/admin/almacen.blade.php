@@ -15,7 +15,12 @@
         <h3>Insumos del empaque</h3>
     </div>
     <div class="row g-4">
-        <x-almacen-tabs />
+<x-almacen-tabs 
+    :proveedores="$proveedores" 
+    :compras="$compras" 
+    :pagos="$pagos" 
+    :proveedor_id="$proveedor_id" 
+/>
     </div>
 @endsection
 

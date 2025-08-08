@@ -48,6 +48,9 @@
         </li>
     </ul>
 
+@props(['proveedores', 'compras', 'pagos', 'proveedor_id'])
+
+
     <div class="tab-content" id="almacenTabsContent">
         <div class="tab-pane fade {{ request()->is('almacen/interno/compras') ? 'show active' : '' }}" id="compraInsumos" role="tabpanel" aria-labelledby="compraInsumos-tab">
             <div class="card shadow-sm mb-4">
@@ -208,29 +211,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Proveedor A SA de CV</td>
-                                    <td>PROVA123456ABC</td>
-                                    <td>5512345678</td>
-                                    <td>contacto@proveedora.com</td>
-                                    <td class="text-danger fw-bold">$10,000.00</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalVerComprasProveedor"><i class="fas fa-list-alt"></i> Ver Compras</button>
-                                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalRegistrarPagoProveedor"><i class="fas fa-money-bill-wave"></i> Registrar Pago</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Proveedor B</td>
-                                    <td>PROVB654321DEF</td>
-                                    <td>5587654321</td>
-                                    <td>info@proveedorb.com</td>
-                                    <td class="text-success fw-bold">$0.00</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalVerComprasProveedor"><i class="fas fa-list-alt"></i> Ver Compras</button>
-                                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalRegistrarPagoProveedor"><i class="fas fa-money-bill-wave"></i> Registrar Pago</button>
-                                    </td>
-                                </tr>
-                                </tbody>
+                                @foreach ($proveedores as $proveedor)
+                                    <tr>
+                                        <td>{{ $proveedor->nombre_razon_social }}</td>
+                                        <td>{{ $proveedor->rfc }}</td>
+                                        <td>{{ $proveedor->telefono }}</td>
+                                        <td>{{ $proveedor->email }}</td>
+                                        <td class="text-danger fw-bold">$0.00</td> {{-- Aquí ajusta según crédito acumulado --}}
+                                        <td>
+                                            <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalVerComprasProveedor"><i class="fas fa-list-alt"></i> Ver Compras</button>
+                                            <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalRegistrarPagoProveedor"><i class="fas fa-money-bill-wave"></i> Registrar Pago</button>
+                                            <form action="{{ route('almacen-proveedores.destroy', $proveedor->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar proveedor?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+
+
                         </table>
                     </div>
                 </div>
@@ -419,7 +420,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+            <form id="formCompraInsumos">
                     <div class="mb-3">
                         <label for="compraInsumoFecha" class="form-label">Fecha:</label>
                         <input type="date" class="form-control" id="compraInsumoFecha" required>
@@ -560,6 +561,9 @@
     </div>
 </div>
 
+
+
+
 <div class="modal fade" id="modalRegistrarConsumoViaje" tabindex="-1" aria-labelledby="modalRegistrarConsumoViajeLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -568,7 +572,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+            <form id="formCompraProductosVenta">
                     <div class="mb-3">
                         <label for="consumoViajeFecha" class="form-label">Fecha del Viaje:</label>
                         <input type="date" class="form-control" id="consumoViajeFecha" required>
@@ -626,6 +630,7 @@
     </div>
 </div>
 
+
 <div class="modal fade" id="modalRegistrarProveedor" tabindex="-1" aria-labelledby="modalRegistrarProveedorLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -634,26 +639,27 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ url('/almacen-proveedores') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="proveedorNombre" class="form-label">Nombre/Razón Social:</label>
-                        <input type="text" class="form-control" id="proveedorNombre" required>
+                        <input type="text" class="form-control" id="proveedorNombre" name="nombre_razon_social" required>
                     </div>
                     <div class="mb-3">
                         <label for="proveedorRfc" class="form-label">RFC:</label>
-                        <input type="text" class="form-control" id="proveedorRfc">
+                        <input type="text" class="form-control" id="proveedorRfc" name="rfc">
                     </div>
                     <div class="mb-3">
                         <label for="proveedorTelefono" class="form-label">Teléfono:</label>
-                        <input type="tel" class="form-control" id="proveedorTelefono">
+                        <input type="tel" class="form-control" id="proveedorTelefono" name="telefono">
                     </div>
                     <div class="mb-3">
                         <label for="proveedorEmail" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="proveedorEmail">
+                        <input type="email" class="form-control" id="proveedorEmail" name="email">
                     </div>
                     <div class="mb-3">
                         <label for="proveedorDireccion" class="form-label">Dirección:</label>
-                        <textarea class="form-control" id="proveedorDireccion" rows="3"></textarea>
+                        <textarea class="form-control" id="proveedorDireccion" name="direccion" rows="3"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -665,16 +671,26 @@
     </div>
 </div>
 
+
+
+<!-- Modal Compras y Pagos -->
+
 <div class="modal fade" id="modalVerComprasProveedor" tabindex="-1" aria-labelledby="modalVerComprasProveedorLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
-                <h5 class="modal-title" id="modalVerComprasProveedorLabel">Compras de Insumos por Proveedor: <span id="nombreProveedorModal"></span></h5>
+                <h5 class="modal-title" id="modalVerComprasProveedorLabel">
+                    Compras de Insumos por Proveedor: {{ $proveedorSeleccionado->nombre_razon_social ?? '' }}
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>Total Crédito Pendiente:</strong> <span class="fw-bold text-danger" id="totalCreditoProveedorModal"></span></p>
-                <div class="table-responsive">
+                <p><strong>Total Crédito Pendiente:</strong> 
+                    <span class="fw-bold text-danger">{{ number_format($compras->sum('credito_pendiente'), 2) ?? '0.00' }}</span>
+                </p>
+
+                <h6>Compras</h6>
+                <div class="table-responsive mb-4">
                     <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
@@ -687,12 +703,48 @@
                                 <th>Crédito Liquidado</th>
                             </tr>
                         </thead>
-                        <tbody id="tablaComprasProveedorModal">
-                            <tr><td>2025-06-25</td><td>NTA-001</td><td>1000 Playos</td><td>$5,000.00</td><td>Crédito</td><td>No</td><td>No</td></tr>
-                            <tr><td>2025-05-15</td><td>NTA-003</td><td>200 Tarimas</td><td>$8,000.00</td><td>Crédito</td><td>Sí</td><td>No</td></tr>
+                        <tbody>
+                            @forelse($compras as $compra)
+                                <tr>
+                                    <td>{{ $compra->fecha }}</td>
+                                    <td>{{ $compra->nota }}</td>
+                                    <td>{{ $compra->descripcion }}</td>
+                                    <td>${{ number_format($compra->total, 2) }}</td>
+                                    <td>{{ $compra->tipo_pago }}</td>
+                                    <td>{{ $compra->facturado ? 'Sí' : 'No' }}</td>
+                                    <td>{{ $compra->credito_liquidado ? 'Sí' : 'No' }}</td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="7" class="text-center">No hay compras registradas</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
+
+                <h6>Pagos Registrados</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>Fecha Pago</th>
+                                <th>Monto</th>
+                                <th>Método de Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($pagos as $pago)
+                                <tr>
+                                    <td>{{ $pago->fecha_pago }}</td>
+                                    <td>${{ number_format($pago->monto, 2) }}</td>
+                                    <td>{{ ucfirst($pago->metodo_pago) }}</td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="3" class="text-center">No hay pagos registrados</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -701,42 +753,50 @@
     </div>
 </div>
 
+
+
 <div class="modal fade" id="modalRegistrarPagoProveedor" tabindex="-1" aria-labelledby="modalRegistrarPagoProveedorLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="modalRegistrarPagoProveedorLabel">Registrar Pago a Proveedor: <span id="pagoProveedorNombre"></span></h5>
+                <h5 class="modal-title" id="modalRegistrarPagoProveedorLabel">
+                    Registrar Pago a Proveedor: <span id="pagoProveedorNombre"></span>
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <p><strong>Crédito Pendiente Actual:</strong> <span class="fw-bold text-danger" id="creditoActualPagoProveedor"></span></p>
-                    <div class="mb-3">
-                        <label for="pagoMonto" class="form-label">Monto del Pago:</label>
-                        <input type="number" class="form-control" id="pagoMonto" min="0.01" step="0.01" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pagoFecha" class="form-label">Fecha del Pago:</label>
-                        <input type="date" class="form-control" id="pagoFecha" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pagoMetodo" class="form-label">Método de Pago:</label>
-                        <select class="form-select" id="pagoMetodo" required>
-                            <option value="">Seleccione</option>
-                            <option value="transferencia">Transferencia</option>
-                            <option value="efectivo">Efectivo</option>
-                            <option value="cheque">Cheque</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-success">Registrar Pago</button>
-                    </div>
-                </form>
+    <form action="{{ route('almacen-pagos-proveedores.store') }}" method="POST" class="p-3 border rounded bg-light">
+        @csrf
+        <input type="hidden" name="proveedor_id" value="{{ $proveedor->id }}">
+        
+        <div class="mb-3">
+            <label for="monto" class="form-label">Monto del Pago</label>
+            <input type="number" step="0.01" min="0.01" class="form-control" id="monto" name="monto" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="fecha_pago" class="form-label">Fecha del Pago</label>
+            <input type="date" class="form-control" id="fecha_pago" name="fecha_pago" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="metodo_pago" class="form-label">Método de Pago</label>
+            <select class="form-select" id="metodo_pago" name="metodo_pago" required>
+                <option value="" disabled selected>Seleccione un método</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="cheque">Cheque</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-success w-100">Guardar Pago</button>
+    </form>
+
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="modal fade" id="modalRegistrarCompraProductoVenta" tabindex="-1" aria-labelledby="modalRegistrarCompraProductoVentaLabel" aria-hidden="true">
@@ -1395,7 +1455,14 @@
         calculateTotalVenta();
 
     });
+
+
+
+    // guardar proveedor y pago proveedor MODAL
+    
 </script>
+
+
 
 </body>
 </html>

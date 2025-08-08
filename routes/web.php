@@ -16,7 +16,8 @@ use App\Http\Controllers\EstadoResultadosController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\FinanzasController;
-
+use App\Http\Controllers\AlmacenProveedorInternoController;
+use App\Http\Controllers\AlmacenPagoProveedorController;
 
 
 
@@ -83,6 +84,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
+
+    // == A L M A C E N ==
+Route::post('/almacen-pagos-proveedores', [AlmacenPagoProveedorController::class, 'store']);
+Route::get('/almacen-pagos-proveedores/{proveedor_id}', [AlmacenPagoProveedorController::class, 'index']);
+Route::post('/almacen-pagos-proveedores', [AlmacenPagoProveedorController::class, 'store'])->name('almacen-pagos-proveedores.store');
+
+// P R O V E E D O R E S
+Route::post('/almacen-proveedores', [AlmacenProveedorInternoController::class, 'store']);
+Route::post('/almacen-proveedores', [AlmacenProveedorInternoController::class, 'store'])->name('almacen-proveedores.store');
+Route::delete('/almacen-proveedores/{id}', [AlmacenProveedorInternoController::class, 'destroy'])->name('almacen-proveedores.destroy');
+Route::get('/almacen-proveedores', [AlmacenProveedorInternoController::class, 'index'])->name('almacen-proveedores.index');
+
+//PAGO PROVEEDOR
+Route::get('/proveedores/{proveedor_id}/pagos', [AlmacenPagoProveedorController::class, 'mostrarPagosProveedor'])
+    ->name('proveedores.pagos');
 
 
 
