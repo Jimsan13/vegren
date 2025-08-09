@@ -1,0 +1,170 @@
+
+        body {
+            font-family: sans-serif;
+            background-color: #f0fff0; /* Light green background to match image */
+        }
+        .container-fluid {
+            padding: 30px;
+        }
+        .gastos-tabs .nav-link {
+            color: #495057;
+            border: 1px solid transparent;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            padding: .5rem 1rem;
+        }
+        .gastos-tabs .nav-link.active {
+            color: #28a745; /* Green for active tab */
+            background-color: #fff;
+            border-color: #dee2e6 #dee2e6 #fff;
+            font-weight: bold;
+        }
+        .card-summary {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-summary .icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            color: #28a745; /* Green icon */
+        }
+        .card-summary .icon.movement {
+            color: #17a2b8; /* Blue-green for movements */
+        }
+        .card-summary .icon.employees {
+            color: #28a745; /* Green for employees icon */
+        }
+        .card-summary .title {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        .card-summary .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .card-summary .description {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        .details-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        }
+        .details-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            /* Remove cursor: pointer; to avoid confusion with new buttons */
+        }
+        .details-item:hover {
+            background-color: #f8f9fa; /* Highlight on hover */
+        }
+        .details-item:last-child {
+            border-bottom: none;
+        }
+        .details-item .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #6c757d;
+            width: 30px;
+            text-align: center;
+        }
+        .details-item .info {
+            flex-grow: 1;
+            min-width: 120px; /* For date/amount/type columns */
+        }
+        .details-item .info.description {
+            flex-grow: 2; /* Make description column wider */
+            min-width: 180px;
+        }
+        .details-item .col-name {
+            width: 150px; /* Fixed width for name column */
+        }
+        .details-item .col-date, .details-item .col-amount, .details-item .col-type {
+            width: 120px; /* Fixed width for date, amount, type */
+            text-align: right;
+        }
+        .details-item .actions {
+            display: flex;
+            gap: 5px; /* Space between action buttons */
+            margin-left: 15px; /* Space from the last info column */
+        }
+        .details-item .btn-action {
+            padding: .3rem .6rem;
+            font-size: .8em;
+        }
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            width: fit-content;
+        }
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        /* Modal specific styles */
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .modal-header {
+            background-color: #28a745; /* Green header */
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: none;
+        }
+        .modal-header .close {
+            color: white;
+            opacity: 0.8;
+        }
+        .modal-title {
+            font-weight: 600;
+        }
+        .modal-body .form-group {
+            margin-bottom: 15px;
+        }
+        .modal-body .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        .modal-body .input-group-text {
+            background-color: #e9ecef;
+            border-color: #ced4da;
+            color: #495057;
+        }
+        .modal-footer {
+            border-top: 1px solid #e9ecef;
+            padding: 15px;
+            justify-content: flex-end;
+        }
+        .modal-footer .btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+        }
+        .modal-footer .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .modal-footer .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }

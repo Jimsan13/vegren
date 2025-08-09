@@ -1,0 +1,252 @@
+:root {
+    --primary-green: #28a745; /* Verde principal para el color de acento */
+    --dark-green: #19b33d; /* Verde más oscuro para quizás hover o estados activos */
+    --light-green: #E8F5E9; /* Un verde muy claro para fondos de sidebar */
+    --lighter-green: #DCEDC8; /* Otro verde claro, un poco más oscuro que light-green */
+    --text-dark: #444444; /* Texto oscuro general */
+    --text-light: #666; /* Texto más claro para descripciones */
+    --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra de tarjeta (mantenerla en negro transparente para un mejor contraste) */
+    --black-icons-text: #000; /* Asegura que los iconos y algunos textos sean negros */
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    width: 250px;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--light-green); /* Fondo verde claro del sidebar */
+    color: var(--text-dark);
+    border-right: 1px solid rgba(0, 0, 0, 0.1); /* Borde más sutil */
+    padding: 20px;
+    flex-shrink: 0;
+    box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-heading {
+    background-color: var(--dark-green); /* Fondo verde oscuro para el encabezado del sidebar */
+    color: white; /* Texto blanco para el encabezado verde oscuro */
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
+
+.sidebar-heading img {
+    height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    color: var(--text-dark); /* Texto oscuro para los ítems de la lista */
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+#sidebar-wrapper .list-group-item i {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--black-icons-text); /* Iconos negros para los ítems no activos */
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--primary-green); /* Fondo verde principal para el ítem activo */
+    color: white; /* Texto blanco para el ítem activo */
+}
+
+#sidebar-wrapper .list-group-item.active i {
+    color: white; /* Iconos blancos para el ítem activo */
+}
+
+#sidebar-wrapper .list-group-item:hover:not(.active) {
+    background-color: var(--lighter-green); /* Fondo verde más claro al pasar el ratón */
+}
+
+/* Contenido principal */
+#page-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar-custom {
+    padding: 0.75rem 1.5rem;
+    background-color: white !important;
+    border-bottom: 1px solid #e0e0e0; /* Borde más suave */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    z-index: 1000;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link i {
+    margin-right: 0.5rem;
+    color: var(--black-icons-text); /* Iconos negros en la barra de navegación */
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+/* varra de navegacion internas*/
+
+.gastos-tabs .nav-link {
+    border: none;
+    color: #000; /* Texto negro para las pestañas */
+    font-weight: normal;
+}
+
+.gastos-tabs .nav-link.active {
+    border: none;
+    border-bottom: 3px solid var(--primary-green); /* Borde inferior verde para la pestaña activa */
+    color: var(--primary-green); /* Texto verde para la pestaña activa */
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.gastos-tabs .nav-link:hover {
+    color: var(--primary-green); /* Color verde al pasar el ratón por las pestañas */
+}
+
+/* Tarjetas del dashboard */
+.card-custom {
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.1s ease-in-out;
+    border: none;
+    padding: 1.5rem;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px);
+}
+
+.card-custom i {
+    font-size: 3em;
+    margin-bottom: 1rem;
+    color: var(--black-icons-text); /* Iconos negros en las tarjetas */
+}
+
+.card-custom .card-title {
+    font-weight: 600;
+    color: var(--black-icons-text); /* Título de tarjeta negro */
+    margin-bottom: 0.5rem;
+}
+
+.card-custom .card-text {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.btn-custom {
+    background-color: var(--primary-green); /* Botones con el color verde principal */
+    border-color: var(--primary-green);
+    color: white; /* Texto blanco en los botones verdes */
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-custom:hover {
+    background-color: var(--dark-green); /* Verde más oscuro al pasar el ratón */
+    border-color: var(--dark-green);
+    color: white;
+}
+
+/* Título del contenido */
+.content-header h3 {
+    color: var(--black-icons-text); /* Título del contenido negro */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.header-top-right {
+    text-align: right;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.header-top-right .bi {
+    margin-right: 5px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+        position: relative;
+    }
+
+    #page-content-wrapper {
+        width: auto;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+        position: fixed;
+        height: 100vh;
+        z-index: 1001;
+        box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    #page-content-wrapper {
+        width: 100vw;
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 250px;
+    }
+
+    .navbar .container-fluid {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .content-header h3 {
+        padding-left: 0.5rem;
+    }
+}
